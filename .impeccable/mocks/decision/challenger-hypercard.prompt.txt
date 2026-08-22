@@ -1,0 +1,5 @@
+Desktop web landing page UI screenshot, 16:9, of Marketo as a HyperCard shoebox stack on a beige Mac desktop. Designed website UI, 1-bit black and white only, no color anywhere.
+
+STRUCTURE: a window titled MARKETO showing one card at a time. The card has a hand-drawn black border. Top of the card: MARKETO in Chicago-style pixel bold, and a painted button row: BROWSE | AUTHOR. BROWSE is the current mode (deposit). The card body is one hero: stipple-dither portrait, name WARDEN, record and vault purse in USDso labeled SYNTHETIC, line "vs BTC · dreamDEX event market". A fat painted button reads DEPOSIT and inverts to solid black as the active state. A small button "next card" and "prev card" flip through KITE, REDLINE, ASH. AUTHOR mode is visible as an unpressed button labeled CREATE A BOT. Footer of the card: "You do not have to author a card. Browse and back a hero."
+
+Materials: one-bit black on white, stipple dither, no color, no neon, no glass. Type: Chicago-style pixel menus and Geneva-style body. The visitor's job (browse a hero card and deposit) must be readable from the image alone. No fake TVL, no testimonials.

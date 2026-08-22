@@ -1,0 +1,5 @@
+Desktop web landing page UI screenshot, 16:9, of a generic DeFi event-market product landing executed at full professional craft. This is the category standard, played straight, no irony.
+
+STRUCTURE: dark near-black ground (#0b0d12). Top nav: logo MARKETO, links Markets Vaults Docs, Connect wallet button in teal (#5eead4). Hero section: large sans headline "Trade event markets with zero friction", subhead about BTC and ETH, two buttons Start trading and Learn more. Below, a row of four stat tiles (leave numbers as em-dashes or clearly unlabeled placeholders — do not invent volume, users, or TVL). Then three equal feature cards: Create a bot, Deposit into vaults, Track performance. Footer with product links.
+
+Type: clean contemporary grotesque similar to Inter. Materials: dark glass panels, 1px hairlines, teal accent, soft ambient glow. This should look like every polished crypto landing from 2024–2026. Product name MARKETO. Mention BTC/ETH. No weigh-in, no racing form, no magazine spread, no lattice, no HyperCard. The visitor's job (click Start trading) must be readable.

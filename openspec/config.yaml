@@ -1,0 +1,159 @@
+schema: spec-driven
+
+# Injected into every OpenSpec artifact. Keep this current; it is the source of
+# project facts for planning. Prefer this file over repeating stack notes in proposals.
+context: |
+  Marketo is a SvelteKit web app for trading event markets (prediction / binary
+  options) on EVM chains, plus vaults where users deposit capital that authorized
+  traders use to trade.
+
+  Product
+  - Event market / binary options: users take positions on event outcomes (typically
+    yes/no or two-sided). Surface prices, odds, positions, PnL, and settlement
+    status from on-chain market state; do not invent off-chain matching unless a
+    change explicitly requires it.
+  - Vaults: depositors supply capital; traders allocate that capital into markets.
+    Keep depositor, trader, and vault accounting distinct. Deposits, withdrawals,
+    shares/NAV, allocations, and PnL must be reconcilable on-chain.
+  - This app is the user-facing client for those contracts. It connects wallets,
+    reads chain state, and submits user-signed transactions. It is not the protocol
+    itself and must not assume it can sign for users or hold private keys.
+
+  Tech stack (use these; do not substitute)
+  - Svelte 5 (runes mode is forced in vite.config.ts; no legacy Svelte 4 component APIs)
+  - SvelteKit 2 with Vite 8, adapter-auto
+  - TypeScript (strict), ESM (`"type": "module"`)
+  - Tailwind CSS 4 via `@tailwindcss/vite`; stylesheet is `src/routes/layout.css`
+  - Bun as package manager and script runner (`bun add`, `bun run`, `bun.lock`)
+  - Drizzle ORM + SQLite (`better-sqlite3`) for server persistence; schema in
+    `src/lib/server/db/schema.ts`
+  - Paraglide JS i18n (`en`, `id`); messages in `messages/`, generated runtime in
+    `$lib/paraglide`. User-facing copy goes through Paraglide, not hardcoded strings.
+  - Prettier with `prettier-plugin-svelte` and `prettier-plugin-tailwindcss`
+
+  Svelte 5 — idiomatic
+  - Use runes: `$props()`, `$state()`, `$derived()` / `$derived.by()`, `$effect()`,
+    `$bindable()`. Do not use `export let`, `$:` reactive statements, or
+    `createEventDispatcher`.
+  - Prefer callback props (`onclick`, `onclose`) over dispatched events.
+  - Use snippets (`{#snippet}`, `{@render}`) instead of slots.
+  - DOM events are attributes (`onclick`, `onsubmit`), not `on:` directives.
+  - Keep `$effect` for synchronizing with the outside world (wallet, DOM, timers).
+    Derive UI from `$derived`, not from effects that write state.
+  - Do not use Svelte stores for new component state. Shared client state should be
+    a small module of runes (`let x = $state(...)` in `.svelte.ts`) or a
+    well-scoped context. Use SvelteKit's `page` / `updated` stores only when the
+    Kit API requires them.
+  - Co-locate types with modules. Props types come from `$props()` generics or
+    generated `./$types`. Avoid `any`; prefer `unknown` + narrowing.
+
+  SvelteKit — idiomatic
+  - File-based routing under `src/routes`. Pages: `+page.svelte` + `+page.ts` /
+    `+page.server.ts` as needed. Layouts: `+layout.svelte` (+ server/universal
+    load when data is shared).
+  - Server-only code lives in `$lib/server/**` or `+page.server.ts` / `+server.ts` /
+    `hooks.server.ts`. Never import `$lib/server` from client modules.
+  - Load functions return data; pages consume it. Prefer `PageServerLoad` when data
+    needs secrets, DB, or RPC URLs. Use universal `load` only when it is safe on
+    both client and server.
+  - Mutations: Kit form actions for progressive HTML forms; typed remote functions
+    or `+server.ts` for JSON APIs. Do not invent a parallel REST layer without a
+    reason. Validate all action/API input on the server.
+  - Use `event.locals` (typed in `src/app.d.ts`) for per-request context. Env via
+    `$env/static/public` (client-safe) and `$env/static/private` (server-only).
+  - Path alias `$lib` for shared code. Keep wallet/chain clients in `$lib` with a
+    clear client vs server split (browser wallet connectors must not run in SSR).
+  - Guard browser APIs (`window`, `ethereum`, `localStorage`) so SSR does not crash:
+    `browser` from `$app/environment`, or onMount / `$effect` in the client.
+
+  Tailwind 4 — idiomatic
+  - CSS-first configuration in `src/routes/layout.css` (`@import "tailwindcss"`,
+    `@theme`, `@plugin`). Do not add a `tailwind.config.js`.
+  - Utility-first in templates. Extract a component when markup is reused, not a
+    CSS class soup. Use `@apply` only when a design token truly repeats.
+  - Compose variants with source order / `twMerge`-style conflict resolution if a
+    class helper is introduced; prefer explicit component props for variants.
+  - Plugins already enabled: `@tailwindcss/forms`, `@tailwindcss/typography`.
+
+  TypeScript — idiomatic
+  - Strict mode. Explicit return types on exported server functions and chain
+    helpers. Use `satisfies` for config objects.
+  - Model on-chain values as branded / named types (address, hex, wei, chainId)
+    rather than raw `string`/`number` everywhere. Amounts are bigint, never float.
+  - Prefer narrowing discriminated unions for market status, position side, vault
+    role (depositor vs trader), and tx lifecycle (idle / pending / confirmed / reverted).
+
+  Bun
+  - Install and run with Bun only. Do not add npm/yarn/pnpm lockfiles or scripts.
+  - Add dependencies with `bun add` / `bun add -d`. Scripts: `bun run <script>`.
+  - Prefer Bun-native APIs only in Bun-only tooling; runtime code must stay
+    portable to the SvelteKit / Vite Node-compatible server.
+
+  EVM / wallet
+  - Use a modern TypeScript stack (viem + wagmi, or equivalent) for RPC, accounts,
+    and contract reads/writes. Do not use ethers v5 or web3.js for new code.
+  - Chain config, contract addresses, and public RPC URLs come from env / config
+    modules — never hardcoded across routes. Support the configured EVM chain(s)
+    only; multi-chain is explicit, not accidental.
+  - Reads can be server or client. Writes are user-signed in the browser. The
+    server never holds a user key or submits a user trade/deposit on their behalf.
+  - Handle chain mismatch, disconnected wallet, rejected tx, reverted tx, and RPC
+    failure as first-class UI states. Wait for receipts; do not assume a sent hash
+    means success.
+  - ABI types are generated or imported; do not hand-roll `any` contract calls.
+  - Display units (ETH, USDC, shares) are formatted for UI; storage and tx args
+    stay in native units (wei / smallest token unit / bigint).
+
+  Domain constraints
+  - Trading: markets, outcomes, positions, collateral, settlement. Show enough
+    state for a user to decide and confirm a trade; confirmations must show size,
+    side, estimated cost, and chain.
+  - Vaults: deposit / withdraw, share accounting, trader permissions, utilization
+    of deposited capital. A depositor is not automatically a trader. A trader must
+    not be able to withdraw depositor funds except through protocol rules.
+  - Prefer reading canonical state from contracts. Index or cache in SQLite only
+    as a projection (leaderboards, history, search) and treat chain as source of
+    truth on conflict.
+  - Financial UI must be precise and reversible: pending vs confirmed, estimated
+    vs executed. No silent rounding of balances.
+
+  Security & quality
+  - No secrets in client bundles. Private env stays in `$lib/server` and hooks.
+  - Sanitize and validate every address, amount, and market/vault id before use.
+  - Do not log private keys, seed phrases, or session secrets.
+  - Format with Prettier. Typecheck with `bun run check`. Keep `$lib/server` imports
+    server-only.
+
+# Per-artifact rules (optional)
+rules:
+  proposal:
+    - Stay under ~500 words
+    - Call out whether the change is UI-only, indexing/off-chain, or requires contract/ABI changes
+    - Include a Non-goals section
+    - Call out wallet, chain, and fund-safety impact when relevant
+  specs:
+    - Use Given/When/Then for user-observable behavior
+    - Cover connected and disconnected wallet, wrong network, and failed/reverted transactions when the capability touches chain writes
+    - Distinguish depositor vs trader vs spectator roles when the capability touches vaults or trading
+  design:
+    - Respect SvelteKit client/server boundaries (`$lib/server` never imported from the client)
+    - Specify viem/wagmi (or equivalent) data flow: who reads chain, who signs, what is cached
+    - Prefer Svelte 5 runes, snippets, and Kit load/actions over ad-hoc stores and REST
+    - Amounts as bigint; UI formatting is a view concern
+  tasks:
+    - Use Bun commands (`bun add`, `bun run check`, `bun run lint`)
+    - Break work into chunks of at most ~2 hours
+    - Include typecheck/format and a manual wallet-flow check when chain I/O is involved
+
+# Per-operation guidance (optional)
+operations:
+  apply:
+    guidance:
+      - Implement with Svelte 5 runes, SvelteKit load/actions, Tailwind 4 utilities, and Bun
+      - Keep server-only modules under $lib/server; wallet writes stay client-side
+      - Run bun run check (and bun run lint when touching formatting) before considering a task done
+      - Do not introduce npm/yarn/pnpm, a tailwind.config.js, or Svelte 4 component APIs
+  archive:
+    guidance:
+      - Summarize the archive outcome before finishing
+      - Note any leftover demo/scaffold code that should be removed in a follow-up

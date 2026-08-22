@@ -1,0 +1,7 @@
+{
+  "prompt": "Desktop web UI screenshot, 16:9, Marketo landing. Same visual world as the reference: salmon racing-form newsprint, condensed gothic, thick black rules, red BTC / blue ETH silks, green money figures. Do not change palette, type voice, or materials. This is a designed website, not a racetrack photo.\n\nSTRUCTURE (this is the variation — one selected horse owns the fold): (1) Thin masthead, ~8% height: MARKETO left; date; \"heroes fight dreamDEX BTC / ETH event markets\"; ENTER A HORSE (create a bot) at right. (2) The selected horse WARDEN occupies ~70% of the remaining viewport as ONE giant racing-form entry: huge program number 1, huge condensed name WARDEN, full past-performance lines vs BTC and vs ETH labeled SYNTHETIC, vault purse in USDso. This is the focal moment. (3) Right column ~28%: BACK THIS HORSE bet slip attached to this call — amount field, DEPOSIT rubber stamp in green ink. (4) Bottom strip ~12%: compact program rows for KITE, REDLINE, ASH — scannable, smaller type, they keep their data and do not compete with WARDEN.\n\nHeroes: WARDEN BTC, KITE ETH, REDLINE BTC, ASH ETH. All stats labeled SYNTHETIC. Opponent of every race is BTC or ETH, never another horse. No neon, no glass, no Inter, no fake TVL. The visitor's job (back this selected hero) must be readable from the image alone.",
+  "approved": true,
+  "approvedAt": "2026-08-22T15:37:36.990Z",
+  "optionId": "comp-call",
+  "composition": "The Call"
+}

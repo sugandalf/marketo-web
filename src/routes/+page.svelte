@@ -1,0 +1,292 @@
+<script lang="ts">
+	import { m } from '$lib/paraglide/messages.js';
+	import { getLocale, setLocale, locales } from '$lib/paraglide/runtime';
+	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
+	import type { Pathname } from '$app/types';
+	import { localizeHref } from '$lib/paraglide/runtime';
+	import HorseMark from '$lib/landing/HorseMark.svelte';
+	import { heroes, heroById, type Hero, type Market } from '$lib/landing/heroes';
+	import './form.css';
+
+	let selectedId = $state(heroes[0].id);
+	let amountRaw = $state('0.00');
+	let walletDemo = $state(false);
+	let depositIntent = $state(false);
+	let botName = $state('');
+	let botMarket = $state<Market>('BTC');
+	let enterIntent = $state(false);
+
+	const selected = $derived(heroById(selectedId) ?? heroes[0]);
+	const bench = $derived(heroes.filter((hero) => hero.id !== selected.id));
+	const amount = $derived(Number.parseFloat(amountRaw) || 0);
+	const sharePct = $derived(
+		amount > 0 ? (amount / (selected.vaultUsdso + amount)) * 100 : 0
+	);
+
+	function money(value: number, locale = getLocale()) {
+		const sign = value > 0 ? '+' : '';
+		return `${sign}${value.toLocaleString(locale === 'id' ? 'id-ID' : 'en-US', {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		})}`;
+	}
+
+	function purse(value: number, locale = getLocale()) {
+		return value.toLocaleString(locale === 'id' ? 'id-ID' : 'en-US', {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		});
+	}
+
+	function fightDate(iso: string) {
+		const [y, mo, d] = iso.split('-');
+		return `${mo}-${d}-${y.slice(2)}`;
+	}
+
+	function cardDate() {
+		return new Intl.DateTimeFormat(getLocale() === 'id' ? 'id-ID' : 'en-US', {
+			weekday: 'long',
+			month: 'long',
+			day: 'numeric',
+			year: 'numeric'
+		}).format(new Date());
+	}
+
+	function addAmount(delta: number) {
+		amountRaw = (amount + delta).toFixed(2);
+		depositIntent = false;
+	}
+
+	function selectHero(hero: Hero) {
+		selectedId = hero.id;
+		depositIntent = false;
+	}
+
+	function onDeposit(event: SubmitEvent) {
+		event.preventDefault();
+		if (amount <= 0) return;
+		depositIntent = true;
+	}
+
+	function onEnter(event: SubmitEvent) {
+		event.preventDefault();
+		if (!botName.trim()) return;
+		enterIntent = true;
+	}
+</script>
+
+<svelte:head>
+	<title>{m.site_title()}</title>
+</svelte:head>
+
+<div class="sheet">
+	<div class="card-face">
+	<header class="masthead">
+		<p class="mark">{m.site_title()}</p>
+		<div class="masthead-meta">
+			<p class="card-date">{cardDate()}</p>
+			<p class="markets-line">
+				{m.masthead_before()}
+				<a href="https://www.dreamdex.io/" rel="noreferrer">dreamDEX</a>
+				{m.masthead_after()}
+			</p>
+		</div>
+		<div class="masthead-actions">
+			<div class="locale">
+				{#each locales as locale (locale)}
+					<button
+						type="button"
+						aria-pressed={getLocale() === locale}
+						onclick={() => setLocale(locale)}
+					>
+						{locale === 'en' ? m.locale_en() : m.locale_id()}
+					</button>
+				{/each}
+			</div>
+			<a class="enter-link" href="#enter">
+				<HorseMark />
+				<span>
+					{m.enter_horse()}
+					<small>{m.enter_horse_hint()}</small>
+				</span>
+			</a>
+		</div>
+	</header>
+
+	<div class="fold">
+		<article class="call" aria-live="polite">
+			<div class="call-num">{selected.program}</div>
+			<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
+			<div class="call-id">
+				<h1 class="call-name">{selected.name}</h1>
+				<p class="pedigree">
+					{m.pedigree({ window: selected.window, market: selected.market })}
+				</p>
+				<div class="pp">
+					<div class="pp-head">
+						<span>{m.past_performances()}</span>
+						<span class="tag">{m.synthetic()}</span>
+					</div>
+					{#each selected.fights as fight (fight.date + fight.market)}
+						<div class="pp-row">
+							<span>{fightDate(fight.date)}</span>
+							<span>{fight.window}</span>
+							<span>{m.vs_market({ market: fight.market })}</span>
+							<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
+							<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
+						</div>
+					{/each}
+				</div>
+			</div>
+			<dl class="purse">
+				<dt>{m.vault_purse()} <span class="tag">{m.synthetic()}</span></dt>
+				<dd>{purse(selected.vaultUsdso)}</dd>
+			</dl>
+		</article>
+
+		<aside class="slip">
+			<h2>{m.back_this_horse()}</h2>
+			<p class="slip-lead">{m.pick_hero_deposit()}</p>
+			<div class="picked">
+				<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
+				<div>
+					<strong>{selected.program} {selected.name}</strong>
+					<div class="pedigree">{m.pedigree({ window: selected.window, market: selected.market })}</div>
+				</div>
+			</div>
+			<form onsubmit={onDeposit}>
+				<div class="amount">
+					<label for="amount">{m.amount_label()}</label>
+					<input
+						id="amount"
+						name="amount"
+						type="number"
+						min="0"
+						step="0.01"
+						inputmode="decimal"
+						autocomplete="off"
+						bind:value={amountRaw}
+						oninput={() => (depositIntent = false)}
+					/>
+				</div>
+				<div class="chips">
+					<button type="button" onclick={() => addAmount(10)}>{m.add_ten()}</button>
+					<button type="button" onclick={() => addAmount(50)}>{m.add_fifty()}</button>
+					<button type="button" onclick={() => addAmount(100)}>{m.add_hundred()}</button>
+					<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
+				</div>
+				<dl class="strip-preview">
+					<dt>{m.est_shares()} <span class="tag">{m.synthetic()}</span></dt>
+					<dd>
+						{sharePct.toFixed(2)}%
+					</dd>
+				</dl>
+				<button class="stamp" type="submit">
+					<img src="/landing/deposit-stamp.webp" alt="" />
+					<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
+				</button>
+			</form>
+			{#if amount <= 0}
+				<p class="slip-note">{m.need_amount()}</p>
+			{:else if depositIntent && !walletDemo}
+				<p class="wallet-msg">{m.connect_to_sign()}</p>
+				<button class="connect" type="button" onclick={() => (walletDemo = true)}>
+					{m.connect_wallet()}
+				</button>
+				<p class="form-note">{m.wallet_demo()}</p>
+			{:else if walletDemo}
+				<p class="wallet-msg">{m.wallet_ready()}</p>
+			{:else}
+				<p class="slip-note">{m.deposit_wallet_note()}</p>
+			{/if}
+		</aside>
+	</div>
+
+	<div class="program">
+		{#each bench as hero (hero.id)}
+			<button
+				class="entry"
+				type="button"
+				aria-label={m.select_hero({ name: hero.name })}
+				onclick={() => selectHero(hero)}
+			>
+				<span class="entry-num">{hero.program}</span>
+				<span class="silks {hero.market.toLowerCase()}">{hero.market}</span>
+				<span>
+					<span class="entry-name">{hero.name}</span>
+					<span class="pedigree">{m.pedigree({ window: hero.window, market: hero.market })}</span>
+					<span class="entry-pp">
+						{#each hero.fights.slice(0, 3) as fight (fight.date + fight.market)}
+							<span>
+								{fightDate(fight.date)}
+								{m.vs_market({ market: fight.market })}
+								{fight.side === 'up' ? m.side_up() : m.side_down()}
+								<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
+							</span>
+						{/each}
+					</span>
+				</span>
+				<span class="entry-purse">
+					{purse(hero.vaultUsdso)}
+					{#if hero.fights[0]}
+						<div class="pedigree">{m.last_fight()}: {m.vs_market({ market: hero.fights[0].market })}</div>
+					{/if}
+				</span>
+			</button>
+		{/each}
+	</div>
+	</div>
+
+	<p class="colophon">{m.footer_line()}</p>
+
+	<section class="enter" id="enter">
+		<ol class="steps">
+			<li><span>01</span> {m.enter_step_1()}</li>
+			<li><span>02</span> {m.enter_step_2()}</li>
+			<li><span>03</span> {m.enter_step_3()}</li>
+		</ol>
+		<div>
+			<h2>{m.enter_title()}</h2>
+			<p>{m.enter_note()}</p>
+			<form class="enter-form" onsubmit={onEnter}>
+				<label>
+					{m.bot_name_label()}
+					<input
+						name="bot"
+						type="text"
+						maxlength="24"
+						placeholder={m.bot_name_placeholder()}
+						bind:value={botName}
+						oninput={() => (enterIntent = false)}
+					/>
+				</label>
+				<label>
+					{m.market_label()}
+					<select bind:value={botMarket}>
+						<option value="BTC">BTC</option>
+						<option value="ETH">ETH</option>
+					</select>
+				</label>
+				<button class="connect" type="submit">{m.open_vault()}</button>
+			</form>
+			{#if enterIntent && !botName.trim()}
+				<p class="form-note">{m.need_bot_name()}</p>
+			{:else if enterIntent && !walletDemo}
+				<p class="wallet-msg">{m.connect_to_sign()}</p>
+				<button class="connect" type="button" onclick={() => (walletDemo = true)}>
+					{m.connect_wallet()}
+				</button>
+				<p class="form-note">{m.wallet_demo()}</p>
+			{:else if enterIntent && walletDemo}
+				<p class="wallet-msg">{m.wallet_ready()}</p>
+			{/if}
+		</div>
+	</section>
+</div>
+
+<div class="alts">
+	{#each locales as locale (locale)}
+		<a href={resolve(localizeHref(page.url.pathname, { locale }) as Pathname)}>{locale}</a>
+	{/each}
+</div>

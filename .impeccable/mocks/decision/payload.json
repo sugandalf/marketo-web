@@ -1,0 +1,153 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned The Weigh-In Card. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Weigh-In Card",
+      "kicker": "THE ROLL",
+      "lineage": "Athletic-commission weigh-in sheets and official bout cards",
+      "thesis": "Heroes are named fighters on an official card; you back one without stepping in the ring.",
+      "palette": ["#e8edf2", "#0e1a2b", "#c41230", "#1e4dd8"],
+      "materials": ["carbon-copy NCR paper", "rubber date stamps", "red/blue corner tape", "halftone fighter portraits"],
+      "viewport": "A full-bleed commission sheet: ranked fighter lane, BTC red / ETH blue corners, Deposit on each row, create-bot as a numbered margin sequence.",
+      "risk": "Reads as sports kitsch if the form is not officious, or as a crypto dashboard if corner tape becomes badges.",
+      "raised": [
+        {
+          "from": "Moon-shadow bazaar",
+          "raise": "The bout card is one ranked lane; each fighter is tagged with origin market and a ticket of record."
+        },
+        {
+          "from": "Orizuru sequence",
+          "raise": "Create-bot is a numbered recoverable sequence in the margin; the depositor sheet stays the centered object."
+        },
+        {
+          "from": "Darkroom bay",
+          "raise": "Deposit shows a test-strip preview of shares before the wallet signs; the receipt is a fixed print."
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "The Racing Form",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Daily Racing Form past-performance pages and paddock sheets",
+      "thesis": "You do not ride. You study the card and put money on a horse.",
+      "palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#f7f1e8"],
+      "materials": ["salmon newsprint", "agate past-performance grids", "pencil-marked bet slips"],
+      "viewport": "A racing-form page: each horse is a Marketo hero, past races are BTC/ETH fights, the bet slip is Deposit.",
+      "risk": "Also the direction most runs in this category land on: backing without fighting is the most literal depositor story.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-brodovitch-bazaar-spread",
+      "label": "Bazaar Spread",
+      "verdict": "competitive",
+      "lineage": "Harper’s Bazaar under Brodovitch: Didot hairlines across a gutter",
+      "thesis": "A hero poses on the left page; the vault and Deposit answer across the gutter.",
+      "palette": ["#f4efe6", "#2a2a2a", "#111111", "#c41e3a"],
+      "materials": ["warm coated stock", "photogravure grays", "Didot ink", "lipstick-red live mark"],
+      "viewport": "Two-page spread: left a named hero with record, right the vault NAV and Deposit; BTC/ETH as the opposing gesture.",
+      "case": "Holds product clarity as pose/answer; loses identification — fashion magazine is not how fight-backers see themselves.",
+      "risk": "Didot luxury can make event-market vaults feel like a perfume ad.",
+      "comp": ".impeccable/mocks/decision/challenger-brodovitch.webp",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-brodovitch-bazaar-spread-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/brand-identity-canon-brodovitch-bazaar-spread.webp"
+    },
+    {
+      "id": "challenger-hoffmann-gridsmith",
+      "label": "Hoffmann Lattice",
+      "verdict": "competitive",
+      "lineage": "Wiener Werkstätte metalwork showroom: punched-square silver lattices",
+      "thesis": "Each hero is a square cell; idle stays pierced open, Deposit fills it solid black.",
+      "palette": ["#f7f7f2", "#111111", "#c0c0c0", "#1a1a1a"],
+      "materials": ["gallery-white ground", "lacquer-black rules", "hammered-silver frames"],
+      "viewport": "A punched lattice of hero cells; BTC and ETH as two nested caskets; the filled cell is the live back.",
+      "case": "Holds clarity as a scannable roster; loses identification — Viennese metalwork is not the depositor’s world.",
+      "risk": "The lattice can collapse into a generic bento grid and lose the punch.",
+      "comp": ".impeccable/mocks/decision/challenger-hoffmann.webp",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-hoffmann-gridsmith-showroom-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/design-canon-hoffmann-gridsmith-showroom.webp"
+    },
+    {
+      "id": "challenger-hypercard-stack",
+      "label": "HyperCard Stack",
+      "verdict": "competitive",
+      "lineage": "HyperCard shoebox stacks: browse and author are two modes of one card",
+      "thesis": "Each hero is one card; Browse is deposit, Author is create-bot.",
+      "palette": ["#ffffff", "#000000", "#d0d0d0"],
+      "materials": ["one-bit black and white", "stipple dither", "hand-painted button inverts"],
+      "viewport": "A shoebox of hero cards; the current card shows record and vault; painted buttons flip Browse or Author.",
+      "case": "Two modes of one object nail depositor vs bot-creator; loses identification — 1987 Mac is not a 2026 wallet.",
+      "risk": "One-bit can read as ironic retro, not a place to put USDso.",
+      "comp": ".impeccable/mocks/decision/challenger-hypercard.webp",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox.webp"
+    },
+    {
+      "id": "challenger-moon-shadow-bazaar",
+      "label": "Moon-shadow bazaar",
+      "verdict": "declined",
+      "lineage": "A night bazaar where merchants trade shadows by length and origin",
+      "thesis": "Heroes as stalls selling the shadow of a fight; depositors wander the lane.",
+      "palette": ["#0b1220", "#1a2740", "#c4a35a", "#e8eef8"],
+      "materials": ["moonlit blue-black lane", "layered soft-black shadows", "muted saffron stall canvas"],
+      "viewport": "A vertical moonlit lane of hero stalls, each tagged with origin and length.",
+      "case": "Loses both axes: traders do not identify with trading shadows, and vault deposit vanishes into metaphor.",
+      "kept": "One ranked lane of comparable goods, each tagged with origin.",
+      "risk": "Surreal commerce hides the wallet action.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-moon-shadow-bazaar-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-moon-shadow-bazaar.webp"
+    },
+    {
+      "id": "challenger-orizuru-sequence",
+      "label": "Orizuru sequence",
+      "verdict": "declined",
+      "lineage": "A vermilion washi square becoming a crane through thirty-two numbered folds",
+      "thesis": "The product unfolds as a recoverable crease sequence.",
+      "palette": ["#c41e3a", "#f7f1e8", "#1a1a1a", "#c9a227"],
+      "materials": ["vermilion washi", "visible kozo fiber", "gold active-step dot", "sumi ink notes"],
+      "viewport": "A square sheet with numbered margin folds; the finished crane is a hero.",
+      "case": "Loses both axes: origami is not this audience, and a 32-step sequence buries deposit-without-a-bot.",
+      "kept": "Numbered recoverable sequence in the margin, not a modal wizard.",
+      "risk": "Procedure becomes the product.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence.webp"
+    },
+    {
+      "id": "challenger-darkroom-bay",
+      "label": "Darkroom bay",
+      "verdict": "declined",
+      "lineage": "A printing darkroom under amber safelight: expose, develop, fix",
+      "thesis": "A hero’s record develops in the tray; deposit is the exposure.",
+      "palette": ["#c45a12", "#1a120c", "#d8d0c4", "#111111"],
+      "materials": ["amber safelight", "wet silver gelatin", "enamel trays", "grease-pencil notes"],
+      "viewport": "Stations in order: compose the hero, expose the deposit, develop the receipt.",
+      "case": "Loses both axes: darkroom printers are not depositors, and chemical irreversibility fights a rejectable wallet tx.",
+      "kept": "Test-strip preview before commit; the receipt is a fixed print.",
+      "risk": "Atmosphere outruns the action.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "id": "canon",
+    "label": "The category standard",
+    "thesis": "What a DeFi event-market landing always ships, executed at full craft.",
+    "palette": ["#0b0d12", "#f5f5f5", "#5eead4", "#111827"],
+    "materials": ["dark glass panels", "neon hairline", "Inter-like UI type", "stat tiles"],
+    "viewport": "Dark hero headline, dual CTAs, three feature cards, a TVL ticker, footer.",
+    "risk": "Indistinguishable from the competition by design.",
+    "comp": ".impeccable/mocks/decision/canon.webp"
+  },
+  "steer": true
+}
