@@ -102,6 +102,11 @@
 	border-radius: 0;
 }
 
+.sheet input::placeholder {
+	color: color-mix(in srgb, var(--ink) 72%, var(--paper));
+	opacity: 1;
+}
+
 .sheet input[type='number'] {
 	appearance: textfield;
 	background: transparent;
@@ -530,7 +535,7 @@
 
 .program {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 	border-bottom: var(--rule);
 }
 
@@ -606,55 +611,191 @@
 	letter-spacing: 0.02em;
 }
 
-.enter {
+a.mark {
+	color: inherit;
+	text-decoration: none;
+}
+
+.enter-face {
+	min-height: 100dvh;
 	display: grid;
-	grid-template-columns: 11rem minmax(0, 1fr);
-	gap: 1rem 1.5rem;
-	padding: 1.2rem 1.25rem 1.8rem;
-	border-top: var(--rule);
+	grid-template-rows: auto minmax(0, 1fr);
 }
 
-.steps {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	font-weight: 700;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-}
-
-.steps li {
+.book {
 	display: grid;
-	grid-template-columns: 2.2rem 1fr;
-	gap: 0.35rem;
-	align-items: baseline;
-	margin-bottom: 0.55rem;
+	grid-template-columns: minmax(16rem, 0.82fr) minmax(0, 1.18fr);
+	min-height: 0;
 }
 
-.steps span {
-	font-family: var(--font-display);
-	font-size: 1.6rem;
-	line-height: 0.8;
+.facts {
+	padding: 1.1rem 1.25rem 1.5rem;
+	border-right: var(--rule);
 }
 
-.enter h2 {
-	margin: 0 0 0.35rem;
+.facts h1 {
+	margin: 0 0 0.85rem;
 	font-family: var(--font-display);
-	font-size: 2.4rem;
+	font-weight: 800;
+	font-size: clamp(2.2rem, 4.5vw, 3.2rem);
 	line-height: 0.85;
 	letter-spacing: -0.02em;
 	text-transform: uppercase;
 }
 
-.enter-form {
-	display: grid;
-	grid-template-columns: 1fr auto auto;
-	gap: 0.7rem 1rem;
-	align-items: end;
-	max-width: 42rem;
+.facts h2 {
+	margin: 1.5rem 0 0.35rem;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 1.7rem;
+	line-height: 0.9;
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
 }
 
-.enter-form label {
+.enter-facts {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.enter-facts li {
+	display: grid;
+	grid-template-columns: 2.4rem 1fr;
+	gap: 0.45rem;
+	align-items: baseline;
+	margin-bottom: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.enter-facts span {
+	display: grid;
+	place-items: center;
+	width: 2.1rem;
+	height: 2.1rem;
+	background: var(--ink);
+	color: var(--paper-hot);
+	font-family: var(--font-display);
+	font-size: 1.15rem;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.facts-note {
+	margin: 0 0 0.7rem;
+	max-width: 42ch;
+}
+
+.miniature {
+	padding: 0.7rem 0.75rem 0.85rem;
+	border: 1px solid var(--ink);
+	margin-bottom: 0.7rem;
+}
+
+.mini-id {
+	display: grid;
+	grid-template-columns: auto auto minmax(0, 1fr);
+	gap: 0.55rem 0.7rem;
+	align-items: start;
+	padding-bottom: 0.55rem;
+	border-bottom: 1px solid var(--ink);
+}
+
+.mini-num {
+	font-family: var(--font-display);
+	font-weight: 900;
+	font-size: 3.2rem;
+	line-height: 0.75;
+	letter-spacing: -0.04em;
+}
+
+.mini-num small {
+	display: block;
+	margin-top: 0.25rem;
+	font-family: var(--font-agate);
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.miniature .silks {
+	width: 2.6rem;
+	height: 2.6rem;
+	margin-top: 0.15rem;
+	font-size: 0.78rem;
+}
+
+.mini-name {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 900;
+	font-size: clamp(1.8rem, 4vw, 2.8rem);
+	line-height: 0.8;
+	letter-spacing: -0.03em;
+	text-transform: uppercase;
+}
+
+.mini-pp {
+	margin-top: 0.55rem;
+}
+
+.mini-empty {
+	margin: 0.25rem 0 0;
+	font-size: 0.92rem;
+}
+
+.mini-purse {
+	margin: 0.7rem 0 0;
+	text-align: right;
+}
+
+.mini-purse dt {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.mini-purse dd {
+	margin: 0.15rem 0 0;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 2rem;
+	line-height: 0.9;
+	letter-spacing: -0.03em;
+	color: var(--money);
+	font-variant-numeric: tabular-nums;
+}
+
+.papers {
+	padding: 1.1rem 1.25rem 1.5rem;
+	background: color-mix(in srgb, var(--paper-hot) 55%, transparent);
+}
+
+.papers h2 {
+	margin: 0;
+	padding: 0.25rem 0.45rem;
+	border: 3px solid var(--ink);
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 1.7rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	line-height: 1;
+	text-align: center;
+}
+
+.papers-form {
+	display: grid;
+	gap: 0.95rem;
+	margin-top: 0.95rem;
+}
+
+.field {
 	display: grid;
 	gap: 0.2rem;
 	font-size: 0.8rem;
@@ -663,8 +804,8 @@
 	text-transform: uppercase;
 }
 
-.enter-form input,
-.enter-form select {
+.field input {
+	width: 100%;
 	border: 0;
 	border-bottom: 3px solid var(--ink);
 	background: transparent;
@@ -672,6 +813,126 @@
 	font-family: var(--font-display);
 	font-size: 1.6rem;
 	font-weight: 700;
+	letter-spacing: -0.02em;
+	text-transform: none;
+}
+
+.field .count {
+	justify-self: end;
+	font-weight: 400;
+	letter-spacing: 0.06em;
+}
+
+.field-note {
+	margin: 0.4rem 0 0;
+	font-weight: 400;
+	letter-spacing: 0;
+	text-transform: none;
+	font-size: 0.92rem;
+}
+
+.silks-pick,
+.wallet-pick {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.silks-pick legend,
+.wallet-pick legend {
+	padding: 0;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.silks-row {
+	display: flex;
+	gap: 0.55rem;
+	margin-top: 0.35rem;
+}
+
+.silks-row .silks {
+	position: relative;
+	width: 4.2rem;
+	height: 4.2rem;
+	margin: 0;
+	border: 3px solid transparent;
+	cursor: pointer;
+	font-size: 1.05rem;
+	color: var(--paper-hot);
+}
+
+.silks-row .silks[aria-checked='true'] {
+	border-color: var(--ink);
+}
+
+.silks-row .silks[aria-checked='true']::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-style: solid;
+	border-width: 0.85rem 0 0 0.85rem;
+	border-color: var(--ink) transparent transparent transparent;
+}
+
+.wallet-pick .chips {
+	margin: 0.35rem 0 0;
+}
+
+.chips button[aria-checked='true'] {
+	background: var(--ink);
+	color: var(--paper-hot);
+}
+
+.papers-foot {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 0.35rem;
+}
+
+.how-link,
+.see-card {
+	color: inherit;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-underline-offset: 3px;
+}
+
+.papers-foot .stamp {
+	margin: 0;
+	width: min(100%, 18rem);
+}
+
+.receipt {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.receipt-call {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding-bottom: 0.55rem;
+	border-bottom: 1px solid var(--ink);
+}
+
+.receipt-call .silks {
+	width: 2.6rem;
+	height: 2.6rem;
+	margin: 0;
+}
+
+.see-card {
+	font-family: var(--font-display);
+	font-size: 1.6rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
 }
 
 .alts {
@@ -691,12 +952,12 @@
 	.fold,
 	.call,
 	.program,
-	.enter,
-	.enter-form {
+	.book {
 		grid-template-columns: 1fr;
 	}
 
-	.call {
+	.call,
+	.facts {
 		border-right: 0;
 		border-bottom: var(--rule);
 	}
@@ -717,6 +978,20 @@
 
 	.call-name {
 		font-size: 3.4rem;
+	}
+
+	.enter-face {
+		min-height: auto;
+	}
+
+	.papers-foot {
+		flex-direction: column-reverse;
+		align-items: stretch;
+	}
+
+	.papers-foot .stamp {
+		width: min(100%, 22rem);
+		margin-inline: auto;
 	}
 
 	.purse {

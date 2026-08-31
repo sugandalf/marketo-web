@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-22T16:10:00.000Z",
+  "generatedAt": "2026-08-31T13:30:00.000Z",
   "title": "Design System: Marketo",
   "extensions": {
     "colorMeta": {
@@ -50,23 +50,23 @@
     "typographyMeta": {
       "display": {
         "displayName": "Call",
-        "purpose": "Selected horse name and program number. Extra-condensed athletic gothic, uppercase, leading under 0.8."
+        "purpose": "Selected horse name and program number on the racing card. Extra-condensed athletic gothic, uppercase, leading under 0.8. Miniature call on /enter scales this grammar down."
       },
       "headline": {
         "displayName": "Masthead",
-        "purpose": "MARKETO wordmark; smaller than the selected horse. Slip and Enter titles share the family at 800."
+        "purpose": "MARKETO wordmark; smaller than the selected horse on a call surface. Facts title on /enter shares the family at 800, clamp 2.2–3.2rem."
       },
       "title": {
         "displayName": "Entry",
-        "purpose": "Program-strip names, picked-horse line, enter-form values."
+        "purpose": "Boxed slip and papers titles, program-strip names, picked-horse line, papers field values."
       },
       "body": {
         "displayName": "Agate body",
-        "purpose": "Markets line, slip lead, notes. Short measure, not a 65ch column."
+        "purpose": "Markets line, slip lead, facts notes. Short measure, not a 65ch column."
       },
       "label": {
         "displayName": "Agate label",
-        "purpose": "Uppercase tracked captions, chips, Connect, PP headers."
+        "purpose": "Uppercase tracked captions, chips, Connect, PP headers, papers legends."
       }
     },
     "shadows": [],
@@ -74,14 +74,14 @@
       {
         "name": "stamp-press",
         "value": "filter 160ms cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Deposit stamp hover/focus: contrast(1.12) brightness(0.96). Disabled under prefers-reduced-motion."
+        "purpose": "Deposit and Open-vault stamp hover/focus: contrast(1.12) brightness(0.96). Disabled under prefers-reduced-motion."
       }
     ],
     "breakpoints": [
       {
         "name": "sheet-stack",
         "value": "900px",
-        "purpose": "Masthead, fold, call, program, and enter grids collapse to one column. Call rule moves from right to bottom."
+        "purpose": "Masthead, fold, call, program, and book grids collapse to one column. Call/facts rule moves from right to bottom. Papers-foot stacks stamp above How it works. Card releases 100dvh."
       }
     ]
   },
@@ -90,7 +90,7 @@
       "name": "Connect Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Ink-fill wallet gate and Open vault. Not the Deposit action.",
+      "description": "Ink-fill wallet gate. Not Deposit. Not Open vault.",
       "html": "<button class=\"ds-btn-primary\" type=\"button\">CONNECT WALLET</button>",
       "css": ".ds-btn-primary { background: #040303; color: #f3eadc; padding: 0.35rem 0.55rem; border: 2px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-btn-primary:hover { background: #040303; color: #f3eadc; } .ds-btn-primary:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-btn-primary:active { background: #040303; }"
     },
@@ -98,15 +98,15 @@
       "name": "Amount Chip",
       "kind": "chip",
       "refersTo": "button-chip",
-      "description": "Slip amount adder. Transparent ink box; hover inverts.",
-      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" type=\"button\">+10</button><button class=\"ds-chip\" type=\"button\">+50</button><button class=\"ds-chip\" type=\"button\">+100</button><button class=\"ds-chip\" type=\"button\">+250</button></div>",
-      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; } .ds-chip { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; } .ds-chip:hover { background: #040303; color: #f3eadc; } .ds-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-chip:active { background: #040303; color: #f3eadc; }"
+      "description": "Amount adder or wallet radio. Transparent ink box; hover and checked invert.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" type=\"button\">+10</button><button class=\"ds-chip\" type=\"button\">+50</button><button class=\"ds-chip\" type=\"button\" aria-checked=\"true\">SAME AS CREATOR</button></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; } .ds-chip { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; } .ds-chip:hover, .ds-chip[aria-checked='true'] { background: #040303; color: #f3eadc; } .ds-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-chip:active { background: #040303; color: #f3eadc; }"
     },
     {
       "name": "Underline Field",
       "kind": "input",
       "refersTo": "input-underline",
-      "description": "Amount and enter-form fields: no box, 3px ink underline, athletic figures.",
+      "description": "Amount and papers fields: no box, 3px ink underline, athletic figures.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">AMOUNT (USDSO)</span><input class=\"ds-input-underline\" type=\"text\" value=\"250.00\" /></label>",
       "css": ".ds-field { display: grid; gap: 0.2rem; } .ds-field-label { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #040303; } .ds-input-underline { width: 100%; border: 0; border-bottom: 3px solid #040303; border-radius: 0; background: transparent; padding: 0.2rem 0; color: #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-input-underline:hover { border-bottom-color: #040303; } .ds-input-underline:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
     },
@@ -114,9 +114,9 @@
       "name": "Market Silks",
       "kind": "custom",
       "refersTo": "silks-btc",
-      "description": "Square BTC red / ETH blue identity. Market letters, never a coin logo.",
-      "html": "<div class=\"ds-silks-row\"><span class=\"ds-silks ds-silks-btc\">BTC</span><span class=\"ds-silks ds-silks-eth\">ETH</span></div>",
-      "css": ".ds-silks-row { display: flex; gap: 0.75rem; align-items: center; } .ds-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; color: #f3eadc; } .ds-silks-btc { background: #e42c22; } .ds-silks-eth { background: #0756d0; }"
+      "description": "Square BTC red / ETH blue identity. Papers pick adds a 3px ink edge and top-right corner tick when selected.",
+      "html": "<div class=\"ds-silks-block\"><div class=\"ds-silks-row\"><span class=\"ds-silks ds-silks-btc\">BTC</span><span class=\"ds-silks ds-silks-eth\">ETH</span></div><div class=\"ds-silks-row ds-silks-picks\" role=\"radiogroup\"><button class=\"ds-silks-pick ds-silks-btc\" type=\"button\" role=\"radio\" aria-checked=\"true\">BTC</button><button class=\"ds-silks-pick ds-silks-eth\" type=\"button\" role=\"radio\" aria-checked=\"false\">ETH</button></div></div>",
+      "css": ".ds-silks-block { display: grid; gap: 0.75rem; } .ds-silks-row { display: flex; gap: 0.55rem; align-items: center; } .ds-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; color: #f3eadc; } .ds-silks-btc { background: #e42c22; } .ds-silks-eth { background: #0756d0; } .ds-silks-pick { position: relative; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; margin: 0; border: 3px solid transparent; background: #e42c22; color: #f3eadc; cursor: pointer; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: 0; } .ds-silks-pick.ds-silks-eth { background: #0756d0; } .ds-silks-pick[aria-checked='true'] { border-color: #040303; } .ds-silks-pick[aria-checked='true']::after { content: ''; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0.85rem 0 0 0.85rem; border-color: #040303 transparent transparent transparent; } .ds-silks-pick:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
     },
     {
       "name": "SYNTHETIC Tag",
@@ -130,7 +130,7 @@
       "name": "Betting Slip",
       "kind": "card",
       "refersTo": "slip",
-      "description": "BACK THIS HORSE panel. Hot Sheet wash, boxed title, dashed shares strip.",
+      "description": "BACK THIS HORSE panel. Hot Sheet wash, boxed title, dashed shares strip. Papers on /enter use the same wash.",
       "html": "<aside class=\"ds-slip\"><h2 class=\"ds-slip-title\">BACK THIS HORSE</h2><div class=\"ds-picked\"><span class=\"ds-silks-sm\">BTC</span><strong>1 WARDEN</strong></div><dl class=\"ds-strip\"><dt>EST. VAULT SHARE <span class=\"ds-tag\">SYNTHETIC</span></dt><dd>1.91%</dd></dl></aside>",
       "css": ".ds-slip { padding: 1rem 1.1rem 1.2rem; background: color-mix(in srgb, #f3eadc 55%, transparent); color: #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-slip-title { margin: 0; padding: 0.25rem 0.4rem; border: 3px solid #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; text-align: center; } .ds-picked { display: flex; align-items: center; gap: 0.55rem; margin: 0.8rem 0; padding-bottom: 0.55rem; border-bottom: 1px solid #040303; } .ds-picked strong { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 1.6rem; line-height: 0.9; letter-spacing: -0.02em; } .ds-silks-sm { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.04em; } .ds-strip { margin: 0; padding: 0.4rem 0.45rem; border: 1px dashed #040303; } .ds-strip dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; } .ds-strip dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.25rem; color: #085324; font-variant-numeric: tabular-nums; } .ds-tag { padding: 0 0.28rem; background: #040303; color: #f3eadc; letter-spacing: 0.12em; }"
     },
@@ -151,6 +151,14 @@
       "css": ".ds-stamp { display: block; width: min(100%, 22rem); margin: 0.2rem auto 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-stamp:hover .ds-stamp-face, .ds-stamp:focus-visible .ds-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-stamp .ds-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
     },
     {
+      "name": "Open Vault Stamp",
+      "kind": "button",
+      "refersTo": "open-vault-stamp",
+      "description": "Nomination action on /enter: matching green rubber stamp at the foot of the papers. Not an ink-fill button.",
+      "html": "<button class=\"ds-open-stamp\" type=\"button\"><span class=\"ds-open-stamp-face\"><svg class=\"ds-open-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg><span class=\"ds-open-stamp-type\"><strong>OPEN VAULT</strong><small>YOU STILL SIGN</small></span><svg class=\"ds-open-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg></span></button>",
+      "css": ".ds-open-stamp { display: block; width: min(100%, 18rem); margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-open-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-open-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-open-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-open-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-open-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-open-stamp:hover .ds-open-stamp-face, .ds-open-stamp:focus-visible .ds-open-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-open-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-open-stamp .ds-open-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
+    },
+    {
       "name": "Locale Toggle",
       "kind": "nav",
       "refersTo": "locale-active",
@@ -161,14 +169,15 @@
   ],
   "narrative": {
     "northStar": "The Past-Performance Sheet",
-    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into a masthead, a call, a betting slip, and a program. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit is a rubber stamp pressed into the slip.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator of the card until they sign. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote.",
+    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper.\n\nTwo surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote.",
     "keyCharacteristics": [
       "Warm newsprint ground, hue-less fiber tiled and multiplied into the sheet",
       "Big Shoulders Display for the call; Barlow Condensed for agate",
       "Square-cut everything; 3px carbon-ink rules between major regions",
       "Red BTC / blue ETH silks squares as identity, not portraits",
-      "Purse green only for money in the black and for the Deposit stamp",
-      "Invert-to-ink as the selected / pressed language"
+      "Purse green only for money in the black and for the Deposit / Open-vault stamps",
+      "Invert-to-ink as the selected / pressed language",
+      "/enter is a condition-book spread (facts | papers), not a stepper"
     ],
     "rules": [
       {
@@ -178,23 +187,28 @@
       },
       {
         "name": "The Purse-Green Rule",
-        "body": "Green is for vault figures, winning PnL, and the Deposit stamp. Losing PnL prints in Carbon Ink. Do not use green for “go,” links, or decorative fills.",
+        "body": "Green is for vault figures, winning PnL, and the Deposit / Open-vault stamps. Losing PnL prints in Carbon Ink. Do not use green for “go,” links, or decorative fills.",
         "section": "colors"
       },
       {
         "name": "The Call-is-Bigger Rule",
-        "body": "The selected horse name outranks MARKETO. Product chrome never out-shouts the horse you are looking at.",
+        "body": "On a call surface, the selected horse name outranks MARKETO. Product chrome never out-shouts the horse you are looking at. The `/enter` miniature is a preview, not a second call.",
         "section": "typography"
       },
       {
         "name": "The Agate Rule",
-        "body": "Past performances, chips, locale, and captions set in Barlow Condensed. Big Shoulders is for names, program numbers, purses, and keyed-in amounts only.",
+        "body": "Past performances, chips, locale, facts copy, and captions set in Barlow Condensed. Big Shoulders is for names, program numbers, purses, boxed titles, and keyed-in amounts only.",
         "section": "typography"
       },
       {
         "name": "The Ruled-Sheet Rule",
         "body": "New regions join the card with a 3px ink rule, not a card-in-a-card, not a shadow, not extra outer margin. Hairlines are for rows inside a region.",
-        "section": "elevation"
+        "section": "layout"
+      },
+      {
+        "name": "The Two-Page Rule",
+        "body": "Entering is facts left, papers right. Do not recast `/enter` as a wizard, a stepper, a modal, or a settings panel, and do not put the nomination form back on the racing card.",
+        "section": "layout"
       },
       {
         "name": "The Pressed-Ink Rule",
@@ -204,17 +218,19 @@
       {
         "name": "The Square-Cut Rule",
         "body": "Radius is always 0. Pills, squircles, and rounded fields are off the card.",
-        "section": "elevation"
+        "section": "shapes"
       }
     ],
     "dos": [
       "Do ground new surfaces on Sheet Stock with the newsprint tile at 240px, `background-blend-mode: multiply`.",
       "Do cut regions with 3px Carbon Ink rules and keep every radius at 0.",
       "Do identify a market with silks squares (BTC red, ETH blue) and extra-condensed letters.",
+      "Do mark the selected silks pick with a 3px ink edge and a top-right corner tick.",
       "Do print purses and winning PnL in Purse Green; print losses in Carbon Ink.",
       "Do set horse names and program numbers in Big Shoulders Display 800–900; set tables, labels, and notes in Barlow Condensed.",
-      "Do invert to ink-on-Hot-Sheet for selection, chip hover, and active locale.",
-      "Do stamp Deposit; fill Connect.",
+      "Do invert to ink-on-Hot-Sheet for selection, chip hover/checked, active locale, and fact numerals.",
+      "Do stamp Deposit and Open vault; fill Connect.",
+      "Do wash the slip and the papers at 55% Hot Sheet.",
       "Do mark non-chain figures with the inverted SYNTHETIC tag."
     ],
     "donts": [
@@ -224,7 +240,9 @@
       "Don't recast BTC as orange or ETH as purple; those silks are locked.",
       "Don't use Purse Green for losses, links, or large fills that are not money or the stamp.",
       "Don't let MARKETO or UI labels out-size the selected horse name on a call surface.",
-      "Don't swap the Deposit stamp for a gradient CTA or a second ink-fill button.",
+      "Don't swap the Deposit or Open-vault stamp for a gradient CTA or a second ink-fill button.",
+      "Don't recast `/enter` as a wizard, stepper, or settings form, or put nomination fields back on the racing card.",
+      "Don't replace the silks corner tick with a check glyph or a circular radio.",
       "Don't substitute Inter, system UI, or a serif editorial face for the athletic gothic / agate pairing."
     ]
   }

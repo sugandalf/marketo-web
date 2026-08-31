@@ -1,28 +1,45 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
-	import { getLocale, setLocale, locales } from '$lib/paraglide/runtime';
+	import { getLocale, locales, localizeHref } from '$lib/paraglide/runtime';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
-	import { localizeHref } from '$lib/paraglide/runtime';
-	import HorseMark from '$lib/landing/HorseMark.svelte';
-	import { heroes, heroById, type Hero, type Market } from '$lib/landing/heroes';
+	import Masthead from '$lib/landing/Masthead.svelte';
+	import { heroes, heroById, type Hero } from '$lib/landing/heroes';
+	import { loadEnteredHero } from '$lib/landing/entered';
 	import './form.css';
 
+	let entered = $state(loadEnteredHero());
 	let selectedId = $state(heroes[0].id);
 	let amountRaw = $state('0.00');
 	let walletDemo = $state(false);
 	let depositIntent = $state(false);
-	let botName = $state('');
-	let botMarket = $state<Market>('BTC');
-	let enterIntent = $state(false);
+	let booted = $state(false);
 
-	const selected = $derived(heroById(selectedId) ?? heroes[0]);
-	const bench = $derived(heroes.filter((hero) => hero.id !== selected.id));
+	const roster = $derived(
+		entered ? [entered, ...heroes.filter((hero) => hero.id !== entered?.id)] : heroes
+	);
+	const selected = $derived(
+		roster.find((hero) => hero.id === selectedId) ?? roster[0]
+	);
+	const bench = $derived(roster.filter((hero) => hero.id !== selected.id));
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
 	const sharePct = $derived(
 		amount > 0 ? (amount / (selected.vaultUsdso + amount)) * 100 : 0
 	);
+
+	$effect(() => {
+		if (booted) return;
+		const extra = loadEnteredHero();
+		entered = extra;
+		const wanted = page.url.searchParams.get('horse');
+		if (wanted && (extra?.id === wanted || heroById(wanted))) {
+			selectedId = wanted;
+		} else if (extra) {
+			selectedId = extra.id;
+		}
+		booted = true;
+	});
 
 	function money(value: number, locale = getLocale()) {
 		const sign = value > 0 ? '+' : '';
@@ -44,15 +61,6 @@
 		return `${mo}-${d}-${y.slice(2)}`;
 	}
 
-	function cardDate() {
-		return new Intl.DateTimeFormat(getLocale() === 'id' ? 'id-ID' : 'en-US', {
-			weekday: 'long',
-			month: 'long',
-			day: 'numeric',
-			year: 'numeric'
-		}).format(new Date());
-	}
-
 	function addAmount(delta: number) {
 		amountRaw = (amount + delta).toFixed(2);
 		depositIntent = false;
@@ -68,12 +76,6 @@
 		if (amount <= 0) return;
 		depositIntent = true;
 	}
-
-	function onEnter(event: SubmitEvent) {
-		event.preventDefault();
-		if (!botName.trim()) return;
-		enterIntent = true;
-	}
 </script>
 
 <svelte:head>
@@ -82,37 +84,7 @@
 
 <div class="sheet">
 	<div class="card-face">
-	<header class="masthead">
-		<p class="mark">{m.site_title()}</p>
-		<div class="masthead-meta">
-			<p class="card-date">{cardDate()}</p>
-			<p class="markets-line">
-				{m.masthead_before()}
-				<a href="https://www.dreamdex.io/" rel="noreferrer">dreamDEX</a>
-				{m.masthead_after()}
-			</p>
-		</div>
-		<div class="masthead-actions">
-			<div class="locale">
-				{#each locales as locale (locale)}
-					<button
-						type="button"
-						aria-pressed={getLocale() === locale}
-						onclick={() => setLocale(locale)}
-					>
-						{locale === 'en' ? m.locale_en() : m.locale_id()}
-					</button>
-				{/each}
-			</div>
-			<a class="enter-link" href="#enter">
-				<HorseMark />
-				<span>
-					{m.enter_horse()}
-					<small>{m.enter_horse_hint()}</small>
-				</span>
-			</a>
-		</div>
-	</header>
+	<Masthead />
 
 	<div class="fold">
 		<article class="call" aria-live="polite">
@@ -121,22 +93,28 @@
 			<div class="call-id">
 				<h1 class="call-name">{selected.name}</h1>
 				<p class="pedigree">
-					{m.pedigree({ window: selected.window, market: selected.market })}
+					{selected.strategy
+						? selected.strategy
+						: m.pedigree({ window: selected.window, market: selected.market })}
 				</p>
 				<div class="pp">
 					<div class="pp-head">
 						<span>{m.past_performances()}</span>
 						<span class="tag">{m.synthetic()}</span>
 					</div>
-					{#each selected.fights as fight (fight.date + fight.market)}
-						<div class="pp-row">
-							<span>{fightDate(fight.date)}</span>
-							<span>{fight.window}</span>
-							<span>{m.vs_market({ market: fight.market })}</span>
-							<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
-							<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
-						</div>
-					{/each}
+					{#if selected.fights.length}
+						{#each selected.fights as fight (fight.date + fight.market)}
+							<div class="pp-row">
+								<span>{fightDate(fight.date)}</span>
+								<span>{fight.window}</span>
+								<span>{m.vs_market({ market: fight.market })}</span>
+								<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
+								<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
+							</div>
+						{/each}
+					{:else}
+						<p class="mini-empty">{m.no_fights_yet()}</p>
+					{/if}
 				</div>
 			</div>
 			<dl class="purse">
@@ -152,7 +130,11 @@
 				<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
 				<div>
 					<strong>{selected.program} {selected.name}</strong>
-					<div class="pedigree">{m.pedigree({ window: selected.window, market: selected.market })}</div>
+					<div class="pedigree">
+						{selected.strategy
+							? selected.strategy
+							: m.pedigree({ window: selected.window, market: selected.market })}
+					</div>
 				</div>
 			</div>
 			<form onsubmit={onDeposit}>
@@ -215,7 +197,11 @@
 				<span class="silks {hero.market.toLowerCase()}">{hero.market}</span>
 				<span>
 					<span class="entry-name">{hero.name}</span>
-					<span class="pedigree">{m.pedigree({ window: hero.window, market: hero.market })}</span>
+					<span class="pedigree">
+						{hero.strategy
+							? hero.strategy
+							: m.pedigree({ window: hero.window, market: hero.market })}
+					</span>
 					<span class="entry-pp">
 						{#each hero.fights.slice(0, 3) as fight (fight.date + fight.market)}
 							<span>
@@ -225,6 +211,9 @@
 								<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
 							</span>
 						{/each}
+						{#if !hero.fights.length}
+							<span>{m.no_fights_yet()}</span>
+						{/if}
 					</span>
 				</span>
 				<span class="entry-purse">
@@ -239,50 +228,6 @@
 	</div>
 
 	<p class="colophon">{m.footer_line()}</p>
-
-	<section class="enter" id="enter">
-		<ol class="steps">
-			<li><span>01</span> {m.enter_step_1()}</li>
-			<li><span>02</span> {m.enter_step_2()}</li>
-			<li><span>03</span> {m.enter_step_3()}</li>
-		</ol>
-		<div>
-			<h2>{m.enter_title()}</h2>
-			<p>{m.enter_note()}</p>
-			<form class="enter-form" onsubmit={onEnter}>
-				<label>
-					{m.bot_name_label()}
-					<input
-						name="bot"
-						type="text"
-						maxlength="24"
-						placeholder={m.bot_name_placeholder()}
-						bind:value={botName}
-						oninput={() => (enterIntent = false)}
-					/>
-				</label>
-				<label>
-					{m.market_label()}
-					<select bind:value={botMarket}>
-						<option value="BTC">BTC</option>
-						<option value="ETH">ETH</option>
-					</select>
-				</label>
-				<button class="connect" type="submit">{m.open_vault()}</button>
-			</form>
-			{#if enterIntent && !botName.trim()}
-				<p class="form-note">{m.need_bot_name()}</p>
-			{:else if enterIntent && !walletDemo}
-				<p class="wallet-msg">{m.connect_to_sign()}</p>
-				<button class="connect" type="button" onclick={() => (walletDemo = true)}>
-					{m.connect_wallet()}
-				</button>
-				<p class="form-note">{m.wallet_demo()}</p>
-			{:else if enterIntent && walletDemo}
-				<p class="wallet-msg">{m.wallet_ready()}</p>
-			{/if}
-		</div>
-	</section>
 </div>
 
 <div class="alts">

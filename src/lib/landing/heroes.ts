@@ -16,6 +16,7 @@ export type Hero = {
 	window: '15m' | '1h';
 	vaultUsdso: number;
 	fights: PastFight[];
+	strategy?: string;
 };
 
 /** Illustrative roster. Every figure is synthetic until chain data exists. */

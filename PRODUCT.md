@@ -36,7 +36,7 @@ The underlying mechanism (repo-stated, confirmed by shipping all three roles tog
 - Reads from chain (and optional SQLite projections); writes are user-signed in the browser.
 - Locales in the repo: `en` and `id` via Paraglide. Whether both are a hard product requirement is **undecided** (not confirmed in init).
 - Target EVM chain(s) are **undecided**; do not name a chain until chosen.
-- Current UI is the SvelteKit scaffold (welcome page, demo Paraglide route, demo `task` table). No product screens yet.
+- Current UI: racing-form landing (`src/routes/+page.svelte`) and Enter a horse (`src/routes/enter/+page.svelte`). Wallet connect is demo-only until a chain adapter exists.
 
 ## Capabilities and Constraints
 
@@ -62,14 +62,14 @@ Undecided:
 
 - Product name: **Marketo**.
 - Binding visualization: game-like trading — an arena of heroes fighting a dragon that stands for the market. Do not drop this for a conventional order-ticket or dashboard metaphor. Do not invent extra lore, characters, or claims beyond this constraint.
-- No logo, type, or voice system yet. The current favicon is the Svelte scaffold mark, not a brand asset.
+- Type on shipped screens: extra-condensed athletic gothic (Big Shoulders Display) with agate condensed (Barlow Condensed), recorded in DESIGN.md. The favicon is still the Svelte scaffold mark, not a brand asset.
 - User-facing copy in the repo is intended to go through Paraglide rather than hardcoded strings (stack convention).
 
 ## Evidence on Hand
 
 None. No live markets, contract addresses, screenshots of real trading, testimonials, case studies, or Marketo brand assets. Future work must not fabricate customers, volume, odds, or press.
 
-Scaffold only: `src/routes/+page.svelte` (SvelteKit welcome), `src/routes/demo/**`, `src/lib/server/db/schema.ts` (`task` table), `messages/en.json` and `messages/id.json` (demo `hello_world`).
+Shipped screens: `src/routes/+page.svelte` (racing card), `src/routes/enter/+page.svelte` (entry papers). Demo Paraglide and `task` table remain in `src/routes/demo/**` and `src/lib/server/db/schema.ts`. Messages in `messages/en.json` and `messages/id.json`.
 
 ## Product Principles
 
