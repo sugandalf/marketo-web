@@ -5,8 +5,11 @@
 	import type { Pathname } from '$app/types';
 	import HorseMark from './HorseMark.svelte';
 
-	let { showEnter = true, showProgram = true }: { showEnter?: boolean; showProgram?: boolean } =
-		$props();
+	let {
+		showEnter = true,
+		showProgram = true,
+		showBook = true
+	}: { showEnter?: boolean; showProgram?: boolean; showBook?: boolean } = $props();
 
 	function cardDate() {
 		return new Intl.DateTimeFormat(getLocale() === 'id' ? 'id-ID' : 'en-US', {
@@ -40,20 +43,28 @@
 				</button>
 			{/each}
 		</div>
-		{#if showProgram}
-			<a class="program-link" href={resolve(localizeHref('/program') as Pathname)}>
-				{m.the_program()}
-				<small>{m.the_program_hint()}</small>
-			</a>
-		{/if}
-		{#if showEnter}
-			<a class="enter-link" href={resolve(localizeHref('/enter') as Pathname)}>
-				<HorseMark />
-				<span>
-					{m.enter_horse()}
-					<small>{m.enter_horse_hint()}</small>
-				</span>
-			</a>
-		{/if}
+		<nav class="masthead-nav" aria-label={m.site_title()}>
+			{#if showBook}
+				<a class="program-link" href={resolve(localizeHref('/portfolio') as Pathname)}>
+					{m.the_book()}
+					<small>{m.the_book_hint()}</small>
+				</a>
+			{/if}
+			{#if showProgram}
+				<a class="program-link" href={resolve(localizeHref('/program') as Pathname)}>
+					{m.the_program()}
+					<small>{m.the_program_hint()}</small>
+				</a>
+			{/if}
+			{#if showEnter}
+				<a class="enter-link" href={resolve(localizeHref('/enter') as Pathname)}>
+					<HorseMark />
+					<span>
+						{m.enter_horse()}
+						<small>{m.enter_horse_hint()}</small>
+					</span>
+				</a>
+			{/if}
+		</nav>
 	</div>
 </header>

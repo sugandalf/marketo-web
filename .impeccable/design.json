@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-31T15:04:00.000Z",
+  "generatedAt": "2026-08-31T16:20:00.000Z",
   "title": "Design System: Marketo",
   "extensions": {
     "colorMeta": {
@@ -50,7 +50,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Call",
-        "purpose": "Selected horse name and program number on the racing card and on the /program overlay. Extra-condensed athletic gothic, uppercase, leading under 0.8. Miniature call on /enter scales this grammar down."
+        "purpose": "Selected horse name and program number on the racing card and on the /program and /portfolio overlays. Extra-condensed athletic gothic, uppercase, leading under 0.8. Miniature call on /enter scales this grammar down."
       },
       "headline": {
         "displayName": "Masthead",
@@ -58,7 +58,7 @@
       },
       "title": {
         "displayName": "Entry",
-        "purpose": "Boxed slip and papers titles, program-strip names, tote names at 1.55rem, picked-horse line, papers field values, overlay purse at 2.4rem."
+        "purpose": "Boxed slip and papers titles, program-strip names, tote names at 1.55rem, picked-horse line, papers field values, overlay purse and book overlay shares/PnL at 2.4rem, book-bar figures at 1.7rem, boxed YOUR BOOK at 1.35rem."
       },
       "body": {
         "displayName": "Agate body",
@@ -66,7 +66,7 @@
       },
       "label": {
         "displayName": "Agate label",
-        "purpose": "Uppercase tracked captions, chips, conditions, Connect, PP headers, tote-head, papers legends, status tags."
+        "purpose": "Uppercase tracked captions, chips, conditions, Connect, PP headers, tote-head, papers legends, status tags, Withdraw."
       }
     },
     "shadows": [],
@@ -86,7 +86,7 @@
       {
         "name": "sheet-stack",
         "value": "900px",
-        "purpose": "Masthead, fold, call, program, and book grids collapse to one column. Call/facts rule moves from right to bottom. Papers-foot stacks stamp above How it works. Card releases 100dvh. Tote-head hides; tote rows stack to three lines. Overlay becomes a fixed full-viewport Sheet Stock sheet with the stamp foot sticky."
+        "purpose": "Masthead, fold, call, program, and book grids collapse to one column. Call/facts rule moves from right to bottom. Papers-foot stacks stamp above How it works. Card releases 100dvh. Tote-head hides; tote rows stack to three lines. Book-bar chips and figures take full width. Overlay becomes a fixed full-viewport Sheet Stock sheet with the stamp foot sticky."
       }
     ]
   },
@@ -95,7 +95,7 @@
       "name": "Connect Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Ink-fill wallet gate. Not Deposit. Not Open vault.",
+      "description": "Ink-fill wallet gate. Not Deposit. Not Open vault. Not Withdraw.",
       "html": "<button class=\"ds-btn-primary\" type=\"button\">CONNECT WALLET</button>",
       "css": ".ds-btn-primary { background: #040303; color: #f3eadc; padding: 0.35rem 0.55rem; border: 2px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-btn-primary:hover { background: #040303; color: #f3eadc; } .ds-btn-primary:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-btn-primary:active { background: #040303; }"
     },
@@ -111,7 +111,7 @@
       "name": "Conditions Chip",
       "kind": "chip",
       "refersTo": "button-chip",
-      "description": "Tote toolbar: status then sorts, split by a 1px ink stick. Same invert as amount chips; uppercase 0.8rem / 0.08em.",
+      "description": "Tote toolbar: status then sorts, split by a 1px ink stick. Book-bar chips omit the stick: BACKED / MINE / ALL, far right, ALL default. Same invert; uppercase 0.8rem / 0.08em.",
       "html": "<div class=\"ds-conditions\" role=\"toolbar\"><button class=\"ds-cond\" type=\"button\" aria-pressed=\"true\">ACTIVE</button><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">INACTIVE</button><span class=\"ds-cond-rule\" aria-hidden=\"true\"></span><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">AGE</button><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">PURSE</button></div>",
       "css": ".ds-conditions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; } .ds-cond { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-cond:hover, .ds-cond[aria-pressed='true'] { background: #040303; color: #f3eadc; } .ds-cond:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-cond-rule { width: 1px; height: 1.1rem; margin: 0 0.35rem; background: #040303; }"
     },
@@ -135,7 +135,7 @@
       "name": "SYNTHETIC Tag",
       "kind": "chip",
       "refersTo": "tag-ink",
-      "description": "Inverted condition stamp for figures that are not on-chain. Active status uses the same invert; Scratched outlines instead.",
+      "description": "Inverted condition stamp for figures that are not on-chain. Active and BACKED use the same invert; Scratched and MINE outline instead.",
       "html": "<div class=\"ds-tags\"><span class=\"ds-tag\">SYNTHETIC</span><span class=\"ds-status\">ACTIVE</span><span class=\"ds-status ds-status-scratched\">SCRATCHED</span></div>",
       "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; } .ds-tag { display: inline-block; padding: 0 0.28rem; background: #040303; color: #f3eadc; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-status { display: inline-block; padding: 0.1rem 0.35rem; background: #040303; color: #f3eadc; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-status-scratched { background: transparent; color: #040303; border: 1px solid #040303; }"
     },
@@ -159,7 +159,7 @@
       "name": "Tote Row",
       "kind": "custom",
       "refersTo": "tote-row",
-      "description": "Full-bleed horse on /program. Hairline under the row; ink wash when hovered or pressed. Purse sits on a ruled ink fill bar.",
+      "description": "Full-bleed horse on /program (eight columns) or /portfolio (seven, capped name, ROLE). Hairline under the row; ink wash when hovered or pressed. Purse or capital sits on a ruled ink fill bar. BACKED inverts; MINE outlines.",
       "html": "<button class=\"ds-tote-row\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-tote-num\">1</span><span class=\"ds-tote-silks\">BTC</span><span class=\"ds-tote-id\"><span class=\"ds-tote-name\">WARDEN</span><span class=\"ds-tote-pedigree\">15M · BTC</span></span><span class=\"ds-tote-age\">14d</span><span>08-17-26</span><span class=\"ds-tote-pnl\">+2,620.00</span><span class=\"ds-tote-purse\"><span>12,850.00</span><span class=\"ds-tvl\"><i style=\"width:64%\"></i></span><span class=\"ds-tvl-max\">MAX 20,000.00</span></span><span class=\"ds-status\">ACTIVE</span></button>",
       "css": ".ds-tote-row { display: grid; grid-template-columns: 2.4rem 2.4rem minmax(7rem, 1.3fr) 3.4rem 5.2rem 6.2rem minmax(7.5rem, 1.1fr) 6.2rem; gap: 0.45rem 0.65rem; align-items: center; width: 100%; padding: 0.55rem 1.25rem; border: 0; border-bottom: 1px solid color-mix(in srgb, #040303 22%, transparent); background: color-mix(in srgb, #040303 8%, transparent); color: #040303; text-align: left; cursor: pointer; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-variant-numeric: tabular-nums; } .ds-tote-row:hover, .ds-tote-row[aria-pressed='true'] { background: color-mix(in srgb, #040303 8%, transparent); } .ds-tote-row:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-tote-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 1.7rem; line-height: 0.8; } .ds-tote-silks { display: grid; place-items: center; width: 2rem; height: 2rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.04em; } .ds-tote-name { display: block; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.55rem; line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; } .ds-tote-pedigree { display: block; margin-top: 0.15rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-tote-pnl { font-weight: 700; color: #085324; text-align: right; } .ds-tote-purse { display: grid; gap: 0.18rem; font-weight: 700; color: #085324; } .ds-tvl { display: block; height: 0.55rem; border: 1px solid #040303; background: transparent; } .ds-tvl i { display: block; height: 100%; background: #040303; } .ds-tvl-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; } .ds-status { justify-self: start; padding: 0.1rem 0.35rem; background: #040303; color: #f3eadc; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }"
     },
@@ -167,7 +167,7 @@
       "name": "Ruled Fill Bar",
       "kind": "custom",
       "refersTo": "tvl-track",
-      "description": "Purse fill-to-max: 1px ink-ruled track, Carbon Ink fill. Figure is Purse Green; the bar is not.",
+      "description": "Purse fill-to-max: 1px ink-ruled track, Carbon Ink fill. On the book tote, fill is backed capital over vault. Figure is Purse Green; the bar is not.",
       "html": "<div class=\"ds-fill\"><span class=\"ds-fill-amt\">12,850.00</span><span class=\"ds-fill-track\"><i style=\"width:64%\"></i></span><span class=\"ds-fill-max\">MAX 20,000.00</span></div>",
       "css": ".ds-fill { display: grid; gap: 0.18rem; } .ds-fill-amt { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; color: #085324; font-variant-numeric: tabular-nums; } .ds-fill-track { display: block; height: 0.55rem; border: 1px solid #040303; background: transparent; border-radius: 0; } .ds-fill-track i { display: block; height: 100%; background: #040303; } .ds-fill-max { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; }"
     },
@@ -175,15 +175,23 @@
       "name": "Hot Sheet Overlay",
       "kind": "card",
       "refersTo": "sheet-overlay",
-      "description": "40% right-hand Hot Sheet on /program. Call-scale name, PP, ruled purse, last backer, left-aligned Deposit stamp.",
+      "description": "40% right-hand Hot Sheet on /program or /portfolio. Call-scale name. Program: PP, ruled purse, last backer, Deposit stamp. Book: shares and PnL, DEPOSIT/WITHDRAW chips, then stamp or outlined Withdraw — never both.",
       "html": "<aside class=\"ds-overlay\"><button class=\"ds-overlay-close\" type=\"button\">BACK TO THE PROGRAM</button><div class=\"ds-overlay-call\"><span class=\"ds-overlay-num\">1</span><span class=\"ds-overlay-silks\">BTC</span><div><h1 class=\"ds-overlay-name\">WARDEN</h1><p class=\"ds-overlay-ped\">DREAMDEX · 15M · BTC</p></div></div><dl class=\"ds-overlay-tvl\"><dt>VAULT PURSE <span class=\"ds-tag\">SYNTHETIC</span></dt><dd class=\"ds-overlay-purse\">12,850.00</dd><dd class=\"ds-overlay-track\"><i style=\"width:64%\"></i></dd><dd class=\"ds-fill-max\">MAX 20,000.00</dd></dl></aside>",
       "css": ".ds-overlay { width: 40%; padding: 1rem 1.1rem 1.4rem; background: #f3eadc; color: #040303; border-left: 3px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-overlay-close { display: block; margin: 0 0 0.35rem auto; padding: 0; border: 0; background: none; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: #040303; } .ds-overlay-close:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-overlay-call { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 0.45rem 0.65rem; align-items: start; margin: 0.55rem 0 0.85rem; } .ds-overlay-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(5rem, 12vw, 6rem); line-height: 0.75; letter-spacing: -0.04em; } .ds-overlay-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; margin-top: 0.35rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; } .ds-overlay-name { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(4.2rem, 11vw, 6rem); line-height: 0.76; letter-spacing: -0.03em; text-transform: uppercase; } .ds-overlay-ped { margin: 0.25rem 0 0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-overlay-tvl { margin: 0.85rem 0 0; } .ds-overlay-tvl dt { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-overlay-tvl dd { margin: 0.15rem 0 0; } .ds-overlay-purse { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 0.9; letter-spacing: -0.03em; color: #085324; font-variant-numeric: tabular-nums; } .ds-overlay-track { display: block; height: 0.7rem; border: 1px solid #040303; background: transparent; } .ds-overlay-track i { display: block; height: 100%; background: #040303; } .ds-fill-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; } .ds-tag { padding: 0 0.28rem; background: #040303; color: #f3eadc; letter-spacing: 0.12em; }"
+    },
+    {
+      "name": "Book Bar",
+      "kind": "custom",
+      "refersTo": "book-title",
+      "description": "Result strip on /portfolio: boxed YOUR BOOK, 3px vertical ink rule, inline PnL and capital at risk, SYNTHETIC, BACKED/MINE/ALL chips on the far right.",
+      "html": "<div class=\"ds-book-bar\"><h1 class=\"ds-book-title\">YOUR BOOK</h1><span class=\"ds-book-rule\" aria-hidden=\"true\"></span><dl class=\"ds-book-figures\"><div><dt>PNL</dt><dd class=\"ds-book-pnl\">+1,240.00</dd></div><div><dt>CAPITAL AT RISK</dt><dd>4,500.00</dd></div><span class=\"ds-book-tag\">SYNTHETIC</span></dl><div class=\"ds-book-chips\" role=\"toolbar\"><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"false\">BACKED</button><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"false\">MINE</button><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"true\">ALL</button></div></div>",
+      "css": ".ds-book-bar { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.45rem 0.75rem; padding: 0.4rem 1.25rem; border-bottom: 3px solid #040303; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-book-title { margin: 0; padding: 0.22rem 0.45rem; border: 3px solid #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; align-self: center; } .ds-book-rule { width: 3px; background: #040303; flex-shrink: 0; align-self: stretch; } .ds-book-figures { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1.1rem; margin: 0; align-self: center; } .ds-book-figures div { display: flex; align-items: baseline; gap: 0.4rem; } .ds-book-figures dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-book-figures dd { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 0.85; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; } .ds-book-pnl { color: #085324; } .ds-book-tag { align-self: center; padding: 0 0.28rem; background: #040303; color: #f3eadc; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-book-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; margin-left: auto; align-self: center; } .ds-book-chip { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-book-chip:hover, .ds-book-chip[aria-pressed='true'] { background: #040303; color: #f3eadc; } .ds-book-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
     },
     {
       "name": "Deposit Stamp",
       "kind": "button",
       "refersTo": "deposit-stamp",
-      "description": "Primary deposit action: distressed green rubber stamp, multiplied onto the sheet. Not an ink-fill button. Left-aligned on the overlay.",
+      "description": "Primary deposit action: distressed green rubber stamp, multiplied onto the sheet. Not an ink-fill button. Left-aligned on /program and /portfolio overlays.",
       "html": "<button class=\"ds-stamp\" type=\"button\"><span class=\"ds-stamp-face\"><svg class=\"ds-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg><span class=\"ds-stamp-type\"><strong>DEPOSIT</strong><small>LOCK FUNDS &amp; BACK HERO</small></span><svg class=\"ds-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg></span></button>",
       "css": ".ds-stamp { display: block; width: min(100%, 22rem); margin: 0.2rem auto 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-stamp:hover .ds-stamp-face, .ds-stamp:focus-visible .ds-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-stamp .ds-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
     },
@@ -196,6 +204,14 @@
       "css": ".ds-open-stamp { display: block; width: min(100%, 18rem); margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-open-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-open-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-open-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-open-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-open-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-open-stamp:hover .ds-open-stamp-face, .ds-open-stamp:focus-visible .ds-open-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-open-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-open-stamp .ds-open-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
     },
     {
+      "name": "Withdraw",
+      "kind": "button",
+      "refersTo": "button-withdraw",
+      "description": "Redeem on a backed /portfolio overlay after WITHDRAW is pressed. 1px ink outline, not a stamp. Hover washes 8% ink. Withheld when owner-only. Never stacked under the Deposit stamp.",
+      "html": "<button class=\"ds-withdraw\" type=\"button\">WITHDRAW<small>Redeem shares from this horse</small></button>",
+      "css": ".ds-withdraw { display: grid; justify-items: start; width: min(100%, 22rem); padding: 0.45rem 0.65rem; border: 1px solid #040303; background: transparent; cursor: pointer; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; border-radius: 0; } .ds-withdraw small { display: block; margin-top: 0.15rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; } .ds-withdraw:hover, .ds-withdraw:focus-visible { background: color-mix(in srgb, #040303 8%, transparent); } .ds-withdraw:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-withdraw:active { background: color-mix(in srgb, #040303 8%, transparent); } .ds-withdraw:disabled { cursor: not-allowed; opacity: 0.35; }"
+    },
+    {
       "name": "Locale Toggle",
       "kind": "nav",
       "refersTo": "locale-active",
@@ -206,7 +222,7 @@
   ],
   "narrative": {
     "northStar": "The Past-Performance Sheet",
-    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper.\n\nThree surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote.",
+    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper. Withdraw is a 1px ink outline on the same sheet, never a second stamp.\n\nFour surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. `/portfolio` is the connected wallet’s book: a tote of horses already held, with the same right Hot Sheet to stamp more or redeem shares. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark. The book is the masthead’s Your book mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.",
     "keyCharacteristics": [
       "Warm newsprint ground, hue-less fiber tiled and multiplied into the sheet",
       "Big Shoulders Display for the call; Barlow Condensed for agate",
@@ -215,7 +231,8 @@
       "Purse green only for money in the black and for the Deposit / Open-vault stamps",
       "Invert-to-ink as the selected / pressed language",
       "/enter is a condition-book spread (facts | papers), not a stepper",
-      "/program is a tote of every horse with a right Hot Sheet overlay, not a second horse route"
+      "/program is a tote of every horse with a right Hot Sheet overlay, not a second horse route",
+      "/portfolio is a tote of horses already held with the same overlay, not a dashboard of position cards"
     ],
     "rules": [
       {
@@ -230,7 +247,7 @@
       },
       {
         "name": "The Call-is-Bigger Rule",
-        "body": "On a call surface, the selected horse name outranks MARKETO. Product chrome never out-shouts the horse you are looking at. The `/program` overlay is a call. The `/enter` miniature is a preview, not a second call.",
+        "body": "On a call surface, the selected horse name outranks MARKETO. Product chrome never out-shouts the horse you are looking at. The `/program` overlay is a call. The `/portfolio` overlay is a call. The `/enter` miniature is a preview, not a second call.",
         "section": "typography"
       },
       {
@@ -250,7 +267,12 @@
       },
       {
         "name": "The Tote Overlay Rule",
-        "body": "Opening a horse on `/program` is `?horse=` and a 40% Hot Sheet from the right. Do not add a second horse route, a modal, or a dashboard of horse cards. At `900px` the overlay is the whole sheet and the stamp stays at the foot.",
+        "body": "Opening a horse on `/program` or `/portfolio` is `?horse=` on that sheet and a 40% Hot Sheet from the right. Do not add a second horse route, a modal, or a dashboard of horse or position cards. At `900px` the overlay is the whole sheet and the stamp foot stays sticky.",
+        "section": "layout"
+      },
+      {
+        "name": "The Book Tote Rule",
+        "body": "The book is a tote of horses the connected wallet already holds. Filter BACKED / MINE / ALL (ALL default). Book-bar PnL and capital sum backed holdings only. Owner-only rows are watch-only: em dash shares and capital, vault PnL, no Deposit, no Withdraw. Money moves on the overlay, never on the row.",
         "section": "layout"
       },
       {
@@ -277,11 +299,13 @@
       "Do print purses and winning PnL in Purse Green; print losses in Carbon Ink.",
       "Do set horse names and program numbers in Big Shoulders Display 800–900; set tables, labels, and notes in Barlow Condensed.",
       "Do invert to ink-on-Hot-Sheet for selection, chip hover/checked, active locale, fact numerals, and Active status.",
-      "Do stamp Deposit and Open vault; fill Connect.",
-      "Do wash the slip and the papers at 55% Hot Sheet; print the `/program` overlay as a full Hot Sheet.",
+      "Do stamp Deposit and Open vault; outline Withdraw 1px ink; fill Connect.",
+      "Do wash the slip and the papers at 55% Hot Sheet; print the `/program` and `/portfolio` overlays as a full Hot Sheet.",
       "Do mark non-chain figures with the inverted SYNTHETIC tag.",
-      "Do open a horse on `/program` as a 40% Hot Sheet (`?horse=`), with the stamp stuck at the foot at `900px`.",
-      "Do fill purse-to-max with a 1px ink-ruled track and an ink bar."
+      "Do open a horse on `/program` or `/portfolio` as a 40% Hot Sheet (`?horse=`), with the stamp foot stuck at the foot at `900px`.",
+      "Do fill purse-to-max with a 1px ink-ruled track and an ink bar.",
+      "Do print BACKED as the Active invert and MINE as the Scratched outline; a book row may carry both.",
+      "Do sum book-bar PnL and capital from backed holdings only."
     ],
     "donts": [
       "Don't ship a dark DeFi hero with three equal feature cards.",
@@ -291,9 +315,12 @@
       "Don't use Purse Green for losses, links, large fills that are not money or the stamp, or the purse fill-to-max bar.",
       "Don't let MARKETO or UI labels out-size the selected horse name on a call surface.",
       "Don't swap the Deposit or Open-vault stamp for a gradient CTA or a second ink-fill button.",
+      "Don't stamp Withdraw; it is a 1px ink outline, not a rubber stamp.",
+      "Don't show the Deposit stamp and Withdraw on the same slip at once; invert chips pick the direction, then one action.",
       "Don't recast `/enter` as a wizard, stepper, or settings form, or put nomination fields back on the racing card.",
-      "Don't recast `/program` as a dashboard of horse cards, a modal, or a second horse route.",
-      "Don't put Deposit on a tote row; the stamp lives on the overlay.",
+      "Don't recast `/program` or `/portfolio` as a dashboard of horse or position cards, a modal, or a second horse route.",
+      "Don't put Deposit or Withdraw on a tote row; money moves on the overlay.",
+      "Don't let an owner-only overlay redeem depositor funds.",
       "Don't replace the silks corner tick with a check glyph or a circular radio.",
       "Don't substitute Inter, system UI, or a serif editorial face for the athletic gothic / agate pairing."
     ]

@@ -1,0 +1,58 @@
+{
+  "title": "Choose the portfolio composition",
+  "question": "The roll assigned Card of the book. Keep it, take an alternate, or re-roll. Visual world stays the racing form; this pick is how your totals, your horses, and deposit or withdraw sit together.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Card of the book",
+      "kicker": "THE ROLL",
+      "lineage": "The racing card, with your book as the call",
+      "thesis": "Your totals take the call; the program strip is only the horses you already hold.",
+      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+      "materials": ["warm newsprint fiber", "3px carbon-ink rules", "silks squares", "green deposit stamp", "inverted SYNTHETIC tag"],
+      "viewport": "Masthead. The fold is the landing grid: the giant CALL is YOUR BOOK (PnL in purse green, capital at risk, SYNTHETIC). The right FACTS column is the selected horse's cashier slip — amount, chips, Deposit stamp, outlined WITHDRAW for backers. The bottom PROGRAM STRIP is your horses with silks and BACKED or MINE tags; MINE rows have no withdraw. Selecting a horse updates the slip only; the call stays the book.",
+      "risk": "A visitor may read the giant call as a public horse and try to bet the field.",
+      "raised": [
+        {
+          "from": "darkroom test strip",
+          "raise": "The slip prints estimated shares before the stamp, so deposit and redeem preview before the wallet."
+        },
+        {
+          "from": "zoo-map coastline",
+          "raise": "Backed and Mine sit as two coasts on the program strip, never mixed without a mark."
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/portfolio-card.webp"
+    },
+    {
+      "id": "book-tote",
+      "label": "Book tote",
+      "lineage": "Overnight tote plus Hot Sheet, filtered to your holdings",
+      "thesis": "The book is a tote of your horses; money moves on the overlay, not the row.",
+      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+      "materials": ["warm newsprint fiber", "tote rows", "ruled fill bar", "Hot Sheet overlay", "green deposit stamp"],
+      "viewport": "Masthead, then a result line of book PnL and capital at risk. Conditions chips: BACKED / MINE / ALL. Full-bleed tote of your horses. Opening a BACKED row slides a 40% Hot Sheet: shares, PnL, amount, Deposit stamp, WITHDRAW. Opening a MINE row is watch-only vault PnL — no redeem.",
+      "risk": "Repeats /program so the book may not feel like an account.",
+      "comp": ".impeccable/mocks/decision/portfolio-tote.webp"
+    },
+    {
+      "id": "settling-window",
+      "label": "Settling window",
+      "lineage": "Entry papers / clerk window, used to settle",
+      "thesis": "The page is the teller: totals on the ticket, then you stamp or redeem the selected horse.",
+      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+      "materials": ["warm newsprint fiber", "boxed SETTLE sheet", "55% Hot Sheet wash", "underline amount", "green deposit stamp"],
+      "viewport": "Masthead. One boxed SETTLE sheet fills the rest. Top: YOUR BOOK, PnL, capital at risk. A slim numbered list of holdings down the left (BACKED / MINE). The remaining field is the slip for the selected horse — shares, PnL, amount underline, Deposit stamp, WITHDRAW as a scratched-style outline. No overlay.",
+      "risk": "A short book looks empty; a long book turns the list into a cramped rail.",
+      "comp": ".impeccable/mocks/decision/portfolio-cashier.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  },
+  "steer": true
+}
