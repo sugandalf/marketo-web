@@ -44,7 +44,7 @@ Sampled from approved comp / shipping sheet:
 
 ## Compositional commitments
 
-- Nav: MARKETO, date, dreamDEX line, Enter a horse → `/enter`. No Markets/Vaults/Docs chrome. No on-page enter block.
+- Nav: MARKETO, date, dreamDEX line, The program → `/program`, Enter a horse → `/enter`. No Markets/Vaults/Docs chrome. No on-page enter block.
 - Headline scale: MARKETO masthead < selected horse name (the name is the display).
 - Signature: thick black rules, silks squares, stamp Deposit, warm newsprint sheet.
 - First viewport: masthead / call+slip / program strip.

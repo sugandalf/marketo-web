@@ -5,7 +5,8 @@
 	import type { Pathname } from '$app/types';
 	import HorseMark from './HorseMark.svelte';
 
-	let { showEnter = true }: { showEnter?: boolean } = $props();
+	let { showEnter = true, showProgram = true }: { showEnter?: boolean; showProgram?: boolean } =
+		$props();
 
 	function cardDate() {
 		return new Intl.DateTimeFormat(getLocale() === 'id' ? 'id-ID' : 'en-US', {
@@ -39,6 +40,12 @@
 				</button>
 			{/each}
 		</div>
+		{#if showProgram}
+			<a class="program-link" href={resolve(localizeHref('/program') as Pathname)}>
+				{m.the_program()}
+				<small>{m.the_program_hint()}</small>
+			</a>
+		{/if}
 		{#if showEnter}
 			<a class="enter-link" href={resolve(localizeHref('/enter') as Pathname)}>
 				<HorseMark />

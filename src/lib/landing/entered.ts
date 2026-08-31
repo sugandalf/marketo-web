@@ -39,7 +39,14 @@ export function loadEnteredHero(): EnteredHero | null {
 		if (!raw) return null;
 		const parsed = JSON.parse(raw) as EnteredHero;
 		if (!parsed?.id || !parsed?.name) return null;
-		return parsed;
+		return {
+			...parsed,
+			vaultMaxUsdso: parsed.vaultMaxUsdso ?? 20000,
+			created: parsed.created ?? new Date().toISOString().slice(0, 10),
+			status: parsed.status ?? 'active',
+			lastBacker: parsed.lastBacker ?? null,
+			fights: parsed.fights ?? []
+		};
 	} catch {
 		return null;
 	}
@@ -59,6 +66,10 @@ export function buildEnteredHero(input: {
 		market: input.market,
 		window: '15m',
 		vaultUsdso: input.amount,
+		vaultMaxUsdso: 20000,
+		created: new Date().toISOString().slice(0, 10),
+		status: 'active',
+		lastBacker: null,
 		fights: [],
 		strategy: input.strategy.trim(),
 		botWallet: input.botWallet

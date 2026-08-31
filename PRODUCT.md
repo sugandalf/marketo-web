@@ -36,7 +36,7 @@ The underlying mechanism (repo-stated, confirmed by shipping all three roles tog
 - Reads from chain (and optional SQLite projections); writes are user-signed in the browser.
 - Locales in the repo: `en` and `id` via Paraglide. Whether both are a hard product requirement is **undecided** (not confirmed in init).
 - Target EVM chain(s) are **undecided**; do not name a chain until chosen.
-- Current UI: racing-form landing (`src/routes/+page.svelte`) and Enter a horse (`src/routes/enter/+page.svelte`). Wallet connect is demo-only until a chain adapter exists.
+- Current UI: racing-form landing (`src/routes/+page.svelte`), full program tote (`src/routes/program/+page.svelte`), and Enter a horse (`src/routes/enter/+page.svelte`). Wallet connect is demo-only until a chain adapter exists.
 
 ## Capabilities and Constraints
 
@@ -69,7 +69,7 @@ Undecided:
 
 None. No live markets, contract addresses, screenshots of real trading, testimonials, case studies, or Marketo brand assets. Future work must not fabricate customers, volume, odds, or press.
 
-Shipped screens: `src/routes/+page.svelte` (racing card), `src/routes/enter/+page.svelte` (entry papers). Demo Paraglide and `task` table remain in `src/routes/demo/**` and `src/lib/server/db/schema.ts`. Messages in `messages/en.json` and `messages/id.json`.
+Shipped screens: `src/routes/+page.svelte` (racing card), `src/routes/program/+page.svelte` (overnight tote + Hot Sheet overlay), `src/routes/enter/+page.svelte` (entry papers). Demo Paraglide and `task` table remain in `src/routes/demo/**` and `src/lib/server/db/schema.ts`. Messages in `messages/en.json` and `messages/id.json`.
 
 ## Product Principles
 

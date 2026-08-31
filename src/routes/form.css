@@ -234,6 +234,24 @@
 	text-transform: none;
 }
 
+.program-link {
+	color: inherit;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	line-height: 1.15;
+}
+
+.program-link small {
+	display: block;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: none;
+	text-decoration: none;
+}
+
 .fold {
 	display: grid;
 	grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.72fr);
@@ -947,6 +965,305 @@ a.mark {
 	border: 0;
 }
 
+.tote-face {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.conditions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.35rem 0.45rem;
+	padding: 0.55rem 1.25rem;
+	border-bottom: var(--rule);
+}
+
+.conditions button {
+	padding: 0.15rem 0.45rem;
+	border: 1px solid var(--ink);
+	background: transparent;
+	cursor: pointer;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
+
+.conditions button:hover,
+.conditions button[aria-pressed='true'] {
+	background: var(--ink);
+	color: var(--paper-hot);
+}
+
+.conditions-rule {
+	width: 1px;
+	height: 1.1rem;
+	margin: 0 0.35rem;
+	background: var(--ink);
+}
+
+.tote-stage {
+	position: relative;
+	min-height: 0;
+}
+
+.tote {
+	display: grid;
+	min-height: 100%;
+}
+
+.tote-head,
+.tote-row {
+	display: grid;
+	grid-template-columns: 2.4rem 2.4rem minmax(7rem, 1.3fr) 3.4rem 5.2rem 6.2rem minmax(7.5rem, 1.1fr) 6.2rem;
+	gap: 0.45rem 0.65rem;
+	align-items: center;
+	padding: 0.55rem 1.25rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.tote-head {
+	border-bottom: 1px solid var(--ink);
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.tote-row {
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+}
+
+.tote-row:hover,
+.tote-row[aria-pressed='true'] {
+	background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.tote-num {
+	font-family: var(--font-display);
+	font-weight: 900;
+	font-size: 1.7rem;
+	line-height: 0.8;
+}
+
+.tote .silks {
+	width: 2rem;
+	height: 2rem;
+	margin: 0;
+	font-size: 0.68rem;
+}
+
+.tote-name {
+	display: block;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 1.55rem;
+	line-height: 0.85;
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
+}
+
+.tote-id .pedigree {
+	margin-top: 0.15rem;
+	font-size: 0.78rem;
+}
+
+.tote-purse {
+	display: grid;
+	gap: 0.18rem;
+	font-weight: 700;
+	color: var(--money);
+}
+
+.tvl-track {
+	display: block;
+	height: 0.55rem;
+	border: 1px solid var(--ink);
+	background: transparent;
+}
+
+.tvl-track i {
+	display: block;
+	height: 100%;
+	background: var(--ink);
+}
+
+.tvl-max {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink);
+}
+
+.status-tag {
+	justify-self: start;
+	padding: 0.1rem 0.35rem;
+	background: var(--ink);
+	color: var(--paper-hot);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.status-tag.scratched {
+	background: transparent;
+	color: var(--ink);
+	border: 1px solid var(--ink);
+}
+
+.tote-empty {
+	margin: 1.25rem;
+	max-width: 42ch;
+}
+
+.sheet-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 40%;
+	padding: 1rem 1.1rem 1.4rem;
+	overflow: auto;
+	background-color: var(--paper-hot);
+	background-image: url('/landing/newsprint.webp');
+	background-size: 240px 240px;
+	background-repeat: repeat;
+	background-blend-mode: multiply;
+	border-left: var(--rule);
+	z-index: 2;
+	animation: sheet-in 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overlay-call {
+	display: grid;
+	grid-template-columns: auto auto minmax(0, 1fr);
+	gap: 0.45rem 0.65rem;
+	align-items: start;
+	margin: 0.55rem 0 0.85rem;
+}
+
+.overlay-num {
+	font-size: clamp(5rem, 12vw, 6rem);
+	line-height: 0.75;
+}
+
+.overlay-name {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 900;
+	font-size: clamp(4.2rem, 11vw, 6rem);
+	line-height: 0.76;
+	letter-spacing: -0.03em;
+	text-transform: uppercase;
+}
+
+.overlay-pp {
+	grid-template-columns: 4.6rem 2.2rem 3.8rem 2.4rem 1fr;
+}
+
+.overlay-tvl {
+	margin: 0.85rem 0 0;
+}
+
+.overlay-tvl dt {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.overlay-tvl dd {
+	margin: 0.15rem 0 0;
+}
+
+.overlay-tvl dd.pnl {
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 2.4rem;
+	line-height: 0.9;
+	letter-spacing: -0.03em;
+	color: var(--money);
+	text-align: left;
+}
+
+.overlay-track {
+	margin-top: 0.4rem;
+	height: 0.7rem;
+}
+
+.close-overlay {
+	display: block;
+	margin: 0 0 0.35rem auto;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.last-backer p {
+	margin: 0.35rem 0 0;
+	font-variant-numeric: tabular-nums;
+}
+
+.overlay-slip {
+	margin-top: 0.85rem;
+}
+
+.overlay-slip .stamp {
+	width: min(100%, 22rem);
+	margin: 0.2rem 0 0;
+}
+
+.full-card {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.full-card .entry-name {
+	font-size: 1.25rem;
+	letter-spacing: 0;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.empty-fold {
+	display: grid;
+	place-items: center;
+	padding: 2rem 1.25rem;
+}
+
+.in-form-empty {
+	margin: 0;
+	max-width: 42ch;
+	text-align: center;
+}
+
+@keyframes sheet-in {
+	from {
+		transform: translateX(12%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
 @media (max-width: 900px) {
 	.masthead,
 	.fold,
@@ -998,10 +1315,100 @@ a.mark {
 		text-align: left;
 		grid-column: 1 / -1;
 	}
+
+	.tote-face {
+		min-height: auto;
+	}
+
+	.tote-head,
+	.tote-row {
+		grid-template-columns: 2rem 2rem minmax(0, 1fr) auto;
+		grid-template-areas:
+			'num silks name status'
+			'. . age created'
+			'. . pnl purse';
+	}
+
+	.tote-head {
+		display: none;
+	}
+
+	.tote-row .tote-num {
+		grid-area: num;
+	}
+
+	.tote-row .silks {
+		grid-area: silks;
+	}
+
+	.tote-id {
+		grid-area: name;
+	}
+
+	.tote-age {
+		grid-area: age;
+	}
+
+	.tote-row > :nth-child(5) {
+		grid-area: created;
+	}
+
+	.tote-row > .pnl {
+		grid-area: pnl;
+	}
+
+	.tote-row .tote-purse {
+		grid-area: purse;
+	}
+
+	.tote-row .status-tag {
+		grid-area: status;
+	}
+
+	.sheet-overlay {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		border-left: 0;
+		background-color: var(--paper);
+		background-image: url('/landing/newsprint.webp');
+		background-size: 240px 240px;
+		background-repeat: repeat;
+		background-blend-mode: multiply;
+		z-index: 5;
+	}
+
+	.overlay-name {
+		font-size: 3.4rem;
+	}
+
+	.overlay-num {
+		font-size: 4.4rem;
+	}
+
+	.overlay-foot {
+		position: sticky;
+		bottom: 0;
+		padding-top: 0.55rem;
+		background-color: var(--paper);
+		background-image: url('/landing/newsprint.webp');
+		background-size: 240px 240px;
+		background-repeat: repeat;
+		background-blend-mode: multiply;
+	}
+
+	.masthead-actions {
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.stamp img {
 		transition: none;
+	}
+
+	.sheet-overlay {
+		animation: none;
 	}
 }
