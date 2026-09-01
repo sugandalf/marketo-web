@@ -6,6 +6,7 @@
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
+	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import { purseFull } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import {
@@ -18,6 +19,7 @@
 		type BookEntry,
 		type Holding
 	} from '$lib/landing/book';
+	import { wallet } from '$lib/wallet/session.svelte';
 	import '../form.css';
 
 	type RoleFilter = 'all' | 'backed' | 'mine';
@@ -26,7 +28,6 @@
 	let entered = $state(initialEntered);
 	let entries = $state<BookEntry[]>(loadBook(initialEntered));
 	let amountRaw = $state('0.00');
-	let walletDemo = $state(false);
 	let slipMode = $state<'deposit' | 'withdraw'>('deposit');
 	let settleIntent = $state<'deposit' | 'withdraw' | null>(null);
 	let roleFilter = $state<RoleFilter>('all');
@@ -145,15 +146,12 @@
 		settleIntent = null;
 	}
 
-	function onSettle(event: SubmitEvent) {
-		event.preventDefault();
-		if (!selected || amount <= 0) return;
-		if (slipMode === 'deposit' && !depositReady) return;
-		if (slipMode === 'withdraw' && !withdrawReady) return;
-		settleIntent = slipMode;
-		if (!walletDemo) return;
+	function completeSettle() {
+		if (!selected || !settleIntent) return;
+		if (settleIntent === 'deposit' && !depositReady) return;
+		if (settleIntent === 'withdraw' && !withdrawReady) return;
 		const next =
-			slipMode === 'deposit'
+			settleIntent === 'deposit'
 				? applyDeposit(entries, selected.hero.id, amount)
 				: applyWithdraw(entries, selected.hero.id, amount);
 		entries = next;
@@ -162,17 +160,32 @@
 		settleIntent = null;
 	}
 
-	function connectWallet() {
-		walletDemo = true;
-		entered = loadEnteredHero();
-		entries = loadBook(entered);
+	function onSettle(event: SubmitEvent) {
+		event.preventDefault();
+		if (!selected || amount <= 0) return;
+		if (slipMode === 'deposit' && !depositReady) return;
+		if (slipMode === 'withdraw' && !withdrawReady) return;
+		settleIntent = slipMode;
+		if (!wallet.connected) return;
+		completeSettle();
 	}
 
+	$effect(() => {
+		if (!wallet.connected) return;
+		entered = loadEnteredHero();
+		entries = loadBook(entered);
+	});
+
+	$effect(() => {
+		if (!wallet.connected || !settleIntent || !selected) return;
+		completeSettle();
+	});
+
 	function onKey(event: KeyboardEvent) {
-		if (event.key === 'Escape' && selected) {
-			event.preventDefault();
-			closeHolding();
-		}
+		if (event.key !== 'Escape' || !selected) return;
+		if (event.target instanceof Element && event.target.closest('.account')) return;
+		event.preventDefault();
+		closeHolding();
 	}
 </script>
 
@@ -198,7 +211,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 		<div class="book-bar">
 			<h1 class="book-title">{m.the_book()}</h1>
 			<span class="book-rule" aria-hidden="true"></span>
-			{#if walletDemo}
+			{#if wallet.connected}
 				<dl class="book-figures">
 					<div>
 						<dt>{m.book_pnl()}</dt>
@@ -225,11 +238,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 		</div>
 
 		<div class="tote-stage">
-			{#if !walletDemo}
+			{#if !wallet.ready}
+				<div class="book-gate" aria-busy="true"></div>
+			{:else if !wallet.connected}
 				<div class="book-gate">
 					<p>{m.connect_to_read()}</p>
-					<button class="connect" type="button" onclick={connectWallet}>{m.connect_wallet()}</button>
-					<p class="form-note">{m.wallet_demo()}</p>
+					<ConnectGate />
 				</div>
 			{:else}
 				<div class="tote book-tote">
@@ -296,7 +310,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				</div>
 			{/if}
 
-			{#if walletDemo && selected}
+			{#if wallet.connected && selected}
 				<aside class="sheet-overlay" aria-labelledby="book-overlay-name">
 					<button class="close-overlay" type="button" onclick={closeHolding}>
 						{m.close_book_overlay()}
@@ -403,12 +417,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								</p>
 							{:else if slipMode === 'withdraw' && amount > selected.navUsdso + 1e-9}
 								<p class="slip-note">{m.need_shares()}</p>
-							{:else if settleIntent && !walletDemo}
+							{:else if settleIntent && !wallet.connected}
 								<p class="wallet-msg">
 									{settleIntent === 'withdraw' ? m.connect_to_sign_withdraw() : m.connect_to_sign()}
 								</p>
-								<button class="connect" type="button" onclick={connectWallet}>{m.connect_wallet()}</button>
-								<p class="form-note">{m.wallet_demo()}</p>
+								<ConnectGate />
 							{:else if slipMode === 'deposit' && purseFull(selected.hero)}
 								<p class="slip-note">{m.purse_full_note()}</p>
 							{:else}

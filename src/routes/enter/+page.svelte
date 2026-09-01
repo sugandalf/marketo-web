@@ -5,8 +5,10 @@
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
+	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import { nextProgram, buildEnteredHero, saveEnteredHero } from '$lib/landing/entered';
 	import type { Market } from '$lib/landing/heroes';
+	import { wallet } from '$lib/wallet/session.svelte';
 	import '../form.css';
 
 	const NAME_MAX = 24;
@@ -18,7 +20,6 @@
 	let walletMode = $state<'same' | 'other'>('same');
 	let otherAddress = $state('');
 	let amountRaw = $state('0.00');
-	let walletDemo = $state(false);
 	let submitted = $state(false);
 	let entered = $state(false);
 	let enteredId = $state('');
@@ -51,6 +52,7 @@
 	}
 
 	function commitHero() {
+		if (entered) return;
 		const hero = buildEnteredHero({
 			name: botName,
 			market: botMarket,
@@ -67,9 +69,15 @@
 		event.preventDefault();
 		submitted = true;
 		if (formError()) return;
-		if (!walletDemo) return;
+		if (!wallet.connected) return;
 		commitHero();
 	}
+
+	$effect(() => {
+		if (entered) return;
+		if (!submitted || formError() || !wallet.connected) return;
+		commitHero();
+	});
 </script>
 
 {@html `<!--
@@ -296,15 +304,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<p class="form-note">{m.need_wallet_address()}</p>
 					{:else if submitted && formError() === 'purse'}
 						<p class="form-note">{m.need_purse()}</p>
-					{:else if submitted && !walletDemo}
+					{:else if submitted && !wallet.connected}
 						<p class="wallet-msg">{m.connect_to_open()}</p>
-						<button class="connect" type="button" onclick={() => {
-							walletDemo = true;
-							commitHero();
-						}}>
-							{m.connect_wallet()}
-						</button>
-						<p class="form-note">{m.wallet_demo()}</p>
+						<ConnectGate />
 					{:else}
 						<p class="form-note">{m.enter_note()}</p>
 					{/if}

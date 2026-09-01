@@ -5,14 +5,15 @@
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
+	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import { homepageRoster, heroById, type Hero } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
+	import { wallet } from '$lib/wallet/session.svelte';
 	import './form.css';
 
 	let entered = $state(loadEnteredHero());
 	let selectedId = $state('');
 	let amountRaw = $state('0.00');
-	let walletDemo = $state(false);
 	let depositIntent = $state(false);
 	let booted = $state(false);
 
@@ -174,13 +175,10 @@
 				</form>
 				{#if amount <= 0}
 					<p class="slip-note">{m.need_amount()}</p>
-				{:else if depositIntent && !walletDemo}
+				{:else if depositIntent && !wallet.connected}
 					<p class="wallet-msg">{m.connect_to_sign()}</p>
-					<button class="connect" type="button" onclick={() => (walletDemo = true)}>
-						{m.connect_wallet()}
-					</button>
-					<p class="form-note">{m.wallet_demo()}</p>
-				{:else if walletDemo}
+					<ConnectGate />
+				{:else if wallet.connected}
 					<p class="wallet-msg">{m.wallet_ready()}</p>
 				{:else}
 					<p class="slip-note">{m.deposit_wallet_note()}</p>

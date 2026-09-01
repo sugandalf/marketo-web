@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-31T16:20:00.000Z",
+  "generatedAt": "2026-09-01T08:22:00.000Z",
   "title": "Design System: Marketo",
   "extensions": {
     "colorMeta": {
@@ -66,7 +66,7 @@
       },
       "label": {
         "displayName": "Agate label",
-        "purpose": "Uppercase tracked captions, chips, conditions, Connect, PP headers, tote-head, papers legends, status tags, Withdraw."
+        "purpose": "Uppercase tracked captions, chips, conditions, Connect, Copy/Disconnect, EIP-6963 wallet names, PP headers, tote-head, papers legends, status tags, Withdraw. Truncated address chip is the same weight, tabular, not uppercase."
       }
     },
     "shadows": [],
@@ -86,7 +86,7 @@
       {
         "name": "sheet-stack",
         "value": "900px",
-        "purpose": "Masthead, fold, call, program, and book grids collapse to one column. Call/facts rule moves from right to bottom. Papers-foot stacks stamp above How it works. Card releases 100dvh. Tote-head hides; tote rows stack to three lines. Book-bar chips and figures take full width. Overlay becomes a fixed full-viewport Sheet Stock sheet with the stamp foot sticky."
+        "purpose": "Masthead, fold, call, program, and book grids collapse to one column. Masthead-actions: locale left and account right on row 1; nav full-width on row 2. Call/facts rule moves from right to bottom. Papers-foot stacks stamp above How it works. Card releases 100dvh. Tote-head hides; tote rows stack to three lines. Book-bar chips and figures take full width. Overlay becomes a fixed full-viewport Sheet Stock sheet with the stamp foot sticky."
       }
     ]
   },
@@ -95,7 +95,7 @@
       "name": "Connect Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Ink-fill wallet gate. Not Deposit. Not Open vault. Not Withdraw.",
+      "description": "Ink-fill wallet gate last in masthead-actions and at stamp time. Not Deposit. Not Open vault. Not Withdraw. Not a modal.",
       "html": "<button class=\"ds-btn-primary\" type=\"button\">CONNECT WALLET</button>",
       "css": ".ds-btn-primary { background: #040303; color: #f3eadc; padding: 0.35rem 0.55rem; border: 2px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-btn-primary:hover { background: #040303; color: #f3eadc; } .ds-btn-primary:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-btn-primary:active { background: #040303; }"
     },
@@ -218,11 +218,35 @@
       "description": "Masthead locale. Underlined until pressed; active fills ink.",
       "html": "<div class=\"ds-locale\"><button class=\"ds-locale-btn is-active\" type=\"button\" aria-pressed=\"true\">EN</button><button class=\"ds-locale-btn\" type=\"button\" aria-pressed=\"false\">ID</button></div>",
       "css": ".ds-locale { display: flex; gap: 0.35rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; } .ds-locale-btn { background: none; border: 0; padding: 0.15rem 0.2rem; color: #040303; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 0; } .ds-locale-btn.is-active, .ds-locale-btn[aria-pressed='true'] { text-decoration: none; background: #040303; color: #f3eadc; } .ds-locale-btn:hover:not(.is-active):not([aria-pressed='true']) { text-decoration-thickness: 2px; } .ds-locale-btn:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+    },
+    {
+      "name": "Account Chip",
+      "kind": "chip",
+      "refersTo": "account-chip",
+      "description": "Connected session last in masthead-actions. 1px ink outline, truncated tabular address. Hover and open invert. Not a wallet-logo avatar.",
+      "html": "<button class=\"ds-account-chip\" type=\"button\" aria-expanded=\"true\">0x1234…5678</button>",
+      "css": ".ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-chip:hover, .ds-account-chip[aria-expanded='true'] { background: #040303; color: #f3eadc; } .ds-account-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-account-chip:active { background: #040303; color: #f3eadc; }"
+    },
+    {
+      "name": "Account Slip",
+      "kind": "card",
+      "refersTo": "account-slip",
+      "description": "Hot Sheet account menu below-right of the chip: full address, Copy, Disconnect. Not a modal. Not RainbowKit glass.",
+      "html": "<div class=\"ds-account\"><button class=\"ds-account-chip\" type=\"button\" aria-expanded=\"true\">0x1234…5678</button><div class=\"ds-account-slip\" role=\"menu\"><p class=\"ds-account-full\">0x1234567890abcdef1234567890abcdef12345678</p><button type=\"button\" role=\"menuitem\">COPIED</button><button type=\"button\" role=\"menuitem\">DISCONNECT</button></div></div>",
+      "css": ".ds-account { position: relative; display: inline-block; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #040303; background: #040303; color: #f3eadc; cursor: pointer; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-slip { position: absolute; right: 0; top: calc(100% + 0.35rem); z-index: 8; display: grid; gap: 0.2rem; min-width: 14rem; padding: 0.45rem; border: 2px solid #040303; background: #f3eadc; border-radius: 0; } .ds-account-full { margin: 0 0 0.2rem; padding: 0.2rem 0.35rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.3; word-break: break-all; font-variant-numeric: tabular-nums; } .ds-account-slip button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #040303; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; border-radius: 0; font-family: inherit; } .ds-account-slip button:hover, .ds-account-slip button:focus-visible { background: #040303; color: #f3eadc; } .ds-account-slip button:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+    },
+    {
+      "name": "Wallet List",
+      "kind": "chip",
+      "refersTo": "button-chip",
+      "description": "EIP-6963 announced wallets as stacked full-width invert chips of the provider name. Injected fallback: Browser wallet. No logos.",
+      "html": "<div class=\"ds-wallet-list\" role=\"group\" aria-label=\"Choose a wallet\"><button type=\"button\">METAMASK</button><button type=\"button\">RABBY WALLET</button><button type=\"button\">BROWSER WALLET</button></div>",
+      "css": ".ds-wallet-list { display: grid; gap: 0.2rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-wallet-list button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #040303; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; border-radius: 0; font-family: inherit; } .ds-wallet-list button:hover, .ds-wallet-list button:focus-visible { background: #040303; color: #f3eadc; } .ds-wallet-list button:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-wallet-list button:active { background: #040303; color: #f3eadc; }"
     }
   ],
   "narrative": {
     "northStar": "The Past-Performance Sheet",
-    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper. Withdraw is a 1px ink outline on the same sheet, never a second stamp.\n\nFour surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. `/portfolio` is the connected wallet’s book: a tote of horses already held, with the same right Hot Sheet to stamp more or redeem shares. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark. The book is the masthead’s Your book mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.",
+    "overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper. Withdraw is a 1px ink outline on the same sheet, never a second stamp. Persistent session is an ink-fill Connect last in the masthead, then an outline truncated-address chip that opens a Hot Sheet slip — never a hero CTA and never a modal.\n\nFour surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. `/portfolio` is the connected wallet’s book: a tote of horses already held, with the same right Hot Sheet to stamp more or redeem shares. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark. The book is the masthead’s Your book mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. The same Wagmi session (injected / EIP-6963) unlocks stamp-time Connect gates. The sheet never names a chain. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.",
     "keyCharacteristics": [
       "Warm newsprint ground, hue-less fiber tiled and multiplied into the sheet",
       "Big Shoulders Display for the call; Barlow Condensed for agate",
@@ -232,7 +256,8 @@
       "Invert-to-ink as the selected / pressed language",
       "/enter is a condition-book spread (facts | papers), not a stepper",
       "/program is a tote of every horse with a right Hot Sheet overlay, not a second horse route",
-      "/portfolio is a tote of horses already held with the same overlay, not a dashboard of position cards"
+      "/portfolio is a tote of horses already held with the same overlay, not a dashboard of position cards",
+      "Persistent session last in masthead-actions: ink-fill Connect, outline address chip, Hot Sheet account slip"
     ],
     "rules": [
       {
@@ -276,8 +301,13 @@
         "section": "layout"
       },
       {
+        "name": "The Session-Last Rule",
+        "body": "Persistent session lives last in masthead-actions, after locale and nav, split by a 1px ink stick. Connecting is not a hero CTA and not a modal. Stamp-time Connect gates on the slip, overlay, papers, and book share that same Wagmi session. Do not name a chain.",
+        "section": "layout"
+      },
+      {
         "name": "The Pressed-Ink Rule",
-        "body": "If something needs to sit “on” the sheet, multiply it or wash it. Do not raise it. The overlay is another impression of the same paper, not a floating panel.",
+        "body": "If something needs to sit “on” the sheet, multiply it or wash it. Do not raise it. The overlay is another impression of the same paper, not a floating panel. The account slip is the same: Hot Sheet + newsprint, not a glass dialog.",
         "section": "elevation"
       },
       {
@@ -298,8 +328,11 @@
       "Do mark the selected silks pick with a 3px ink edge and a top-right corner tick.",
       "Do print purses and winning PnL in Purse Green; print losses in Carbon Ink.",
       "Do set horse names and program numbers in Big Shoulders Display 800–900; set tables, labels, and notes in Barlow Condensed.",
-      "Do invert to ink-on-Hot-Sheet for selection, chip hover/checked, active locale, fact numerals, and Active status.",
+      "Do invert to ink-on-Hot-Sheet for selection, chip hover/checked, active locale, fact numerals, Active status, and the open account chip.",
       "Do stamp Deposit and Open vault; outline Withdraw 1px ink; fill Connect.",
+      "Do keep session last in masthead-actions, behind a 1px ink stick.",
+      "Do print the connected account as an outline truncated-address chip; invert it while the slip is open.",
+      "Do list EIP-6963 wallets as invert chips of the provider name.",
       "Do wash the slip and the papers at 55% Hot Sheet; print the `/program` and `/portfolio` overlays as a full Hot Sheet.",
       "Do mark non-chain figures with the inverted SYNTHETIC tag.",
       "Do open a horse on `/program` or `/portfolio` as a 40% Hot Sheet (`?horse=`), with the stamp foot stuck at the foot at `900px`.",
@@ -317,6 +350,9 @@
       "Don't swap the Deposit or Open-vault stamp for a gradient CTA or a second ink-fill button.",
       "Don't stamp Withdraw; it is a 1px ink outline, not a rubber stamp.",
       "Don't show the Deposit stamp and Withdraw on the same slip at once; invert chips pick the direction, then one action.",
+      "Don't recast Connect as a hero CTA, a modal, or RainbowKit glass.",
+      "Don't draw wallet-logo avatars or a second wallet identity system.",
+      "Don't name a chain in the UI until a network is chosen.",
       "Don't recast `/enter` as a wizard, stepper, or settings form, or put nomination fields back on the racing card.",
       "Don't recast `/program` or `/portfolio` as a dashboard of horse or position cards, a modal, or a second horse route.",
       "Don't put Deposit or Withdraw on a tote row; money moves on the overlay.",

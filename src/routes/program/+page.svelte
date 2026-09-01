@@ -6,6 +6,7 @@
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
+	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import {
 		heroes,
 		heroById,
@@ -16,6 +17,7 @@
 		type Hero
 	} from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
+	import { wallet } from '$lib/wallet/session.svelte';
 	import '../form.css';
 
 	type StatusFilter = 'all' | 'active' | 'inactive';
@@ -23,7 +25,6 @@
 
 	let entered = $state(loadEnteredHero());
 	let amountRaw = $state('0.00');
-	let walletDemo = $state(false);
 	let depositIntent = $state(false);
 	let statusFilter = $state<StatusFilter>('all');
 	let sortKey = $state<SortKey | null>(null);
@@ -372,13 +373,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						</form>
 						{#if amount <= 0}
 							<p class="slip-note">{m.need_amount()}</p>
-						{:else if depositIntent && !walletDemo}
+						{:else if depositIntent && !wallet.connected}
 							<p class="wallet-msg">{m.connect_to_sign()}</p>
-							<button class="connect" type="button" onclick={() => (walletDemo = true)}>
-								{m.connect_wallet()}
-							</button>
-							<p class="form-note">{m.wallet_demo()}</p>
-						{:else if walletDemo}
+							<ConnectGate />
+						{:else if wallet.connected}
 							<p class="wallet-msg">{m.wallet_ready()}</p>
 						{:else}
 							<p class="slip-note">{m.deposit_wallet_note()}</p>

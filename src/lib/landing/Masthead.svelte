@@ -4,6 +4,7 @@
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import HorseMark from './HorseMark.svelte';
+	import WalletControl from './WalletControl.svelte';
 
 	let {
 		showEnter = true,
@@ -66,5 +67,6 @@
 				</a>
 			{/if}
 		</nav>
+		<WalletControl />
 	</div>
 </header>

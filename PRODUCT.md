@@ -36,7 +36,7 @@ The underlying mechanism (repo-stated, confirmed by shipping all three roles tog
 - Reads from chain (and optional SQLite projections); writes are user-signed in the browser.
 - Locales in the repo: `en` and `id` via Paraglide. Whether both are a hard product requirement is **undecided** (not confirmed in init).
 - Target EVM chain(s) are **undecided**; do not name a chain until chosen.
-- Current UI: racing-form landing (`src/routes/+page.svelte`), full program tote (`src/routes/program/+page.svelte`), and Enter a horse (`src/routes/enter/+page.svelte`). Wallet connect is demo-only until a chain adapter exists.
+- Current UI: racing-form landing (`src/routes/+page.svelte`), full program tote (`src/routes/program/+page.svelte`), and Enter a horse (`src/routes/enter/+page.svelte`). Wallet connect uses Wagmi Core (injected / EIP-6963). Target EVM chain(s) remain undecided.
 
 ## Capabilities and Constraints
 
