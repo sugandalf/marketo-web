@@ -53,6 +53,14 @@
 	--money: #085324;
 	--btc: #e42c22;
 	--eth: #0756d0;
+	/* Fill silks fail AA as body type on paper (BTC 3.2:1). These inks keep the hue. */
+	--btc-ink: #8a1a14;
+	--eth-ink: #0548a8;
+	/* Authored at paper lightness so hue stays in the silks, not cream's orange. */
+	--wash-btc: oklch(0.875 0.038 38);
+	--wash-eth: oklch(0.875 0.036 250);
+	--wash-btc-hot: oklch(0.93 0.034 38);
+	--wash-eth-hot: oklch(0.93 0.032 250);
 	--rule: 3px solid var(--ink);
 	--font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
 	--font-agate: 'Barlow Condensed', 'Arial Narrow', sans-serif;
@@ -442,6 +450,14 @@
 	background: var(--eth);
 }
 
+.fold.btc .call {
+	background-color: color-mix(in srgb, var(--wash-btc) 55%, transparent);
+}
+
+.fold.eth .call {
+	background-color: color-mix(in srgb, var(--wash-eth) 55%, transparent);
+}
+
 .call-id {
 	min-width: 0;
 }
@@ -490,11 +506,43 @@
 
 .pp-row {
 	display: grid;
-	grid-template-columns: 5.4rem 2.4rem 4.2rem 2.6rem 1fr;
+	grid-template-columns: 5.4rem 2.4rem 5rem 2.6rem 1fr;
 	gap: 0.4rem;
 	font-variant-numeric: tabular-nums;
 	border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
 	padding: 0.18rem 0;
+}
+
+.vs.btc {
+	color: var(--btc-ink);
+}
+
+.vs.eth {
+	color: var(--eth-ink);
+}
+
+.pp-row .vs {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.28rem;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.pp-row .vs::before {
+	content: '';
+	width: 0.5rem;
+	height: 0.5rem;
+	flex: none;
+	background: var(--ink);
+}
+
+.pp-row .vs.btc::before {
+	background: var(--btc);
+}
+
+.pp-row .vs.eth::before {
+	background: var(--eth);
 }
 
 .pnl {
@@ -534,6 +582,14 @@
 .slip {
 	padding: 1rem 1.1rem 1.2rem;
 	background: color-mix(in srgb, var(--paper-hot) 55%, transparent);
+}
+
+.fold.btc .slip {
+	background: color-mix(in srgb, var(--wash-btc-hot) 72%, transparent);
+}
+
+.fold.eth .slip {
+	background: color-mix(in srgb, var(--wash-eth-hot) 72%, transparent);
 }
 
 .slip h2 {
@@ -942,6 +998,14 @@ a.mark {
 .papers {
 	padding: 1.1rem 1.25rem 1.5rem;
 	background: color-mix(in srgb, var(--paper-hot) 55%, transparent);
+}
+
+.papers.btc {
+	background: color-mix(in srgb, var(--wash-btc-hot) 72%, transparent);
+}
+
+.papers.eth {
+	background: color-mix(in srgb, var(--wash-eth-hot) 72%, transparent);
 }
 
 .papers h2 {
@@ -1517,7 +1581,15 @@ a.mark {
 }
 
 .overlay-pp {
-	grid-template-columns: 4.6rem 2.2rem 3.8rem 2.4rem 1fr;
+	grid-template-columns: 4.6rem 2.2rem 4.6rem 2.4rem 1fr;
+}
+
+.sheet-overlay.btc {
+	background-color: var(--wash-btc-hot);
+}
+
+.sheet-overlay.eth {
+	background-color: var(--wash-eth-hot);
 }
 
 .overlay-tvl {
@@ -1778,6 +1850,14 @@ a.mark {
 		z-index: 5;
 	}
 
+	.sheet-overlay.btc {
+		background-color: var(--wash-btc);
+	}
+
+	.sheet-overlay.eth {
+		background-color: var(--wash-eth);
+	}
+
 	.overlay-name {
 		font-size: 3.4rem;
 	}
@@ -1795,6 +1875,14 @@ a.mark {
 		background-size: 240px 240px;
 		background-repeat: repeat;
 		background-blend-mode: multiply;
+	}
+
+	.sheet-overlay.btc .overlay-foot {
+		background-color: var(--wash-btc);
+	}
+
+	.sheet-overlay.eth .overlay-foot {
+		background-color: var(--wash-eth);
 	}
 
 	.masthead-actions {

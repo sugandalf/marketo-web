@@ -8,6 +8,12 @@ colors:
   money: "#085324"
   btc: "#e42c22"
   eth: "#0756d0"
+  btc-ink: "#8a1a14"
+  eth-ink: "#0548a8"
+  wash-btc: "oklch(0.875 0.038 38)"
+  wash-eth: "oklch(0.875 0.036 250)"
+  wash-btc-hot: "oklch(0.93 0.034 38)"
+  wash-eth-hot: "oklch(0.93 0.032 250)"
   ink-wash: "color-mix(in srgb, #040303 8%, transparent)"
 typography:
   display:
@@ -209,7 +215,7 @@ The product commitment is an arena of heroes fighting a market. This world keeps
 
 ## Colors
 
-A warm printed sheet: one carbon ink, two cream papers, one money green, and two silks. No candy pink, no cool gray, no crypto-orange, no night-mode navy.
+A warm printed sheet: one carbon ink, two cream papers, one money green, and two silks — plus two silks-inks derived for type on paper. No candy pink, no cool gray, no crypto-orange, no night-mode navy.
 
 ### Primary
 - **Carbon Ink**: The printed voice. Body type, rules, focus rings, scroll thumbs, inverted fills (active locale, chip hover and checked, account chip open, fact numbers, text selection), the Connect fill, the tote fill-to-max bar, and the Active status tag. If it would have been “UI chrome,” it is ink. Book-bar capital at risk prints in this ink. The Withdraw outline is this ink, 1px. The account slip’s box is this ink, 2px.
@@ -218,16 +224,23 @@ A warm printed sheet: one carbon ink, two cream papers, one money green, and two
 - **Purse Green**: Vault purses, estimated share percents, and winning PnL. The Deposit and Open-vault stamps print in this ink. It is money on the card, not a general success color. It does not fill the purse track. It does not fill Withdraw.
 
 ### Tertiary
-- **BTC Silks**: Square field behind the letters BTC. Market identity for Bitcoin event horses.
+- **BTC Silks**: Square field behind the letters BTC. Market identity for Bitcoin event horses. Fill only — not body type on paper (3.2:1).
 - **ETH Silks**: Square field behind the letters ETH. Market identity for Ether event horses.
+- **BTC Ink**: Oxblood `#8a1a14` for “vs BTC” on paper (6.7:1). Same hue family as the square; dark enough to read.
+- **ETH Ink**: Navy `#0548a8` for “vs ETH” on paper (6.0:1). Same hue family as the square.
 
 ### Neutral
 - **Sheet Stock**: Page ground and `html`/`body` fallback. Newsprint texture is gray fiber that multiplies onto this cream, not a second coat of pink. At `900px` the `/program` and `/portfolio` overlays and their sticky stamp feet print on this same stock, because they are the page.
 - **Hot Sheet**: Lighter cream for inverted type (selection, active locale, silks letters, chip hover, open account chip) and for the 55% wash on the slip and on `/enter` papers. The `/program` and `/portfolio` overlays are a full Hot Sheet (not a 55% wash) with the same newsprint multiply. The account slip is that same full Hot Sheet in miniature. Use it as the “fresh impression” of the same paper, not as a second brand color.
 - **Ink Wash**: 8% carbon over the sheet. Program-entry hover, tote-row hover and selected, Withdraw hover, and the pressed tote row. Scrollbar tracks mix the same 8% ink into paper.
+- **Silks Wash**: Paper-lightness OKLCH in the BTC (hue 38) or ETH (hue 250) silks. Stains the open horse’s call, slip, overlay, and `/enter` papers. Hot variants for Hot Sheet regions. Not a mix of the neon fill into cream.
 
 ### Named Rules
 **The Silks Rule.** BTC is always the red square; ETH is always the blue square. Silks are filled squares of extra-condensed market letters in Hot Sheet. They carry identity. Do not substitute coin logos, gradients, or circular avatars.
+
+**The Silks-in-the-Agate Rule.** Opponent market in past performances prints in silks-ink with a 0.5rem silks square so color is not the only code. Compact program-strip lines color the vs text only. Do not set body type in the fill hues.
+
+**The Stained-Impression Rule.** The open horse stains its impression with a wash mixed at paper lightness in the silks hue (not a mix of the neon fill into cream — that stays orange). Call and slip take a translucent wash so newsprint shows; `/program` and `/portfolio` overlays (and the sticky foot at `900px`) take the opaque hot or sheet wash. `/enter` papers take the hot wash of the picked silks. The tote does not stripe. The miniature stays Sheet Stock. Chrome stays carbon.
 
 **The Purse-Green Rule.** Green is for vault figures, winning PnL, and the Deposit / Open-vault stamps. Losing PnL prints in Carbon Ink. Do not use green for “go,” links, decorative fills, or the purse fill-to-max bar.
 
@@ -311,7 +324,7 @@ Tactile like a form you mark with a pencil, then stamp.
 
 ### Cards / Containers
 - **Corner Style:** Square cut
-- **Background:** The page is the card (Sheet Stock + newsprint). Inner wash (55% Hot Sheet) on the slip and on `/enter` papers. The miniature is Sheet Stock inside a 1px ink box, not a second wash. The `/program` and `/portfolio` overlays are a full Hot Sheet + newsprint; at `900px` they are Sheet Stock + newsprint.
+- **Background:** The page is the card (Sheet Stock + newsprint). Inner wash (55% Hot Sheet) on the slip and on `/enter` papers; when a horse is open or silks are picked, that wash is the silks-hue paper (`--wash-btc` / `--wash-eth`, hot variants on slip, papers, desktop overlay). The selected call takes a translucent silks wash so grain shows. The miniature is Sheet Stock inside a 1px ink box, not a second wash and not a silks stain. The `/program` and `/portfolio` overlays are a full stained Hot Sheet + newsprint; at `900px` they are stained Sheet Stock + newsprint.
 - **Shadow Strategy:** None
 - **Border:** 3px ink around slip / papers / book-bar titles and between bands; 3px ink on the overlay’s left edge; 1px dashed ink around the estimated-shares strip; 1px solid ink around the miniature; 1px solid ink around Withdraw
 - **Internal Padding:** ~1rem on the slip; 1.1–1.25rem on papers; ~0.7–0.9rem on program entries and the miniature; overlay `1rem 1.1rem 1.4rem`; tote rows `0.55rem 1.25rem`; book bar `0.4rem 1.25rem`
@@ -366,13 +379,13 @@ Full-bleed button on `/program` and `/portfolio`. Eight columns on the program; 
 Printed condition on the tote row. Active: inverted ink / Hot Sheet, 0.75rem / 0.1em. Scratched: transparent with 1px ink stroke, same type. Book ROLE reuses this pair for BACKED / MINE. Not a kicker and not a chip — it does not filter; the conditions toolbar does.
 
 ### Hot Sheet Overlay
-Right-hand 40% sheet on `/program` or `/portfolio` when `?horse=` is set. Absolute, 3px ink left rule, Hot Sheet + newsprint multiply, `z-index: 2`. Call-scale name and number, 3.4rem silks. On `/program`: tighter PP columns, left-aligned 2.4rem purse, last-backer agate, then the overlay slip (amount, chips, stamp). On `/portfolio`: two-column shares and PnL at 2.4rem, then DEPOSIT / WITHDRAW invert chips, an amount labeled for that direction, and either the Deposit stamp or outlined Withdraw. Owner-only prints a watch-only note instead. At `900px` it is `position: fixed; inset: 0`, Sheet Stock + newsprint, `z-index: 5`, and `.overlay-foot` sticks to the bottom on the same stock. Not a modal, not a card, not a second route.
+Right-hand 40% sheet on `/program` or `/portfolio` when `?horse=` is set. Absolute, 3px ink left rule, silks-washed Hot Sheet + newsprint multiply, `z-index: 2`. Call-scale name and number, 3.4rem silks. On `/program`: tighter PP columns, left-aligned 2.4rem purse, last-backer agate, then the overlay slip (amount, chips, stamp). On `/portfolio`: two-column shares and PnL at 2.4rem, then DEPOSIT / WITHDRAW invert chips, an amount labeled for that direction, and either the Deposit stamp or outlined Withdraw. Owner-only prints a watch-only note instead. At `900px` it is `position: fixed; inset: 0`, stained Sheet Stock + newsprint, `z-index: 5`, and `.overlay-foot` sticks to the bottom on the same stained stock. Not a modal, not a card, not a second route.
 
 ### Book Bar
 Result strip under the `/portfolio` masthead. Boxed YOUR BOOK (3px ink, 1.35rem Title), 3px vertical ink rule, PnL and capital at risk on one baseline (1.7rem Title figures, agate captions), SYNTHETIC tag, BACKED / MINE / ALL chips pushed to the far right. Connected only: the disconnected sheet has no figures. Not a second masthead and not a dashboard header.
 
 ### Past-Performance Rows
-Five agate columns (date, window, vs-market, side, PnL). Tabular numbers. 1px 22% ink hairline under each row. Header is uppercase 0.85rem with a 1px solid ink underline. Overlay PP tightens the column template (`4.6rem 2.2rem 3.8rem 2.4rem 1fr`).
+Five agate columns (date, window, vs-market, side, PnL). Tabular numbers. 1px 22% ink hairline under each row. Header is uppercase 0.85rem with a 1px solid ink underline. Overlay PP tightens the column template (`4.6rem 2.2rem 4.6rem 2.4rem 1fr`). The vs-market cell is silks-ink plus a 0.5rem silks square; side and date stay carbon.
 
 ### Receipt
 After a successful Open vault, the papers page keeps the Hot Sheet wash and boxed title, then a picked-horse line, purse, wallet message, and See this horse on the card (Title link with 3px underline offset). Same sheet; no modal, no toast.
@@ -383,6 +396,7 @@ After a successful Open vault, the papers page keeps the Hot Sheet wash and boxe
 - **Do** ground new surfaces on Sheet Stock with the newsprint tile at 240px, `background-blend-mode: multiply`.
 - **Do** cut regions with 3px Carbon Ink rules and keep every radius at 0.
 - **Do** identify a market with silks squares (BTC red, ETH blue) and extra-condensed letters.
+- **Do** print vs-market in silks-ink with a 0.5rem silks square in the PP table; stain only the open horse’s call, slip, overlay, or papers.
 - **Do** mark the selected silks pick with a 3px ink edge and a top-right corner tick.
 - **Do** print purses and winning PnL in Purse Green; print losses in Carbon Ink.
 - **Do** set horse names and program numbers in Big Shoulders Display 800–900; set tables, labels, and notes in Barlow Condensed.
@@ -403,6 +417,7 @@ After a successful Open vault, the papers page keeps the Hot Sheet wash and boxe
 - **Don't** round corners, raise shadows, or frost glass over the sheet.
 - **Don't** give heroes photographic portraits or coin-logo avatars; silks carry identity.
 - **Don't** recast BTC as orange or ETH as purple; those silks are locked.
+- **Don't** set body type in BTC/ETH fill hues; use silks-ink. Don't stripe the tote or stain the miniature.
 - **Don't** use Purse Green for losses, links, large fills that are not money or the stamp, or the purse fill-to-max bar.
 - **Don't** let MARKETO or UI labels out-size the selected horse name on a call surface.
 - **Don't** swap the Deposit or Open-vault stamp for a gradient CTA or a second ink-fill button.

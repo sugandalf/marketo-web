@@ -311,7 +311,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 			{/if}
 
 			{#if wallet.connected && selected}
-				<aside class="sheet-overlay" aria-labelledby="book-overlay-name">
+				<aside class="sheet-overlay {selected.hero.market.toLowerCase()}" aria-labelledby="book-overlay-name">
 					<button class="close-overlay" type="button" onclick={closeHolding}>
 						{m.close_book_overlay()}
 					</button>

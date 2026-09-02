@@ -12,7 +12,7 @@
 	import './form.css';
 
 	let entered = $state(loadEnteredHero());
-	let selectedId = $state('');
+	let selectedId = $state(page.url.searchParams.get('horse') ?? '');
 	let amountRaw = $state('0.00');
 	let depositIntent = $state(false);
 	let booted = $state(false);
@@ -90,7 +90,7 @@
 	<Masthead />
 
 	{#if selected}
-		<div class="fold">
+		<div class="fold {selected.market.toLowerCase()}">
 			<article class="call" aria-live="polite">
 				<div class="call-num">{selected.program}</div>
 				<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
@@ -111,7 +111,7 @@
 								<div class="pp-row">
 									<span>{fightDate(fight.date)}</span>
 									<span>{fight.window}</span>
-									<span>{m.vs_market({ market: fight.market })}</span>
+									<span class="vs {fight.market.toLowerCase()}">{m.vs_market({ market: fight.market })}</span>
 									<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
 									<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
 								</div>
@@ -216,7 +216,7 @@
 						{#each hero.fights.slice(0, 3) as fight (fight.date + fight.market)}
 							<span>
 								{fightDate(fight.date)}
-								{m.vs_market({ market: fight.market })}
+								<span class="vs {fight.market.toLowerCase()}">{m.vs_market({ market: fight.market })}</span>
 								{fight.side === 'up' ? m.side_up() : m.side_down()}
 								<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
 							</span>
@@ -229,7 +229,7 @@
 				<span class="entry-purse">
 					{purse(hero.vaultUsdso)}
 					{#if hero.fights[0]}
-						<div class="pedigree">{m.last_fight()}: {m.vs_market({ market: hero.fights[0].market })}</div>
+						<div class="pedigree">{m.last_fight()}: <span class="vs {hero.fights[0].market.toLowerCase()}">{m.vs_market({ market: hero.fights[0].market })}</span></div>
 					{/if}
 				</span>
 			</button>

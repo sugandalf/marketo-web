@@ -40,6 +40,30 @@
         "canonical": "#0756d0",
         "tonalRamp": ["#01005d", "#001080", "#0034a4", "#0653c9", "#2b72ed", "#549aff", "#7dc2ff", "#a6ebff"]
       },
+      "btc-ink": {
+        "role": "tertiary",
+        "displayName": "BTC Ink",
+        "canonical": "#8a1a14",
+        "tonalRamp": ["#3a0a08", "#54100c", "#6e1410", "#8a1a14", "#a83a32", "#c66a62", "#e29e98", "#f3d4d0"]
+      },
+      "eth-ink": {
+        "role": "tertiary",
+        "displayName": "ETH Ink",
+        "canonical": "#0548a8",
+        "tonalRamp": ["#011433", "#02285c", "#043f96", "#0548a8", "#2b72ed", "#549aff", "#7dc2ff", "#a6ebff"]
+      },
+      "wash-btc": {
+        "role": "neutral",
+        "displayName": "BTC Wash",
+        "canonical": "oklch(0.875 0.038 38)",
+        "tonalRamp": ["#e6d8c6", "#e6d0c4", "#e5c8c0", "#e4c0b8", "#e3b8b0", "#e2b0a8", "#e1a8a0", "#e0a098"]
+      },
+      "wash-eth": {
+        "role": "neutral",
+        "displayName": "ETH Wash",
+        "canonical": "oklch(0.875 0.036 250)",
+        "tonalRamp": ["#e6d8c6", "#ddd6d0", "#d4d4d8", "#cbd2e0", "#c2d0e8", "#b9cef0", "#b0ccf8", "#a7caff"]
+      },
       "ink-wash": {
         "role": "neutral",
         "displayName": "Ink Wash",
@@ -266,6 +290,16 @@
         "section": "colors"
       },
       {
+        "name": "The Silks-in-the-Agate Rule",
+        "body": "Opponent market in past performances prints in silks-ink with a 0.5rem silks square so color is not the only code. Compact program-strip lines color the vs text only. Do not set body type in the fill hues.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stained-Impression Rule",
+        "body": "The open horse stains its impression with a wash mixed at paper lightness in the silks hue (not a mix of the neon fill into cream). Call and slip take a translucent wash so newsprint shows; overlays take the opaque hot or sheet wash. /enter papers take the hot wash of the picked silks. The tote does not stripe. The miniature stays Sheet Stock. Chrome stays carbon.",
+        "section": "colors"
+      },
+      {
         "name": "The Purse-Green Rule",
         "body": "Green is for vault figures, winning PnL, and the Deposit / Open-vault stamps. Losing PnL prints in Carbon Ink. Do not use green for “go,” links, decorative fills, or the purse fill-to-max bar.",
         "section": "colors"
@@ -325,6 +359,7 @@
       "Do ground new surfaces on Sheet Stock with the newsprint tile at 240px, `background-blend-mode: multiply`.",
       "Do cut regions with 3px Carbon Ink rules and keep every radius at 0.",
       "Do identify a market with silks squares (BTC red, ETH blue) and extra-condensed letters.",
+      "Do print vs-market in silks-ink with a 0.5rem silks square in the PP table; stain only the open horse’s call, slip, overlay, or papers.",
       "Do mark the selected silks pick with a 3px ink edge and a top-right corner tick.",
       "Do print purses and winning PnL in Purse Green; print losses in Carbon Ink.",
       "Do set horse names and program numbers in Big Shoulders Display 800–900; set tables, labels, and notes in Barlow Condensed.",
@@ -345,6 +380,7 @@
       "Don't round corners, raise shadows, or frost glass over the sheet.",
       "Don't give heroes photographic portraits or coin-logo avatars; silks carry identity.",
       "Don't recast BTC as orange or ETH as purple; those silks are locked.",
+      "Don't set body type in BTC/ETH fill hues; use silks-ink. Don't stripe the tote or stain the miniature.",
       "Don't use Purse Green for losses, links, large fills that are not money or the stamp, or the purse fill-to-max bar.",
       "Don't let MARKETO or UI labels out-size the selected horse name on a call surface.",
       "Don't swap the Deposit or Open-vault stamp for a gradient CTA or a second ink-fill button.",

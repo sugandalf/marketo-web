@@ -138,7 +138,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				<p class="facts-note">{m.results_update()}</p>
 			</section>
 
-			<section class="papers">
+			<section class="papers {botMarket.toLowerCase()}">
 				{#if entered}
 					<div class="receipt">
 						<h2>{m.receipt_title()}</h2>

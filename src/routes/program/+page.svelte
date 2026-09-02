@@ -275,7 +275,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 			</div>
 
 			{#if selected}
-				<aside class="sheet-overlay" aria-labelledby="overlay-name">
+				<aside class="sheet-overlay {selected.market.toLowerCase()}" aria-labelledby="overlay-name">
 					<button class="close-overlay" type="button" onclick={closeHorse}>
 						{m.close_overlay()}
 					</button>
@@ -301,7 +301,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								<div class="pp-row overlay-pp">
 									<span>{fightDate(fight.date)}</span>
 									<span>{fight.window}</span>
-									<span>{m.vs_market({ market: fight.market })}</span>
+									<span class="vs {fight.market.toLowerCase()}">{m.vs_market({ market: fight.market })}</span>
 									<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
 									<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
 								</div>
