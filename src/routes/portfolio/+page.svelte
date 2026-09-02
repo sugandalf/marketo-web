@@ -20,6 +20,7 @@
 		type Holding
 	} from '$lib/landing/book';
 	import { wallet } from '$lib/wallet/session.svelte';
+	import { untrack } from 'svelte';
 	import '../form.css';
 
 	type RoleFilter = 'all' | 'backed' | 'mine';
@@ -31,7 +32,7 @@
 	let slipMode = $state<'deposit' | 'withdraw'>('deposit');
 	let settleIntent = $state<'deposit' | 'withdraw' | null>(null);
 	let roleFilter = $state<RoleFilter>('all');
-	let selectedId = $state<string | null>(page.url.searchParams.get('horse'));
+	const selectedId = $derived(page.url.searchParams.get('horse'));
 
 	const holdings = $derived(bookHoldings(entries, entered));
 	const totals = $derived(bookTotals(holdings));
@@ -62,10 +63,6 @@
 			return (remainCap / selected.hero.vaultUsdso) * 100;
 		}
 		return ((selected.capitalUsdso + amount) / selected.hero.vaultUsdso) * 100;
-	});
-
-	$effect(() => {
-		selectedId = page.url.searchParams.get('horse');
 	});
 
 	function money(value: number, locale = getLocale()) {
@@ -99,7 +96,6 @@
 		amountRaw = '0.00';
 		slipMode = 'deposit';
 		settleIntent = null;
-		selectedId = holding.hero.id;
 		void goto(bookHref(holding.hero.id), {
 			replaceState: true,
 			noScroll: true,
@@ -111,7 +107,6 @@
 		amountRaw = '0.00';
 		slipMode = 'deposit';
 		settleIntent = null;
-		selectedId = null;
 		void goto(bookHref(null), {
 			replaceState: true,
 			noScroll: true,
@@ -172,12 +167,15 @@
 
 	$effect(() => {
 		if (!wallet.connected) return;
-		entered = loadEnteredHero();
-		entries = loadBook(entered);
+		untrack(() => {
+			const nextEntered = loadEnteredHero();
+			entered = nextEntered;
+			entries = loadBook(nextEntered);
+		});
 	});
 
 	$effect(() => {
-		if (!wallet.connected || !settleIntent || !selected) return;
+		if (!wallet.connected || !settleIntent) return;
 		completeSettle();
 	});
 
@@ -225,8 +223,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				</dl>
 			{/if}
 			<div class="conditions" role="toolbar" aria-label={m.the_book()}>
-				<button type="button" aria-pressed={roleFilter === 'backed'} onclick={() => setFilter('backed')}
-					>{m.role_backed()}</button
+				<button
+					type="button"
+					aria-pressed={roleFilter === 'backed'}
+					onclick={() => setFilter('backed')}>{m.role_backed()}</button
 				>
 				<button type="button" aria-pressed={roleFilter === 'mine'} onclick={() => setFilter('mine')}
 					>{m.role_mine()}</button
@@ -290,7 +290,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									<span class="tvl-track" aria-hidden="true">
 										<i style="width: {holding.capitalFill}%"></i>
 									</span>
-									<span class="tvl-max">{m.purse_max({ max: purse(holding.hero.vaultUsdso) })}</span>
+									<span class="tvl-max">{m.purse_max({ max: purse(holding.hero.vaultUsdso) })}</span
+									>
 								</span>
 							</button>
 						{/each}
@@ -311,7 +312,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 			{/if}
 
 			{#if wallet.connected && selected}
-				<aside class="sheet-overlay {selected.hero.market.toLowerCase()}" aria-labelledby="book-overlay-name">
+				<aside
+					class="sheet-overlay {selected.hero.market.toLowerCase()}"
+					aria-labelledby="book-overlay-name"
+				>
 					<button class="close-overlay" type="button" onclick={closeHolding}>
 						{m.close_book_overlay()}
 					</button>
@@ -319,7 +323,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<div class="call-num overlay-num">{selected.hero.program}</div>
 						<div class="silks {selected.hero.market.toLowerCase()}">{selected.hero.market}</div>
 						<div>
-							<h2 class="overlay-name" id="book-overlay-name" tabindex="-1">{selected.hero.name}</h2>
+							<h2 class="overlay-name" id="book-overlay-name" tabindex="-1">
+								{selected.hero.name}
+							</h2>
 							<p class="pedigree">
 								{selected.hero.strategy
 									? selected.hero.strategy
@@ -360,7 +366,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								</div>
 								<div class="amount">
 									<label for="book-amount"
-										>{slipMode === 'withdraw' ? m.amount_redeem_label() : m.amount_lock_label()}</label
+										>{slipMode === 'withdraw'
+											? m.amount_redeem_label()
+											: m.amount_lock_label()}</label
 									>
 									<input
 										id="book-amount"

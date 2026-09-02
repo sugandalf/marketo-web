@@ -53,6 +53,7 @@ export function loadEnteredHero(): EnteredHero | null {
 }
 
 export function buildEnteredHero(input: {
+	id?: string;
 	name: string;
 	market: Market;
 	strategy: string;
@@ -60,7 +61,7 @@ export function buildEnteredHero(input: {
 	botWallet: string;
 }): EnteredHero {
 	return {
-		id: uniqueHeroId(input.name),
+		id: input.id ?? uniqueHeroId(input.name),
 		program: nextProgram(),
 		name: input.name.trim().toUpperCase(),
 		market: input.market,

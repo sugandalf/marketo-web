@@ -1,17 +1,20 @@
 import { browser } from '$app/environment';
-	import {
-		connect as wagmiConnect,
-		disconnect as wagmiDisconnect,
-		getConnection,
-		getConnectors,
-		hydrate,
-		watchConnection,
-		watchConnectors,
-		ConnectorAlreadyConnectedError,
-		type Connector,
-		type GetConnectionReturnType
-	} from '@wagmi/core';
-	import { walletConfig } from './config';
+import {
+	connect as wagmiConnect,
+	disconnect as wagmiDisconnect,
+	getConnection,
+	getConnectors,
+	hydrate,
+	switchChain,
+	watchConnection,
+	watchConnectors,
+	ConnectorAlreadyConnectedError,
+	type Connector,
+	type GetConnectionReturnType
+} from '@wagmi/core';
+import { productRpcUrl } from '$lib/chain/config';
+import { productChainId, somniaShannon } from './chains';
+import { walletConfig } from './config';
 
 export type ConnectErrorKind = 'rejected' | 'unavailable' | 'failed' | 'none';
 
@@ -19,11 +22,7 @@ function classifyConnectError(error: unknown): ConnectErrorKind {
 	if (!error || typeof error !== 'object') return 'failed';
 	const name = 'name' in error ? String(error.name) : '';
 	const code = 'code' in error ? error.code : undefined;
-	if (
-		name === 'UserRejectedRequestError' ||
-		code === 4001 ||
-		code === 'ACTION_REJECTED'
-	) {
+	if (name === 'UserRejectedRequestError' || code === 4001 || code === 'ACTION_REJECTED') {
 		return 'rejected';
 	}
 	if (name === 'ResourceUnavailableRpcError' || code === -32002) {
@@ -54,6 +53,7 @@ export function listedWallets(connectors: readonly Connector[]) {
 
 class WalletSession {
 	address = $state<`0x${string}` | undefined>(undefined);
+	chainId = $state<number | undefined>(undefined);
 	status = $state<GetConnectionReturnType['status']>('disconnected');
 	connectors = $state<Connector[]>([]);
 	error = $state<ConnectErrorKind | null>(null);
@@ -62,6 +62,7 @@ class WalletSession {
 
 	connected = $derived(this.status === 'connected' && Boolean(this.address));
 	pending = $derived(this.status === 'connecting' || this.status === 'reconnecting');
+	onProductChain = $derived(this.connected && this.chainId === productChainId);
 	wallets = $derived(listedWallets(this.connectors));
 
 	start() {
@@ -89,6 +90,7 @@ class WalletSession {
 
 	#sync(connection: GetConnectionReturnType) {
 		this.address = connection.address;
+		this.chainId = connection.chainId;
 		this.status = connection.status;
 		if (connection.status === 'connected') this.error = null;
 	}
@@ -128,6 +130,25 @@ class WalletSession {
 			this.error = classifyConnectError(error);
 			this.#sync(getConnection(walletConfig));
 			return 'error';
+		}
+	}
+
+	async switchToProductChain(): Promise<'ok' | 'rejected' | 'failed'> {
+		try {
+			await switchChain(walletConfig, {
+				chainId: productChainId,
+				addEthereumChainParameter: {
+					chainName: somniaShannon.name,
+					nativeCurrency: somniaShannon.nativeCurrency,
+					rpcUrls: [productRpcUrl],
+					blockExplorerUrls: [somniaShannon.blockExplorers.default.url]
+				}
+			});
+			this.#sync(getConnection(walletConfig));
+			return this.chainId === productChainId ? 'ok' : 'failed';
+		} catch (error) {
+			this.#sync(getConnection(walletConfig));
+			return classifyConnectError(error) === 'rejected' ? 'rejected' : 'failed';
 		}
 	}
 
