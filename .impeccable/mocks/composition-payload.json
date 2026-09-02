@@ -1,43 +1,43 @@
 {
-  "title": "Approve the landing composition",
-  "question": "The Racing Form is locked. Which composition should we build? What feels false to the world? Approve one, combine, or revise.",
-  "options": [
-    {
-      "id": "comp-card",
-      "label": "The Card",
-      "kicker": "LOCKED COMP",
-      "lineage": "Daily Racing Form past-performance page with a teller slip",
-      "thesis": "Scan four horses, fill the slip, deposit — the card and the window share one sheet.",
-      "palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
-      "materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
-      "viewport": "Masthead; ranked four-horse grid on the left; BACK THIS HORSE slip on the right; slogan at the foot.",
-      "risk": "Four equal rows can hide which horse is live; the slip can read as a generic sidebar.",
-      "comp": ".impeccable/mocks/landing-card.webp"
-    },
-    {
-      "id": "comp-call",
-      "label": "The Call",
-      "thesis": "One horse owns the fold; the rest of the program is a strip you can still pick from.",
-      "palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
-      "materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
-      "viewport": "WARDEN at giant scale with the slip attached; KITE, REDLINE, ASH as a compact program strip.",
-      "risk": "The strip can feel like leftover UI if it is too small to actually choose from.",
-      "comp": ".impeccable/mocks/landing-call.webp"
-    },
-    {
-      "id": "comp-window",
-      "label": "The Window",
-      "thesis": "Read the whole card first; the betting window is the next sheet of the same form.",
-      "palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
-      "materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
-      "viewport": "Full-width four-horse table; numbered enter-a-horse margin; BACK THIS HORSE as a full-width teller window below.",
-      "risk": "Deposit falls below the fold on short screens if the table is dense.",
-      "comp": ".impeccable/mocks/landing-window.webp"
-    }
-  ],
-  "steer": true,
-  "buildPath": {
-    "value": "comp",
-    "toggle": true
-  }
+	"title": "Approve the landing composition",
+	"question": "The Racing Form is locked. Which composition should we build? What feels false to the world? Approve one, combine, or revise.",
+	"options": [
+		{
+			"id": "comp-card",
+			"label": "The Card",
+			"kicker": "LOCKED COMP",
+			"lineage": "Daily Racing Form past-performance page with a teller slip",
+			"thesis": "Scan four horses, fill the slip, deposit — the card and the window share one sheet.",
+			"palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
+			"materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
+			"viewport": "Masthead; ranked four-horse grid on the left; BACK THIS HORSE slip on the right; slogan at the foot.",
+			"risk": "Four equal rows can hide which horse is live; the slip can read as a generic sidebar.",
+			"comp": ".impeccable/mocks/landing-card.webp"
+		},
+		{
+			"id": "comp-call",
+			"label": "The Call",
+			"thesis": "One horse owns the fold; the rest of the program is a strip you can still pick from.",
+			"palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
+			"materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
+			"viewport": "WARDEN at giant scale with the slip attached; KITE, REDLINE, ASH as a compact program strip.",
+			"risk": "The strip can feel like leftover UI if it is too small to actually choose from.",
+			"comp": ".impeccable/mocks/landing-call.webp"
+		},
+		{
+			"id": "comp-window",
+			"label": "The Window",
+			"thesis": "Read the whole card first; the betting window is the next sheet of the same form.",
+			"palette": ["#f3b8c4", "#1a1a1a", "#0b5c2e", "#c41230", "#1e4dd8"],
+			"materials": ["salmon newsprint", "agate type", "thick black rules", "green deposit stamp"],
+			"viewport": "Full-width four-horse table; numbered enter-a-horse margin; BACK THIS HORSE as a full-width teller window below.",
+			"risk": "Deposit falls below the fold on short screens if the table is dense.",
+			"comp": ".impeccable/mocks/landing-window.webp"
+		}
+	],
+	"steer": true,
+	"buildPath": {
+		"value": "comp",
+		"toggle": true
+	}
 }

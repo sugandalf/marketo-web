@@ -91,9 +91,12 @@ export function holdingFrom(entry: BookEntry, extraHero?: Hero | null): Holding 
 function packHolding(entry: BookEntry, hero: Hero): Holding {
 	const pnlUsdso = entry.mine && !entry.backed ? heroPnl(hero) : entry.pnlUsdso;
 	const navUsdso = Math.max(0, entry.capitalUsdso + (entry.backed ? entry.pnlUsdso : 0));
-	const sharesPct = hero.vaultUsdso > 0 && entry.backed ? (entry.capitalUsdso / hero.vaultUsdso) * 100 : 0;
+	const sharesPct =
+		hero.vaultUsdso > 0 && entry.backed ? (entry.capitalUsdso / hero.vaultUsdso) * 100 : 0;
 	const capitalFill =
-		hero.vaultUsdso > 0 && entry.backed ? Math.min(100, (entry.capitalUsdso / hero.vaultUsdso) * 100) : 0;
+		hero.vaultUsdso > 0 && entry.backed
+			? Math.min(100, (entry.capitalUsdso / hero.vaultUsdso) * 100)
+			: 0;
 	return {
 		...entry,
 		hero,
@@ -152,8 +155,10 @@ export function applyWithdraw(entries: BookEntry[], heroId: string, amount: numb
 	if (nav <= 0) return entries;
 	const take = Math.min(amount, nav);
 	const capShare = existing.capitalUsdso / nav;
-	existing.capitalUsdso = Math.round(Math.max(0, existing.capitalUsdso - take * capShare) * 100) / 100;
-	existing.pnlUsdso = Math.round(Math.max(0, existing.pnlUsdso - take * (1 - capShare)) * 100) / 100;
+	existing.capitalUsdso =
+		Math.round(Math.max(0, existing.capitalUsdso - take * capShare) * 100) / 100;
+	existing.pnlUsdso =
+		Math.round(Math.max(0, existing.pnlUsdso - take * (1 - capShare)) * 100) / 100;
 	if (existing.capitalUsdso < 0.005 && existing.pnlUsdso < 0.005) {
 		existing.capitalUsdso = 0;
 		existing.pnlUsdso = 0;

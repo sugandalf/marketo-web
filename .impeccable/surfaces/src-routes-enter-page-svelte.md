@@ -1,8 +1,15 @@
 ---
 version: 1
-slug: "src-routes-enter-page-svelte"
-primary_target: "src/routes/enter/+page.svelte"
-related_targets: ["src/routes/+page.svelte","src/routes/form.css","messages/en.json","messages/id.json","static/landing/open-vault-stamp.webp"]
+slug: 'src-routes-enter-page-svelte'
+primary_target: 'src/routes/enter/+page.svelte'
+related_targets:
+  [
+    'src/routes/+page.svelte',
+    'src/routes/form.css',
+    'messages/en.json',
+    'messages/id.json',
+    'static/landing/open-vault-stamp.webp'
+  ]
 ---
 
 # Enter a horse — Condition-book spread
@@ -23,18 +30,19 @@ Unresolved: live wallet adapter; contract addresses; how an other-address bot wa
 
 ## Inventory (implementation)
 
-| Region | Medium |
-|---|---|
-| Newsprint ground | Raster `static/landing/newsprint.webp` + CSS tile |
-| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display |
-| Agate facts / labels | Self-hosted Barlow Condensed |
-| BTC/ETH silks | CSS filled squares + type |
-| Horse+jockey mark (home link) | Authored SVG |
-| Open vault stamp | Raster `static/landing/open-vault-stamp.webp`, multiply blend |
-| Papers, underlines, chips | Semantic HTML/CSS |
-| Miniature sample | Same call grammar as landing, live-bound to the form |
+| Region                                  | Medium                                                        |
+| --------------------------------------- | ------------------------------------------------------------- |
+| Newsprint ground                        | Raster `static/landing/newsprint.webp` + CSS tile             |
+| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display                             |
+| Agate facts / labels                    | Self-hosted Barlow Condensed                                  |
+| BTC/ETH silks                           | CSS filled squares + type                                     |
+| Horse+jockey mark (home link)           | Authored SVG                                                  |
+| Open vault stamp                        | Raster `static/landing/open-vault-stamp.webp`, multiply blend |
+| Papers, underlines, chips               | Semantic HTML/CSS                                             |
+| Miniature sample                        | Same call grammar as landing, live-bound to the form          |
 
 Sampled (DESIGN.md / landing sheet, not muddy comp averages):
+
 - Paper `#e6d8c6` / hot sheet `#f3eadc`
 - Ink `#040303`
 - Purse/stamp green `#085324`

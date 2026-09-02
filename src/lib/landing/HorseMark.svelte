@@ -1,9 +1,5 @@
 <!-- Horse outline from Tabler Icons (MIT). Jockey authored for this sheet. -->
-<svg
-	xmlns="http://www.w3.org/2000/svg"
-	viewBox="0 0 24 24"
-	aria-hidden="true"
->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
 	<g
 		fill="none"
 		stroke="currentColor"

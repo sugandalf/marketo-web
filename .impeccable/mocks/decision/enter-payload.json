@@ -1,58 +1,76 @@
 {
-  "title": "Choose the entry composition",
-  "question": "The roll assigned Carbon-copy desk. Keep it, take an alternate, or re-roll. Visual world stays the racing form; this pick is structure only.",
-  "options": [
-    {
-      "id": "assigned",
-      "label": "Carbon-copy desk",
-      "kicker": "THE ROLL",
-      "lineage": "Racing-secretary nomination desk: original sheet and carbon",
-      "thesis": "You fill the original; a carbon horse-card prints beside it as you write.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "3px carbon-ink rules", "square-cut underlines", "BTC/ETH silks squares", "green deposit stamp"],
-      "viewport": "Masthead, then two equal sheets: left numbered entry papers (name, market, strategy, bot wallet same/other, opening purse) with the stamp at the foot; right a hot-sheet carbon of the horse as it will print on the card.",
-      "risk": "Twin sheets read as a gimmick if the carbon is not a true racing-form call.",
-      "raised": [
-        {
-          "from": "HyperCard stack",
-          "raise": "This page is the author face of the same racing card the landing browses."
-        },
-        {
-          "from": "Drawcord cape",
-          "raise": "Stamping does not change routes; the filled original gathers into the receipt on this sheet."
-        }
-      ],
-      "comp": ".impeccable/mocks/decision/enter-carbon.webp"
-    },
-    {
-      "id": "condition-book",
-      "label": "Condition-book spread",
-      "lineage": "Overnight condition book: facts on the left, nomination on the right",
-      "thesis": "A two-page sheet: left says what entering is; right is the papers.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "gutter as 3px ink rule", "miniature sample card", "square-cut underlines", "green deposit stamp"],
-      "viewport": "Masthead spans a spread. Left: three agate facts plus a miniature racing-card sample. Right: name, silks, strategy, wallet, opening purse, stamp.",
-      "risk": "A visitor coming from the card gets a lesson they already had; the left page can stall the clerk.",
-      "comp": ".impeccable/mocks/decision/enter-condition.webp"
-    },
-    {
-      "id": "clerk-window",
-      "label": "Clerk window",
-      "lineage": "Betting-window nomination slip",
-      "thesis": "One teller slip. Fill it, stamp it, go see the horse.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "one 3px-ruled slip", "numbered agate lines", "silks chips", "green deposit stamp"],
-      "viewport": "Masthead, then a single full-width slip: 01–05 lines for name, market, strategy, wallet, purse; stamp at the foot; no preview column.",
-      "risk": "A visitor who never opened the racing card never sees what a horse looks like until they leave.",
-      "comp": ".impeccable/mocks/decision/enter-clerk.webp"
-    }
-  ],
-  "reroll": {
-    "registers": ["safer", "bolder"]
-  },
-  "buildPath": {
-    "value": "comp",
-    "toggle": true
-  },
-  "steer": true
+	"title": "Choose the entry composition",
+	"question": "The roll assigned Carbon-copy desk. Keep it, take an alternate, or re-roll. Visual world stays the racing form; this pick is structure only.",
+	"options": [
+		{
+			"id": "assigned",
+			"label": "Carbon-copy desk",
+			"kicker": "THE ROLL",
+			"lineage": "Racing-secretary nomination desk: original sheet and carbon",
+			"thesis": "You fill the original; a carbon horse-card prints beside it as you write.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"3px carbon-ink rules",
+				"square-cut underlines",
+				"BTC/ETH silks squares",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead, then two equal sheets: left numbered entry papers (name, market, strategy, bot wallet same/other, opening purse) with the stamp at the foot; right a hot-sheet carbon of the horse as it will print on the card.",
+			"risk": "Twin sheets read as a gimmick if the carbon is not a true racing-form call.",
+			"raised": [
+				{
+					"from": "HyperCard stack",
+					"raise": "This page is the author face of the same racing card the landing browses."
+				},
+				{
+					"from": "Drawcord cape",
+					"raise": "Stamping does not change routes; the filled original gathers into the receipt on this sheet."
+				}
+			],
+			"comp": ".impeccable/mocks/decision/enter-carbon.webp"
+		},
+		{
+			"id": "condition-book",
+			"label": "Condition-book spread",
+			"lineage": "Overnight condition book: facts on the left, nomination on the right",
+			"thesis": "A two-page sheet: left says what entering is; right is the papers.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"gutter as 3px ink rule",
+				"miniature sample card",
+				"square-cut underlines",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead spans a spread. Left: three agate facts plus a miniature racing-card sample. Right: name, silks, strategy, wallet, opening purse, stamp.",
+			"risk": "A visitor coming from the card gets a lesson they already had; the left page can stall the clerk.",
+			"comp": ".impeccable/mocks/decision/enter-condition.webp"
+		},
+		{
+			"id": "clerk-window",
+			"label": "Clerk window",
+			"lineage": "Betting-window nomination slip",
+			"thesis": "One teller slip. Fill it, stamp it, go see the horse.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"one 3px-ruled slip",
+				"numbered agate lines",
+				"silks chips",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead, then a single full-width slip: 01–05 lines for name, market, strategy, wallet, purse; stamp at the foot; no preview column.",
+			"risk": "A visitor who never opened the racing card never sees what a horse looks like until they leave.",
+			"comp": ".impeccable/mocks/decision/enter-clerk.webp"
+		}
+	],
+	"reroll": {
+		"registers": ["safer", "bolder"]
+	},
+	"buildPath": {
+		"value": "comp",
+		"toggle": true
+	},
+	"steer": true
 }

@@ -16,22 +16,22 @@ Unresolved: live wallet adapter, contract addresses, whether Withdraw ever gets 
 
 Sampled from `.impeccable/mocks/decision/portfolio-tote.webp` (1536×1024). Grainy fields averaged on an interior patch. Established-world tokens win where the comp drifted (red losses, USDC, slogan type).
 
-| Region | Sampled / token | Medium |
-|---|---|---|
-| Page ground (newsprint multiply) | #e6d8c6 token; patch #e1d6c0 | Raster `static/landing/newsprint.webp` + CSS tile |
-| Hot Sheet overlay | #f3eadc | CSS `--paper-hot` + newsprint |
-| Ink | #040303 | CSS |
-| Purse / winning PnL | #085324 (comp green ~#084920) | CSS `--money` |
-| BTC silks | #e42c22 | CSS filled square |
-| ETH silks | #0756d0 | CSS filled square |
-| MARKETO / names / PnL figures | Big Shoulders Display 800–900, extra-condensed | Self-hosted woff2 |
-| Agate labels / tote / chips | Barlow Condensed 400–700 | Self-hosted woff2 |
-| Corners / elevation | 0 / none | CSS |
-| Rules | 3px ink; 1px 22% ink row hairlines | CSS |
-| Deposit stamp | existing green rubber stamp | Raster `static/landing/deposit-stamp.webp`, multiply |
-| Withdraw | 1px ink outline, not filled, not green | CSS |
-| Ruled capital-vs-vault bar | 1px ink track, ink fill | CSS |
-| Tote, chips, overlay, amount | semantic HTML/CSS | code |
+| Region                           | Sampled / token                                | Medium                                               |
+| -------------------------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| Page ground (newsprint multiply) | #e6d8c6 token; patch #e1d6c0                   | Raster `static/landing/newsprint.webp` + CSS tile    |
+| Hot Sheet overlay                | #f3eadc                                        | CSS `--paper-hot` + newsprint                        |
+| Ink                              | #040303                                        | CSS                                                  |
+| Purse / winning PnL              | #085324 (comp green ~#084920)                  | CSS `--money`                                        |
+| BTC silks                        | #e42c22                                        | CSS filled square                                    |
+| ETH silks                        | #0756d0                                        | CSS filled square                                    |
+| MARKETO / names / PnL figures    | Big Shoulders Display 800–900, extra-condensed | Self-hosted woff2                                    |
+| Agate labels / tote / chips      | Barlow Condensed 400–700                       | Self-hosted woff2                                    |
+| Corners / elevation              | 0 / none                                       | CSS                                                  |
+| Rules                            | 3px ink; 1px 22% ink row hairlines             | CSS                                                  |
+| Deposit stamp                    | existing green rubber stamp                    | Raster `static/landing/deposit-stamp.webp`, multiply |
+| Withdraw                         | 1px ink outline, not filled, not green         | CSS                                                  |
+| Ruled capital-vs-vault bar       | 1px ink track, ink fill                        | CSS                                                  |
+| Tote, chips, overlay, amount     | semantic HTML/CSS                              | code                                                 |
 
 ## Compositional commitments
 

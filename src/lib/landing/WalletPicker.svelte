@@ -14,11 +14,7 @@
 
 <div class="wallet-list" role="group" aria-label={m.choose_wallet()}>
 	{#each wallet.wallets as connector (connector.uid)}
-		<button
-			type="button"
-			disabled={disabled}
-			onclick={() => onpick(connector)}
-		>
+		<button type="button" {disabled} onclick={() => onpick(connector)}>
 			{connector.id === 'injected' ? m.browser_wallet() : connector.name}
 		</button>
 	{/each}

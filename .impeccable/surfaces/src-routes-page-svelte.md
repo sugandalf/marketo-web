@@ -1,8 +1,14 @@
 ---
 version: 1
-slug: "src-routes-page-svelte"
-primary_target: "src/routes/+page.svelte"
-related_targets: ["src/app.html","src/routes/+layout.svelte","src/routes/form.css","src/routes/enter/+page.svelte"]
+slug: 'src-routes-page-svelte'
+primary_target: 'src/routes/+page.svelte'
+related_targets:
+  [
+    'src/app.html',
+    'src/routes/+layout.svelte',
+    'src/routes/form.css',
+    'src/routes/enter/+page.svelte'
+  ]
 ---
 
 # Landing — The Call
@@ -23,19 +29,20 @@ Unresolved: live wallet adapter and contract addresses; empty roster when no her
 
 ## Inventory (implementation)
 
-| Region | Medium |
-|---|---|
-| Newsprint ground (fiber, grain; ~full bleed) | Raster `static/landing/newsprint.webp` + CSS tile |
-| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display (extra-condensed athletic) |
-| Agate past-performance / labels | Self-hosted Barlow Condensed |
-| BTC/ETH silks | CSS filled squares + type |
-| Horse+jockey mark | Authored SVG |
-| Deposit stamp | Raster `static/landing/deposit-stamp.webp`, multiply blend |
-| Slip, inputs, program strip | Semantic HTML/CSS |
-| Hero portraits | Omitted — silks carry identity |
-| Primary action | Stamp button in the slip |
+| Region                                       | Medium                                                       |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| Newsprint ground (fiber, grain; ~full bleed) | Raster `static/landing/newsprint.webp` + CSS tile            |
+| MARKETO / horse names / program numbers      | Self-hosted Big Shoulders Display (extra-condensed athletic) |
+| Agate past-performance / labels              | Self-hosted Barlow Condensed                                 |
+| BTC/ETH silks                                | CSS filled squares + type                                    |
+| Horse+jockey mark                            | Authored SVG                                                 |
+| Deposit stamp                                | Raster `static/landing/deposit-stamp.webp`, multiply blend   |
+| Slip, inputs, program strip                  | Semantic HTML/CSS                                            |
+| Hero portraits                               | Omitted — silks carry identity                               |
+| Primary action                               | Stamp button in the slip                                     |
 
 Sampled from approved comp / shipping sheet:
+
 - Paper `#e6d8c6` (center) / `#f3eadc` (hot sheet)
 - Ink `#040303`
 - Purse/stamp green `#085324`

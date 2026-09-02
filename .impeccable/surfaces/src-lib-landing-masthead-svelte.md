@@ -1,8 +1,19 @@
 ---
 version: 1
-slug: "src-lib-landing-masthead-svelte"
-primary_target: "src/lib/landing/Masthead.svelte"
-related_targets: ["src/routes/form.css","messages/en.json","messages/id.json","src/lib/landing/WalletControl.svelte","src/routes/+layout.svelte","src/routes/+page.svelte","src/routes/program/+page.svelte","src/routes/enter/+page.svelte","src/routes/portfolio/+page.svelte"]
+slug: 'src-lib-landing-masthead-svelte'
+primary_target: 'src/lib/landing/Masthead.svelte'
+related_targets:
+  [
+    'src/routes/form.css',
+    'messages/en.json',
+    'messages/id.json',
+    'src/lib/landing/WalletControl.svelte',
+    'src/routes/+layout.svelte',
+    'src/routes/+page.svelte',
+    'src/routes/program/+page.svelte',
+    'src/routes/enter/+page.svelte',
+    'src/routes/portfolio/+page.svelte'
+  ]
 ---
 
 Visitor mode: Operate. Primary target: `src/lib/landing/Masthead.svelte`.

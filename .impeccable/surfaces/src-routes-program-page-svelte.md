@@ -1,8 +1,15 @@
 ---
 version: 1
-slug: "src-routes-program-page-svelte"
-primary_target: "src/routes/program/+page.svelte"
-related_targets: ["src/routes/+page.svelte","src/lib/landing/Masthead.svelte","src/routes/form.css","messages/en.json","messages/id.json"]
+slug: 'src-routes-program-page-svelte'
+primary_target: 'src/routes/program/+page.svelte'
+related_targets:
+  [
+    'src/routes/+page.svelte',
+    'src/lib/landing/Masthead.svelte',
+    'src/routes/form.css',
+    'messages/en.json',
+    'messages/id.json'
+  ]
 ---
 
 Visitor mode: Operate. Primary target: `src/routes/program/+page.svelte`.
@@ -21,15 +28,15 @@ Unresolved: live wallet adapter and contract addresses.
 
 ## Inventory (implementation)
 
-| Region | Medium |
-|---|---|
-| Newsprint ground | Raster `static/landing/newsprint.webp` + CSS tile |
-| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display |
-| Agate tote / filters / last backer | Self-hosted Barlow Condensed |
-| BTC/ETH silks | CSS filled squares + type |
-| Purse fill-to-max | CSS ruled ink bar |
-| Deposit stamp | Raster `static/landing/deposit-stamp.webp`, multiply blend |
-| Tote, chips, overlay | Semantic HTML/CSS |
+| Region                                  | Medium                                                     |
+| --------------------------------------- | ---------------------------------------------------------- |
+| Newsprint ground                        | Raster `static/landing/newsprint.webp` + CSS tile          |
+| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display                          |
+| Agate tote / filters / last backer      | Self-hosted Barlow Condensed                               |
+| BTC/ETH silks                           | CSS filled squares + type                                  |
+| Purse fill-to-max                       | CSS ruled ink bar                                          |
+| Deposit stamp                           | Raster `static/landing/deposit-stamp.webp`, multiply blend |
+| Tote, chips, overlay                    | Semantic HTML/CSS                                          |
 
 ## Compositional commitments
 

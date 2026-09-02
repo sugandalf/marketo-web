@@ -16,19 +16,20 @@ Unresolved: live wallet adapter and contract addresses; empty roster when no her
 
 ## Inventory (implementation)
 
-| Region | Medium |
-|---|---|
-| Newsprint ground (fiber, grain; ~full bleed) | Raster `static/landing/newsprint.webp` + CSS tile |
-| MARKETO / horse names / program numbers | Self-hosted Big Shoulders Display (extra-condensed athletic) |
-| Agate past-performance / labels | Self-hosted Barlow Condensed |
-| BTC/ETH silks | CSS filled squares + type |
-| Horse+jockey mark | Authored SVG |
-| Deposit stamp | Interactive HTML button; double-rule + stamp rotation; not a raster of the word |
-| Slip, inputs, program strip | Semantic HTML/CSS |
-| Hero portraits | Omitted — comp portraits are not product truth; silks carry identity |
-| Primary action | Stamp button in the slip |
+| Region                                       | Medium                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------------- |
+| Newsprint ground (fiber, grain; ~full bleed) | Raster `static/landing/newsprint.webp` + CSS tile                               |
+| MARKETO / horse names / program numbers      | Self-hosted Big Shoulders Display (extra-condensed athletic)                    |
+| Agate past-performance / labels              | Self-hosted Barlow Condensed                                                    |
+| BTC/ETH silks                                | CSS filled squares + type                                                       |
+| Horse+jockey mark                            | Authored SVG                                                                    |
+| Deposit stamp                                | Interactive HTML button; double-rule + stamp rotation; not a raster of the word |
+| Slip, inputs, program strip                  | Semantic HTML/CSS                                                               |
+| Hero portraits                               | Omitted — comp portraits are not product truth; silks carry identity            |
+| Primary action                               | Stamp button in the slip                                                        |
 
 Sampled from approved comp (1536×1024 interior patches):
+
 - Paper `#e6d8c6` (center) / `#f3eadc` (hot sheet)
 - Ink `#040303`
 - Purse/stamp green `#085324`

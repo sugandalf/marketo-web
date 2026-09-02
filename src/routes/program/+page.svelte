@@ -149,7 +149,8 @@
 			sortDir = sortDir === 'desc' ? 'asc' : 'desc';
 		} else {
 			sortKey = key;
-			sortDir = key === 'created' || key === 'age' || key === 'pnl' || key === 'tvl' ? 'desc' : 'asc';
+			sortDir =
+				key === 'created' || key === 'age' || key === 'pnl' || key === 'tvl' ? 'desc' : 'asc';
 		}
 	}
 
@@ -195,32 +196,38 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 			<button
 				type="button"
 				aria-pressed={statusFilter === 'active'}
-				onclick={() => setStatus('active')}>{m.conditions_active()}</button>
+				onclick={() => setStatus('active')}>{m.conditions_active()}</button
+			>
 			<button
 				type="button"
 				aria-pressed={statusFilter === 'inactive'}
-				onclick={() => setStatus('inactive')}>{m.conditions_inactive()}</button>
+				onclick={() => setStatus('inactive')}>{m.conditions_inactive()}</button
+			>
 			<span class="conditions-rule" aria-hidden="true"></span>
 			<button
 				type="button"
 				aria-pressed={sortKey === 'age'}
 				aria-label={m.sort_by({ column: m.col_age() })}
-				onclick={() => toggleSort('age')}>{m.col_age()}</button>
+				onclick={() => toggleSort('age')}>{m.col_age()}</button
+			>
 			<button
 				type="button"
 				aria-pressed={sortKey === 'created'}
 				aria-label={m.sort_by({ column: m.col_created() })}
-				onclick={() => toggleSort('created')}>{m.col_created()}</button>
+				onclick={() => toggleSort('created')}>{m.col_created()}</button
+			>
 			<button
 				type="button"
 				aria-pressed={sortKey === 'pnl'}
 				aria-label={m.sort_by({ column: m.col_pnl() })}
-				onclick={() => toggleSort('pnl')}>{m.col_pnl()}</button>
+				onclick={() => toggleSort('pnl')}>{m.col_pnl()}</button
+			>
 			<button
 				type="button"
 				aria-pressed={sortKey === 'tvl'}
 				aria-label={m.sort_by({ column: m.col_purse() })}
-				onclick={() => toggleSort('tvl')}>{m.col_purse()}</button>
+				onclick={() => toggleSort('tvl')}>{m.col_purse()}</button
+			>
 		</div>
 
 		<div class="tote-stage">
@@ -301,7 +308,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								<div class="pp-row overlay-pp">
 									<span>{fightDate(fight.date)}</span>
 									<span>{fight.window}</span>
-									<span class="vs {fight.market.toLowerCase()}">{m.vs_market({ market: fight.market })}</span>
+									<span class="vs {fight.market.toLowerCase()}"
+										>{m.vs_market({ market: fight.market })}</span
+									>
 									<span>{fight.side === 'up' ? m.side_up() : m.side_down()}</span>
 									<span class="pnl" class:loss={fight.pnlUsdso < 0}>{money(fight.pnlUsdso)}</span>
 								</div>
@@ -345,42 +354,42 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<p class="slip-note overlay-foot">{m.purse_full_note()}</p>
 					{:else}
 						<div class="overlay-foot">
-						<form class="overlay-slip" onsubmit={onDeposit}>
-							<div class="amount">
-								<label for="program-amount">{m.amount_label()}</label>
-								<input
-									id="program-amount"
-									name="amount"
-									type="number"
-									min="0"
-									step="0.01"
-									inputmode="decimal"
-									autocomplete="off"
-									bind:value={amountRaw}
-									oninput={() => (depositIntent = false)}
-								/>
-							</div>
-							<div class="chips">
-								<button type="button" onclick={() => addAmount(10)}>{m.add_ten()}</button>
-								<button type="button" onclick={() => addAmount(50)}>{m.add_fifty()}</button>
-								<button type="button" onclick={() => addAmount(100)}>{m.add_hundred()}</button>
-								<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
-							</div>
-							<button class="stamp" type="submit">
-								<img src="/landing/deposit-stamp.webp" alt="" />
-								<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
-							</button>
-						</form>
-						{#if amount <= 0}
-							<p class="slip-note">{m.need_amount()}</p>
-						{:else if depositIntent && !wallet.connected}
-							<p class="wallet-msg">{m.connect_to_sign()}</p>
-							<ConnectGate />
-						{:else if wallet.connected}
-							<p class="wallet-msg">{m.wallet_ready()}</p>
-						{:else}
-							<p class="slip-note">{m.deposit_wallet_note()}</p>
-						{/if}
+							<form class="overlay-slip" onsubmit={onDeposit}>
+								<div class="amount">
+									<label for="program-amount">{m.amount_label()}</label>
+									<input
+										id="program-amount"
+										name="amount"
+										type="number"
+										min="0"
+										step="0.01"
+										inputmode="decimal"
+										autocomplete="off"
+										bind:value={amountRaw}
+										oninput={() => (depositIntent = false)}
+									/>
+								</div>
+								<div class="chips">
+									<button type="button" onclick={() => addAmount(10)}>{m.add_ten()}</button>
+									<button type="button" onclick={() => addAmount(50)}>{m.add_fifty()}</button>
+									<button type="button" onclick={() => addAmount(100)}>{m.add_hundred()}</button>
+									<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
+								</div>
+								<button class="stamp" type="submit">
+									<img src="/landing/deposit-stamp.webp" alt="" />
+									<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
+								</button>
+							</form>
+							{#if amount <= 0}
+								<p class="slip-note">{m.need_amount()}</p>
+							{:else if depositIntent && !wallet.connected}
+								<p class="wallet-msg">{m.connect_to_sign()}</p>
+								<ConnectGate />
+							{:else if wallet.connected}
+								<p class="wallet-msg">{m.wallet_ready()}</p>
+							{:else}
+								<p class="slip-note">{m.deposit_wallet_note()}</p>
+							{/if}
 						</div>
 					{/if}
 				</aside>

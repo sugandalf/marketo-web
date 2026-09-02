@@ -1,60 +1,78 @@
 {
-  "title": "Choose the program composition",
-  "question": "The roll assigned Tote overlay. Keep it, take an alternate, or re-roll. Visual world stays the racing form; this pick is how the full field and the horse sheet sit together.",
-  "options": [
-    {
-      "id": "assigned",
-      "label": "Tote overlay",
-      "kicker": "THE ROLL",
-      "lineage": "Daily Racing Form tote: columns you sort, a horse you pull",
-      "thesis": "The field is a tote: the filters are the columns, and a horse opens as a side condition sheet.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "3px carbon-ink rules", "silks squares", "ruled TVL fill bar", "green deposit stamp"],
-      "viewport": "Masthead, then a conditions bar of invert chips (ACTIVE, INACTIVE, AGE, CREATED, PNL, TVL). Full-bleed agate table of horses. Clicking WARDEN slides a Hot Sheet overlay from the right: call-scale name, past performances, TVL filling toward max, last backer line, deposit stamp. The list stays visible on the left.",
-      "risk": "A column grid can read as a spreadsheet if the overlay does not own the horse at call scale.",
-      "raised": [
-        {
-          "from": "command-center condition bar",
-          "raise": "TVL-to-max is a filling ruled ink bar, not a percentage caption."
-        },
-        {
-          "from": "nixie counter",
-          "raise": "Overlay purse and PnL sit at call-scale, not buried in agate."
-        },
-        {
-          "from": "HyperCard stack",
-          "raise": "The overlay is addressable on this URL; closing it is back, and the filters reprint in place."
-        }
-      ],
-      "comp": ".impeccable/mocks/decision/program-tote.webp"
-    },
-    {
-      "id": "condition-overlay",
-      "label": "Condition overlay",
-      "lineage": "Overnight program plus the two-page condition book, used to back",
-      "thesis": "The field stays a program; opening a horse opens the same two-page book as entering, but to back it.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "program-entry rows", "gutter as 3px ink rule", "Hot Sheet overlay", "green deposit stamp"],
-      "viewport": "Masthead. Left ~45%: stacked program entries (number, silks, name, one PP line, purse, status) with filter chips above. Right overlay: two-page mini book — left PP, TVL progress, last backer; right BACK THIS HORSE slip and stamp.",
-      "risk": "Recasts /enter; a depositor may think they are nominating.",
-      "comp": ".impeccable/mocks/decision/program-condition.webp"
-    },
-    {
-      "id": "carbon-overlay",
-      "label": "Carbon overlay",
-      "lineage": "Clerk original with a carbon dropped on the selected entry",
-      "thesis": "The list is the original; the selected horse's sheet drops on as a carbon, still on this page.",
-      "palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
-      "materials": ["warm newsprint fiber", "overnight rows as original", "55% Hot Sheet carbon", "shared 3px rules", "green deposit stamp"],
-      "viewport": "Masthead, conditions bar, full-width overnight rows. Selecting a horse lays a Hot Sheet carbon over the lower-right of the same sheet: name, PP, TVL bar, last backer, stamp. The list peeking underneath is the original.",
-      "risk": "Overlay-on-list can feel like a popup if the carbon does not share rules with the entries.",
-      "comp": ".impeccable/mocks/decision/program-carbon.webp"
-    }
-  ],
-  "reroll": true,
-  "buildPath": {
-    "value": "comp",
-    "toggle": true
-  },
-  "steer": true
+	"title": "Choose the program composition",
+	"question": "The roll assigned Tote overlay. Keep it, take an alternate, or re-roll. Visual world stays the racing form; this pick is how the full field and the horse sheet sit together.",
+	"options": [
+		{
+			"id": "assigned",
+			"label": "Tote overlay",
+			"kicker": "THE ROLL",
+			"lineage": "Daily Racing Form tote: columns you sort, a horse you pull",
+			"thesis": "The field is a tote: the filters are the columns, and a horse opens as a side condition sheet.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"3px carbon-ink rules",
+				"silks squares",
+				"ruled TVL fill bar",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead, then a conditions bar of invert chips (ACTIVE, INACTIVE, AGE, CREATED, PNL, TVL). Full-bleed agate table of horses. Clicking WARDEN slides a Hot Sheet overlay from the right: call-scale name, past performances, TVL filling toward max, last backer line, deposit stamp. The list stays visible on the left.",
+			"risk": "A column grid can read as a spreadsheet if the overlay does not own the horse at call scale.",
+			"raised": [
+				{
+					"from": "command-center condition bar",
+					"raise": "TVL-to-max is a filling ruled ink bar, not a percentage caption."
+				},
+				{
+					"from": "nixie counter",
+					"raise": "Overlay purse and PnL sit at call-scale, not buried in agate."
+				},
+				{
+					"from": "HyperCard stack",
+					"raise": "The overlay is addressable on this URL; closing it is back, and the filters reprint in place."
+				}
+			],
+			"comp": ".impeccable/mocks/decision/program-tote.webp"
+		},
+		{
+			"id": "condition-overlay",
+			"label": "Condition overlay",
+			"lineage": "Overnight program plus the two-page condition book, used to back",
+			"thesis": "The field stays a program; opening a horse opens the same two-page book as entering, but to back it.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"program-entry rows",
+				"gutter as 3px ink rule",
+				"Hot Sheet overlay",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead. Left ~45%: stacked program entries (number, silks, name, one PP line, purse, status) with filter chips above. Right overlay: two-page mini book — left PP, TVL progress, last backer; right BACK THIS HORSE slip and stamp.",
+			"risk": "Recasts /enter; a depositor may think they are nominating.",
+			"comp": ".impeccable/mocks/decision/program-condition.webp"
+		},
+		{
+			"id": "carbon-overlay",
+			"label": "Carbon overlay",
+			"lineage": "Clerk original with a carbon dropped on the selected entry",
+			"thesis": "The list is the original; the selected horse's sheet drops on as a carbon, still on this page.",
+			"palette": ["#e6d8c6", "#040303", "#f3eadc", "#085324", "#e42c22", "#0756d0"],
+			"materials": [
+				"warm newsprint fiber",
+				"overnight rows as original",
+				"55% Hot Sheet carbon",
+				"shared 3px rules",
+				"green deposit stamp"
+			],
+			"viewport": "Masthead, conditions bar, full-width overnight rows. Selecting a horse lays a Hot Sheet carbon over the lower-right of the same sheet: name, PP, TVL bar, last backer, stamp. The list peeking underneath is the original.",
+			"risk": "Overlay-on-list can feel like a popup if the carbon does not share rules with the entries.",
+			"comp": ".impeccable/mocks/decision/program-carbon.webp"
+		}
+	],
+	"reroll": true,
+	"buildPath": {
+		"value": "comp",
+		"toggle": true
+	},
+	"steer": true
 }

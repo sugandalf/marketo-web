@@ -2,191 +2,191 @@
 name: Marketo
 description: Warm newsprint racing form for backing heroes on dreamDEX event markets.
 colors:
-  ink: "#040303"
-  paper: "#e6d8c6"
-  paper-hot: "#f3eadc"
-  money: "#085324"
-  btc: "#e42c22"
-  eth: "#0756d0"
-  btc-ink: "#8a1a14"
-  eth-ink: "#0548a8"
-  wash-btc: "oklch(0.875 0.038 38)"
-  wash-eth: "oklch(0.875 0.036 250)"
-  wash-btc-hot: "oklch(0.93 0.034 38)"
-  wash-eth-hot: "oklch(0.93 0.032 250)"
-  ink-wash: "color-mix(in srgb, #040303 8%, transparent)"
+  ink: '#040303'
+  paper: '#e6d8c6'
+  paper-hot: '#f3eadc'
+  money: '#085324'
+  btc: '#e42c22'
+  eth: '#0756d0'
+  btc-ink: '#8a1a14'
+  eth-ink: '#0548a8'
+  wash-btc: 'oklch(0.875 0.038 38)'
+  wash-eth: 'oklch(0.875 0.036 250)'
+  wash-btc-hot: 'oklch(0.93 0.034 38)'
+  wash-eth-hot: 'oklch(0.93 0.032 250)'
+  ink-wash: 'color-mix(in srgb, #040303 8%, transparent)'
 typography:
   display:
     fontFamily: "'Big Shoulders Display', 'Arial Narrow', sans-serif"
-    fontSize: "clamp(4.2rem, 11vw, 6rem)"
+    fontSize: 'clamp(4.2rem, 11vw, 6rem)'
     fontWeight: 900
     lineHeight: 0.76
-    letterSpacing: "-0.03em"
+    letterSpacing: '-0.03em'
   headline:
     fontFamily: "'Big Shoulders Display', 'Arial Narrow', sans-serif"
-    fontSize: "clamp(2.4rem, 5vw, 4.4rem)"
+    fontSize: 'clamp(2.4rem, 5vw, 4.4rem)'
     fontWeight: 900
     lineHeight: 0.8
-    letterSpacing: "-0.035em"
+    letterSpacing: '-0.035em'
   title:
     fontFamily: "'Big Shoulders Display', 'Arial Narrow', sans-serif"
-    fontSize: "1.7rem"
+    fontSize: '1.7rem'
     fontWeight: 800
     lineHeight: 0.85
-    letterSpacing: "-0.02em"
+    letterSpacing: '-0.02em'
   body:
     fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif"
-    fontSize: "1.05rem"
+    fontSize: '1.05rem'
     fontWeight: 400
     lineHeight: 1.25
-    letterSpacing: "normal"
+    letterSpacing: 'normal'
   label:
     fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif"
-    fontSize: "0.8rem"
+    fontSize: '0.8rem'
     fontWeight: 700
     lineHeight: 1.25
-    letterSpacing: "0.1em"
+    letterSpacing: '0.1em'
 rounded:
-  cut: "0px"
+  cut: '0px'
 spacing:
-  hair: "0.2rem"
-  xs: "0.35rem"
-  sm: "0.55rem"
-  md: "0.85rem"
-  lg: "1.25rem"
-  xl: "1.5rem"
+  hair: '0.2rem'
+  xs: '0.35rem'
+  sm: '0.55rem'
+  md: '0.85rem'
+  lg: '1.25rem'
+  xl: '1.5rem'
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    typography: "{typography.label}"
-    rounded: "{rounded.cut}"
-    padding: "0.35rem 0.55rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    typography: '{typography.label}'
+    rounded: '{rounded.cut}'
+    padding: '0.35rem 0.55rem'
   button-chip:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.15rem 0.45rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.15rem 0.45rem'
   button-chip-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0.15rem 0.45rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0.15rem 0.45rem'
   button-chip-checked:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0.15rem 0.45rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0.15rem 0.45rem'
   button-withdraw:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.cut}"
-    padding: "0.45rem 0.65rem"
-    width: "22rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    typography: '{typography.label}'
+    rounded: '{rounded.cut}'
+    padding: '0.45rem 0.65rem'
+    width: '22rem'
   book-title:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.22rem 0.45rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.22rem 0.45rem'
   input-underline:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.title}"
-    rounded: "{rounded.cut}"
-    padding: "0.2rem 0"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    typography: '{typography.title}'
+    rounded: '{rounded.cut}'
+    padding: '0.2rem 0'
   silks-btc:
-    backgroundColor: "{colors.btc}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    size: "3.4rem"
+    backgroundColor: '{colors.btc}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    size: '3.4rem'
   silks-eth:
-    backgroundColor: "{colors.eth}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    size: "3.4rem"
+    backgroundColor: '{colors.eth}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    size: '3.4rem'
   silks-pick:
-    backgroundColor: "{colors.btc}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    size: "4.2rem"
+    backgroundColor: '{colors.btc}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    size: '4.2rem'
   tag-ink:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0 0.28rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0 0.28rem'
   locale-active:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0.15rem 0.2rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0.15rem 0.2rem'
   account-chip:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.2rem 0.45rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.2rem 0.45rem'
   account-chip-open:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0.2rem 0.45rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0.2rem 0.45rem'
   account-slip:
-    backgroundColor: "{colors.paper-hot}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.45rem"
-    width: "14rem"
+    backgroundColor: '{colors.paper-hot}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.45rem'
+    width: '14rem'
   slip:
-    backgroundColor: "color-mix(in srgb, #f3eadc 55%, transparent)"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "1rem 1.1rem 1.2rem"
+    backgroundColor: 'color-mix(in srgb, #f3eadc 55%, transparent)'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '1rem 1.1rem 1.2rem'
   papers:
-    backgroundColor: "color-mix(in srgb, #f3eadc 55%, transparent)"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "1.1rem 1.25rem 1.5rem"
+    backgroundColor: 'color-mix(in srgb, #f3eadc 55%, transparent)'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '1.1rem 1.25rem 1.5rem'
   program-entry:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.7rem 0.9rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.7rem 0.9rem'
   program-entry-hover:
-    backgroundColor: "{colors.ink-wash}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.7rem 0.9rem"
+    backgroundColor: '{colors.ink-wash}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.7rem 0.9rem'
   tote-row:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.55rem 1.25rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.55rem 1.25rem'
   tote-row-hover:
-    backgroundColor: "{colors.ink-wash}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.55rem 1.25rem"
+    backgroundColor: '{colors.ink-wash}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.55rem 1.25rem'
   sheet-overlay:
-    backgroundColor: "{colors.paper-hot}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "1rem 1.1rem 1.4rem"
-    width: "40%"
+    backgroundColor: '{colors.paper-hot}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '1rem 1.1rem 1.4rem'
+    width: '40%'
   status-active:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper-hot}"
-    rounded: "{rounded.cut}"
-    padding: "0.1rem 0.35rem"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper-hot}'
+    rounded: '{rounded.cut}'
+    padding: '0.1rem 0.35rem'
   status-scratched:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    padding: "0.1rem 0.35rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    padding: '0.1rem 0.35rem'
   tvl-track:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.cut}"
-    height: "0.55rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.cut}'
+    height: '0.55rem'
 ---
 
 # Design System: Marketo
@@ -202,6 +202,7 @@ Four surfaces share that world. `/` is the racing card: masthead, a selected cal
 The product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. The same Wagmi session (injected / EIP-6963) unlocks stamp-time Connect gates. The sheet never names a chain. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.
 
 **Key Characteristics:**
+
 - Warm newsprint ground, hue-less fiber tiled and multiplied into the sheet
 - Big Shoulders Display for the call; Barlow Condensed for agate
 - Square-cut everything; 3px carbon-ink rules between major regions
@@ -218,24 +219,29 @@ The product commitment is an arena of heroes fighting a market. This world keeps
 A warm printed sheet: one carbon ink, two cream papers, one money green, and two silks — plus two silks-inks derived for type on paper. No candy pink, no cool gray, no crypto-orange, no night-mode navy.
 
 ### Primary
+
 - **Carbon Ink**: The printed voice. Body type, rules, focus rings, scroll thumbs, inverted fills (active locale, chip hover and checked, account chip open, fact numbers, text selection), the Connect fill, the tote fill-to-max bar, and the Active status tag. If it would have been “UI chrome,” it is ink. Book-bar capital at risk prints in this ink. The Withdraw outline is this ink, 1px. The account slip’s box is this ink, 2px.
 
 ### Secondary
+
 - **Purse Green**: Vault purses, estimated share percents, and winning PnL. The Deposit and Open-vault stamps print in this ink. It is money on the card, not a general success color. It does not fill the purse track. It does not fill Withdraw.
 
 ### Tertiary
+
 - **BTC Silks**: Square field behind the letters BTC. Market identity for Bitcoin event horses. Fill only — not body type on paper (3.2:1).
 - **ETH Silks**: Square field behind the letters ETH. Market identity for Ether event horses.
 - **BTC Ink**: Oxblood `#8a1a14` for “vs BTC” on paper (6.7:1). Same hue family as the square; dark enough to read.
 - **ETH Ink**: Navy `#0548a8` for “vs ETH” on paper (6.0:1). Same hue family as the square.
 
 ### Neutral
+
 - **Sheet Stock**: Page ground and `html`/`body` fallback. Newsprint texture is gray fiber that multiplies onto this cream, not a second coat of pink. At `900px` the `/program` and `/portfolio` overlays and their sticky stamp feet print on this same stock, because they are the page.
 - **Hot Sheet**: Lighter cream for inverted type (selection, active locale, silks letters, chip hover, open account chip) and for the 55% wash on the slip and on `/enter` papers. The `/program` and `/portfolio` overlays are a full Hot Sheet (not a 55% wash) with the same newsprint multiply. The account slip is that same full Hot Sheet in miniature. Use it as the “fresh impression” of the same paper, not as a second brand color.
 - **Ink Wash**: 8% carbon over the sheet. Program-entry hover, tote-row hover and selected, Withdraw hover, and the pressed tote row. Scrollbar tracks mix the same 8% ink into paper.
 - **Silks Wash**: Paper-lightness OKLCH in the BTC (hue 38) or ETH (hue 250) silks. Stains the open horse’s call, slip, overlay, and `/enter` papers. Hot variants for Hot Sheet regions. Not a mix of the neon fill into cream.
 
 ### Named Rules
+
 **The Silks Rule.** BTC is always the red square; ETH is always the blue square. Silks are filled squares of extra-condensed market letters in Hot Sheet. They carry identity. Do not substitute coin logos, gradients, or circular avatars.
 
 **The Silks-in-the-Agate Rule.** Opponent market in past performances prints in silks-ink with a 0.5rem silks square so color is not the only code. Compact program-strip lines color the vs text only. Do not set body type in the fill hues.
@@ -252,6 +258,7 @@ A warm printed sheet: one carbon ink, two cream papers, one money green, and two
 **Character:** Athletic gothic poster type slammed against agate. Names and program numbers are extra-condensed, tight leading, slight negative tracking, always uppercase. The small type is a racing-form table: condensed, tracked labels, tabular figures.
 
 ### Hierarchy
+
 - **Display** (900, clamp 4.2–6rem, line-height 0.76): Selected horse name on the racing card and on the `/program` and `/portfolio` overlays. Program number beside it is the same family at 900, slightly larger clamp (5–6rem), line-height 0.75. This is the call, not the product wordmark. At `900px` the overlay name drops to 3.4rem and the number to 4.4rem, matching the racing-card mobile call. The `/enter` miniature scales the same grammar down (name clamp 1.8–2.8rem; number 3.2rem).
 - **Headline** (900, clamp 2.4–4.4rem, line-height 0.8): MARKETO masthead. It stays smaller than the selected horse on a call surface. Facts-page title on `/enter` is the same family at 800, clamp 2.2–3.2rem, line-height 0.85.
 - **Title** (800, 1.7rem, line-height 0.85–1): Boxed slip / papers titles (3px ink rectangle, 0.04em tracking, centered). Program-strip names, picked-horse line, papers field values at 1.6rem / 700. Tote names are denser Title: 1.55rem / 800. Tote program numbers are 1.7rem / 900. Amount on the slip jumps to 2.6rem / 800 — a figure, not a heading. Overlay purse is 2.4rem / 800, left-aligned. Overlay shares and book PnL use that same 2.4rem / 800. Book-bar PnL and capital figures are 1.7rem / 800 on one baseline. Boxed YOUR BOOK is the same 3px rectangle at 1.35rem / 800, not a second masthead. Receipt “see this horse” is Title-adjacent 1.6rem / 800.
@@ -261,6 +268,7 @@ A warm printed sheet: one carbon ink, two cream papers, one money green, and two
 Figures use `font-variant-numeric: tabular-nums`. Positive PnL prefixes `+`; losses do not invent a minus color. Placeholders mix 72% ink into Sheet Stock. Owner-only shares and capital print as an em dash, not a zero.
 
 ### Named Rules
+
 **The Call-is-Bigger Rule.** On a call surface, the selected horse name outranks MARKETO. Product chrome never out-shouts the horse you are looking at. The `/program` overlay is a call. The `/portfolio` overlay is a call. The `/enter` miniature is a preview, not a second call.
 
 **The Agate Rule.** Past performances, chips, locale, facts copy, tote columns, conditions, last backer, and captions set in Barlow Condensed. Big Shoulders is for names, program numbers, purses, boxed titles, and keyed-in amounts only.
@@ -294,9 +302,11 @@ At `900px` every multi-column grid collapses to one column: the call or facts ru
 The sheet is flat ink on paper. There are no box shadows. Depth is press, not lift: multiply-blended newsprint fiber (240×240px hue-less tile), a 55% Hot Sheet wash on the slip and on `/enter` papers, a full Hot Sheet overlay on `/program` and `/portfolio` (desktop), 8% ink wash on a pressed program entry, tote row, or Withdraw hover, and the Deposit / Open-vault stamps multiplied into the paper. The account slip is a small Hot Sheet + newsprint panel (`z-index: 8`) dropped below-right of the chip, 2px ink box — another impression, not a floating dialog. The overlay enters with `translateX(12%) → 0` over 280ms (`cubic-bezier(0.16, 1, 0.3, 1)`); reduced motion kills the animation. Focus is a 2px ink outline with 3px offset. Text selection and the caret are ink.
 
 ### Shadow Vocabulary
+
 None. `box-shadow` stays `none` on fields.
 
 ### Named Rules
+
 **The Pressed-Ink Rule.** If something needs to sit “on” the sheet, multiply it or wash it. Do not raise it. The overlay is another impression of the same paper, not a floating panel. The account slip is the same: Hot Sheet + newsprint, not a glass dialog.
 
 ## Shapes
@@ -312,6 +322,7 @@ Every corner is a square cut (`border-radius: 0` on the sheet and all controls).
 Tactile like a form you mark with a pencil, then stamp.
 
 ### Buttons
+
 - **Shape:** Square-cut. No radius.
 - **Primary (Connect):** Carbon Ink fill, Hot Sheet type, 2px ink edge, 0.35rem 0.55rem, uppercase tracked label. Persistent session on the masthead (last in masthead-actions) and the stamp-time gate — on the slip after Deposit intent, on `/enter` after Open vault if still disconnected, on the `/program` overlay after Deposit intent, on the `/portfolio` gate before the book can be read, and on the `/portfolio` overlay after Deposit or Withdraw intent. Pending prints Connecting… at 0.72 opacity, cursor wait. Empty provider prints “No browser wallet found. Install one, then try again.” No separate hover fill in the shipped sheet; keyboard focus uses the global 2px ink outline. Never the nomination or the bet. Never a modal.
 - **Chips (amount adders, wallet same/other, conditions):** Transparent field, 1px ink stroke, 0.15rem 0.45rem. Hover and pressed/checked invert to ink fill / Hot Sheet type. Conditions chips add uppercase 0.8rem / 0.08em tracking. Book overlay DEPOSIT / WITHDRAW chips use that same conditions type; one is always pressed.
@@ -319,10 +330,12 @@ Tactile like a form you mark with a pencil, then stamp.
 - **Ghost text (inactive locale, How it works, Enter link, overlay Close):** No box. Underline with 3px offset. The horse mark carries the home Enter link; MARKETO is an undecorated home link. Overlay Close is right-aligned, uppercase, tracked.
 
 ### Chips
+
 - **Style:** Amount and wallet chips as above. Conditions chips are the same invert language in a toolbar: status (Active / Inactive), a 1px ink stick, then sorts (Age, Created, PnL, Purse). Book-bar chips omit the stick and sit on the far right: BACKED, MINE, ALL. Book overlay slip chips are a two-press radio: DEPOSIT or WITHDRAW; the amount and the one action follow. Pressing a sort again flips asc/desc; pressing an already-on status or role chip returns to all. SYNTHETIC tags are not chips: they are tight inverted ink rectangles, 0.12em tracking, riding a caption.
 - **State:** Chip hover and checked/pressed = invert. Tag has no hover; it is a condition printed on the line.
 
 ### Cards / Containers
+
 - **Corner Style:** Square cut
 - **Background:** The page is the card (Sheet Stock + newsprint). Inner wash (55% Hot Sheet) on the slip and on `/enter` papers; when a horse is open or silks are picked, that wash is the silks-hue paper (`--wash-btc` / `--wash-eth`, hot variants on slip, papers, desktop overlay). The selected call takes a translucent silks wash so grain shows. The miniature is Sheet Stock inside a 1px ink box, not a second wash and not a silks stain. The `/program` and `/portfolio` overlays are a full stained Hot Sheet + newsprint; at `900px` they are stained Sheet Stock + newsprint.
 - **Shadow Strategy:** None
@@ -330,69 +343,89 @@ Tactile like a form you mark with a pencil, then stamp.
 - **Internal Padding:** ~1rem on the slip; 1.1–1.25rem on papers; ~0.7–0.9rem on program entries and the miniature; overlay `1rem 1.1rem 1.4rem`; tote rows `0.55rem 1.25rem`; book bar `0.4rem 1.25rem`
 
 ### Inputs / Fields
+
 - **Style:** Transparent, no box, 3px Carbon Ink underline. Amount uses Display-adjacent 2.6rem / 800 tabular figures; papers fields use 1.6rem / 700. Number spinners are stripped. Character counts sit at the end of the field in 400 / 0.06em.
 - **Focus:** Global ink outline (2px / 3px offset), not a glow
 - **Error / Disabled:** Notes under the field in 0.92rem agate; the sheet does not paint error red (red is BTC silks). Scratched and full-purse horses withhold the overlay stamp and print a slip note instead. Owner-only overlays withhold Deposit and Withdraw and print a watch-only note.
 
 ### Navigation
+
 - **Style:** Masthead, not an app bar. MARKETO wordmark (links home); weekday-long date + dreamDEX line; locale invert-buttons; a single-line nav of underlined marks: Your book to `/portfolio`, The program to `/program`; on the racing card, Enter a horse with the authored horse-and-jockey mark (`currentColor` ink) to `/enter`. Session control sits last in masthead-actions, after the nav, behind a 1px ink stick. No Enter self-link on `/enter`. No The program self-link on `/program`. No Your book self-link on `/portfolio`. No Markets / Vaults / Docs chrome.
 - **Locale:** Underlined until pressed; `aria-pressed="true"` fills ink and drops the underline.
 - **Program door:** The racing-card strip ends with a full-width entry that is only an underlined Title (1.25rem) linking to `/program`. Empty in-form fold uses the same How-it-works underline to the tote. Empty book filters use the same underline to `/program` (no backed horses) or `/enter` (no owned horses).
 
 ### Account Chip
+
 Connected session on the masthead. 1px Carbon Ink outline, transparent field, 0.2rem 0.45rem, 700 / 0.04em tabular truncated address (`0x1234…5678`, first six + last four). Hover and `aria-expanded="true"` invert to ink fill / Hot Sheet. Title is the full address. Not uppercase. Not a silks square. Not a wallet-logo avatar. Click opens the account slip.
 
 ### Account Slip
+
 Hot Sheet + newsprint multiply, 2px ink box, 0.45rem padding, min 14rem / max `min(22rem, calc(100vw - 2rem))`, dropped below-right of the chip (`top: calc(100% + 0.35rem)`, `right: 0`, `z-index: 8`). Full address in 0.8rem / 600 tabular, break-all; then Copy and Disconnect as full-width 1px invert chips (uppercase 0.08em, 0.25rem 0.45rem). Copy prints Copied. Escape and outside pointer dismiss. When connecting with more than one provider, the slip holds the wallet list plus an error note. Not a modal, not a 40% overlay, not a 55% wash.
 
 ### Wallet List
+
 EIP-6963 announced wallets as stacked full-width invert chips (1px ink, 0.25rem 0.45rem, uppercase 0.08em). Injected fallback labels Browser wallet. Names only — no logos, no avatars. Appears in the account slip when connecting with more than one provider, and under stamp-time ConnectGate. Book-gate list centers at max 18rem. Nomination papers still use the existing same/other wallet chips; those are not this list.
 
 ### Market Silks
+
 Square of BTC or ETH color; market letters in Hot Sheet, Big Shoulders 800. Call and overlay 3.4rem; slip 2.1rem; program strip and tote 2rem; miniature / receipt 2.6rem; papers pick 4.2rem. Always the two-letter market, never an icon. On `/enter`, the selected pick carries a 3px ink border and a black corner tick (ink triangle at the top-right). Unselected picks have a transparent 3px edge so the squares do not jump.
 
 ### Numbered Facts
+
 The 01–03 list on the left page. Each index is a 2.1rem inverted ink square, Big Shoulders 800 / 1.15rem, Hot Sheet numerals. The row is uppercase agate. These are printed program numerals, not kickers and not interactive chips.
 
 ### Miniature Call
+
 Live preview on the facts page: program number, silks, name, pedigree, empty PP with SYNTHETIC, purse in Purse Green. It writes as the papers fill (name, silks, strategy, purse). Same call grammar as the racing card, scaled to sit inside a 1px ink box.
 
 ### Deposit Stamp
+
 Primary deposit action is the rubber-stamp raster (`deposit-stamp.webp`) inside a borderless button, `mix-blend-mode: multiply`, max width 22rem. On the racing-card slip it centers; on the `/program` overlay it left-aligns at the same max. On `/portfolio` it appears only after DEPOSIT is pressed, left-aligned, disabled until an amount is in. Hover/focus adds `contrast(1.12) brightness(0.96)` over 160ms (`cubic-bezier(0.16, 1, 0.3, 1)`); reduced motion kills the transition. Disabled at 0.35 opacity. Do not replace this with a filled Primary button. Connect-wallet remains the ink rectangle because it is a wallet gate, not the bet. Deposit lives on the overlay, never on a tote row.
 
 ### Open Vault Stamp
+
 On `/enter`, the nomination action is the matching rubber-stamp raster (`open-vault-stamp.webp`): OPEN VAULT / YOU STILL SIGN, same multiply blend and hover. Foot of the papers: max width 18rem, right-aligned beside How it works; at 900px it centers at 22rem above the link. Do not replace it with the Connect ink-fill.
 
 ### Withdraw
+
 Redeem on a backed `/portfolio` overlay after the WITHDRAW chip is pressed. 1px Carbon Ink outline, square-cut, left-aligned, width capped at 22rem. Uppercase tracked label plus a sentence-case lock line. Hover washes 8% ink. Disabled until an amount is in. Not a rubber stamp, not Purse Green, not an invert chip. Never stacked under the Deposit stamp — the chips pick one direction. Withheld on owner-only and when there is no NAV to redeem. All NAV fills the field with capital plus PnL.
 
 ### Program Entry
+
 Full-width button on the racing-card strip, four-column inner grid (number, silks, name+agate PP, purse). 1px ink at the right (bottom at 900px). Hover and `aria-pressed="true"` take the 8% ink wash. Entry names are Title; numbers are Display-family 2rem / 900.
 
 ### Tote Row
+
 Full-bleed button on `/program` and `/portfolio`. Eight columns on the program; seven on the book with a capped name column. Three stacked lines at `900px`. Hover and `aria-pressed="true"` take the 8% ink wash. Numbers 1.7rem / 900; names 1.55rem / 800 uppercase; silks 2rem. Purse or capital figure in Purse Green above the ruled fill bar; max caption in ink. Active status inverts; Scratched outlines. Book ROLE prints BACKED as the Active invert and MINE as the Scratched outline; a row may carry both.
 
 ### Ruled Fill Bar
+
 1px ink rectangle, transparent field, Carbon Ink fill to `purseFill` percent (or backed capital over vault on the book tote). Height 0.55rem in the tote, 0.7rem in the overlay. Companion max line is uppercase agate in Carbon Ink. Not a green bar, not a gradient, not a rounded pill.
 
 ### Status Tag
+
 Printed condition on the tote row. Active: inverted ink / Hot Sheet, 0.75rem / 0.1em. Scratched: transparent with 1px ink stroke, same type. Book ROLE reuses this pair for BACKED / MINE. Not a kicker and not a chip — it does not filter; the conditions toolbar does.
 
 ### Hot Sheet Overlay
+
 Right-hand 40% sheet on `/program` or `/portfolio` when `?horse=` is set. Absolute, 3px ink left rule, silks-washed Hot Sheet + newsprint multiply, `z-index: 2`. Call-scale name and number, 3.4rem silks. On `/program`: tighter PP columns, left-aligned 2.4rem purse, last-backer agate, then the overlay slip (amount, chips, stamp). On `/portfolio`: two-column shares and PnL at 2.4rem, then DEPOSIT / WITHDRAW invert chips, an amount labeled for that direction, and either the Deposit stamp or outlined Withdraw. Owner-only prints a watch-only note instead. At `900px` it is `position: fixed; inset: 0`, stained Sheet Stock + newsprint, `z-index: 5`, and `.overlay-foot` sticks to the bottom on the same stained stock. Not a modal, not a card, not a second route.
 
 ### Book Bar
+
 Result strip under the `/portfolio` masthead. Boxed YOUR BOOK (3px ink, 1.35rem Title), 3px vertical ink rule, PnL and capital at risk on one baseline (1.7rem Title figures, agate captions), SYNTHETIC tag, BACKED / MINE / ALL chips pushed to the far right. Connected only: the disconnected sheet has no figures. Not a second masthead and not a dashboard header.
 
 ### Past-Performance Rows
+
 Five agate columns (date, window, vs-market, side, PnL). Tabular numbers. 1px 22% ink hairline under each row. Header is uppercase 0.85rem with a 1px solid ink underline. Overlay PP tightens the column template (`4.6rem 2.2rem 4.6rem 2.4rem 1fr`). The vs-market cell is silks-ink plus a 0.5rem silks square; side and date stay carbon.
 
 ### Receipt
+
 After a successful Open vault, the papers page keeps the Hot Sheet wash and boxed title, then a picked-horse line, purse, wallet message, and See this horse on the card (Title link with 3px underline offset). Same sheet; no modal, no toast.
 
 ## Do's and Don'ts
 
 ### Do:
+
 - **Do** ground new surfaces on Sheet Stock with the newsprint tile at 240px, `background-blend-mode: multiply`.
 - **Do** cut regions with 3px Carbon Ink rules and keep every radius at 0.
 - **Do** identify a market with silks squares (BTC red, ETH blue) and extra-condensed letters.
@@ -413,6 +446,7 @@ After a successful Open vault, the papers page keeps the Hot Sheet wash and boxe
 - **Do** sum book-bar PnL and capital from backed holdings only.
 
 ### Don't:
+
 - **Don't** ship a dark DeFi hero with three equal feature cards.
 - **Don't** round corners, raise shadows, or frost glass over the sheet.
 - **Don't** give heroes photographic portraits or coin-logo avatars; silks carry identity.
