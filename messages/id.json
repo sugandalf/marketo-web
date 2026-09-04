@@ -174,5 +174,13 @@
 	"book_empty_backed": "Tidak ada kuda yang didukung di buku ini.",
 	"book_empty_mine": "Tidak ada kuda milik Anda di buku ini.",
 	"book_empty": "Buku ini masih kosong.",
-	"close_book_overlay": "Kembali ke buku"
+	"close_book_overlay": "Kembali ke buku",
+	"deposit_approving": "Setujui token, lalu tandatangani setoran. Belum ada yang terkunci.",
+	"deposit_pending": "Menunggu konfirmasi setoran. Belum ada yang terkunci.",
+	"deposit_confirmed": "Setoran dikonfirmasi. Kuda ini ada di buku Anda.",
+	"deposit_rejected": "Setoran dibatalkan. Tidak ada yang dikirim.",
+	"deposit_reverted": "Setoran dibatalkan di rantai. Tidak ada yang terkunci.",
+	"deposit_rpc": "Permintaan jaringan gagal. Tidak ada yang dikonfirmasi.",
+	"deposit_cap": "Jumlah itu di atas sisa kapasitas vault.",
+	"deposit_not_live": "Kuda ini bukan vault hidup. Tidak ada yang dikirim."
 }

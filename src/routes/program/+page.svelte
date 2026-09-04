@@ -2,11 +2,11 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import { getLocale, locales, localizeHref } from '$lib/paraglide/runtime';
 	import { resolve } from '$app/paths';
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
-	import ConnectGate from '$lib/landing/ConnectGate.svelte';
+	import DepositStatus from '$lib/landing/DepositStatus.svelte';
 	import {
 		heroes,
 		heroById,
@@ -14,14 +14,18 @@
 		heroPnl,
 		purseFill,
 		purseFull,
+		mergeLiveRoster,
 		type Hero
 	} from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
+	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
 	import { wallet } from '$lib/wallet/session.svelte';
 	import '../form.css';
 
 	type StatusFilter = 'all' | 'active' | 'inactive';
 	type SortKey = 'age' | 'created' | 'pnl' | 'tvl';
+
+	let { data } = $props();
 
 	let entered = $state(loadEnteredHero());
 	let amountRaw = $state('0.00');
@@ -30,15 +34,22 @@
 	let sortKey = $state<SortKey | null>(null);
 	let sortDir = $state<'asc' | 'desc'>('desc');
 	let selectedId = $state<string | null>(page.url.searchParams.get('horse'));
+	let phase = $state<DepositPhase>('idle');
+	let rejectedApprove = $state(false);
 
 	const roster = $derived(
-		entered ? [entered, ...heroes.filter((hero) => hero.id !== entered?.id)] : heroes
+		mergeLiveRoster(
+			data.horses,
+			entered ? [entered, ...heroes.filter((hero) => hero.id !== entered?.id)] : heroes
+		)
 	);
 	const selected = $derived(
 		selectedId
 			? (roster.find((hero) => hero.id === selectedId) ?? heroById(selectedId) ?? null)
 			: null
 	);
+	const busy = $derived(phase === 'approving' || phase === 'pending');
+	const liveSelected = $derived(Boolean(selected?.live));
 
 	$effect(() => {
 		selectedId = page.url.searchParams.get('horse');
@@ -121,6 +132,8 @@
 	function openHorse(hero: Hero) {
 		amountRaw = '0.00';
 		depositIntent = false;
+		phase = 'idle';
+		rejectedApprove = false;
 		selectedId = hero.id;
 		void goto(programHref(hero.id), {
 			replaceState: true,
@@ -132,6 +145,8 @@
 	function closeHorse() {
 		amountRaw = '0.00';
 		depositIntent = false;
+		phase = 'idle';
+		rejectedApprove = false;
 		selectedId = null;
 		void goto(programHref(null), {
 			replaceState: true,
@@ -157,12 +172,51 @@
 	function addAmount(delta: number) {
 		amountRaw = (amount + delta).toFixed(2);
 		depositIntent = false;
+		if (!busy) {
+			phase = 'idle';
+			rejectedApprove = false;
+		}
 	}
 
-	function onDeposit(event: SubmitEvent) {
+	async function onSwitchNetwork() {
+		const result = await wallet.switchToProductChain();
+		if (result === 'ok') phase = 'idle';
+	}
+
+	async function onDeposit(event: SubmitEvent) {
 		event.preventDefault();
-		if (!canDeposit || amount <= 0) return;
+		if (!canDeposit || amount <= 0 || busy) return;
 		depositIntent = true;
+		rejectedApprove = false;
+		if (!selected?.live) {
+			phase = 'not_live';
+			return;
+		}
+		if (!wallet.connected) {
+			phase = 'idle';
+			return;
+		}
+		if (!wallet.onProductChain) {
+			phase = 'wrong_network';
+			return;
+		}
+		const result = await stampDeposit({
+			live: true,
+			vaultAddress: selected.id,
+			amountRaw,
+			connected: wallet.connected,
+			onProductChain: wallet.onProductChain,
+			onPhase: (next) => {
+				phase = next;
+			}
+		});
+		phase = result.phase;
+		rejectedApprove = result.rejectedApprove;
+		if (result.phase === 'confirmed') {
+			amountRaw = '0.00';
+			depositIntent = false;
+			await invalidateAll();
+		}
 	}
 
 	function onKey(event: KeyboardEvent) {
@@ -269,7 +323,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								<span class="tvl-track" aria-hidden="true">
 									<i style="width: {purseFill(hero)}%"></i>
 								</span>
-								<span class="tvl-max">{m.purse_max({ max: purse(hero.vaultMaxUsdso) })}</span>
+								{#if !hero.live}
+									<span class="tvl-max">{m.purse_max({ max: purse(hero.vaultMaxUsdso) })}</span>
+								{/if}
 							</span>
 							<span class="status-tag" class:scratched={hero.status === 'scratched'}>
 								{hero.status === 'scratched' ? m.status_scratched() : m.status_active()}
@@ -320,17 +376,22 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						{/if}
 					</div>
 					<dl class="overlay-tvl">
-						<dt>{m.vault_purse()} <span class="tag">{m.synthetic()}</span></dt>
+						<dt>
+							{m.vault_purse()}
+							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
+						</dt>
 						<dd class="pnl" class:loss={false}>{purse(selected.vaultUsdso)}</dd>
 						<dd class="tvl-track overlay-track" aria-hidden="true">
 							<i style="width: {purseFill(selected)}%"></i>
 						</dd>
-						<dd class="tvl-max">{m.purse_max({ max: purse(selected.vaultMaxUsdso) })}</dd>
+						{#if !liveSelected}
+							<dd class="tvl-max">{m.purse_max({ max: purse(selected.vaultMaxUsdso) })}</dd>
+						{/if}
 					</dl>
 					<div class="last-backer">
 						<div class="pp-head">
 							<span>{m.last_backer()}</span>
-							<span class="tag">{m.synthetic()}</span>
+							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 						</div>
 						{#if selected.lastBacker}
 							<p>
@@ -366,7 +427,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 										inputmode="decimal"
 										autocomplete="off"
 										bind:value={amountRaw}
-										oninput={() => (depositIntent = false)}
+										oninput={() => {
+											depositIntent = false;
+											if (!busy) {
+												phase = 'idle';
+												rejectedApprove = false;
+											}
+										}}
 									/>
 								</div>
 								<div class="chips">
@@ -375,21 +442,22 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									<button type="button" onclick={() => addAmount(100)}>{m.add_hundred()}</button>
 									<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
 								</div>
-								<button class="stamp" type="submit">
+								<button class="stamp" type="submit" disabled={busy}>
 									<img src="/landing/deposit-stamp.webp" alt="" />
 									<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
 								</button>
 							</form>
-							{#if amount <= 0}
-								<p class="slip-note">{m.need_amount()}</p>
-							{:else if depositIntent && !wallet.connected}
-								<p class="wallet-msg">{m.connect_to_sign()}</p>
-								<ConnectGate />
-							{:else if wallet.connected}
-								<p class="wallet-msg">{m.wallet_ready()}</p>
-							{:else}
-								<p class="slip-note">{m.deposit_wallet_note()}</p>
-							{/if}
+							<DepositStatus
+								{phase}
+								{rejectedApprove}
+								{amount}
+								live={liveSelected}
+								connected={wallet.connected}
+								onProductChain={wallet.onProductChain}
+								intent={depositIntent}
+								{busy}
+								onswitch={onSwitchNetwork}
+							/>
 						</div>
 					{/if}
 				</aside>

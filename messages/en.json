@@ -174,5 +174,13 @@
 	"book_empty_backed": "No backed horses in this book.",
 	"book_empty_mine": "No horses of yours in this book.",
 	"book_empty": "Nothing in this book yet.",
-	"close_book_overlay": "Back to the book"
+	"close_book_overlay": "Back to the book",
+	"deposit_approving": "Approve the token, then sign deposit. Nothing is locked yet.",
+	"deposit_pending": "Waiting for the deposit to confirm. Nothing is locked yet.",
+	"deposit_confirmed": "Deposit confirmed. This horse is on your book.",
+	"deposit_rejected": "Deposit canceled. Nothing was sent.",
+	"deposit_reverted": "The deposit reverted. Nothing was locked.",
+	"deposit_rpc": "The network request failed. Nothing was confirmed.",
+	"deposit_cap": "That amount is above the remaining vault cap.",
+	"deposit_not_live": "This horse is not a live vault. Nothing was sent."
 }

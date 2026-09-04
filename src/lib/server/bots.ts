@@ -182,3 +182,40 @@ export async function persistConfirmedBot(
 	}
 	return { id: existing.id };
 }
+
+export type EnteredBot = {
+	id: string;
+	chainId: number;
+	vaultAddress: string;
+	creatorAddress: string;
+	operatorAddress: string;
+	assetAddress: string;
+	name: string;
+	symbol: string;
+	market: 'BTC' | 'ETH';
+	strategy: string;
+	seedAssets: string;
+	createdAt: number;
+};
+
+export async function listEnteredBots(): Promise<EnteredBot[]> {
+	const rows = await db
+		.select({
+			id: bot.id,
+			chainId: bot.chainId,
+			vaultAddress: bot.vaultAddress,
+			creatorAddress: bot.creatorAddress,
+			operatorAddress: bot.operatorAddress,
+			assetAddress: bot.assetAddress,
+			name: bot.name,
+			symbol: bot.symbol,
+			market: bot.market,
+			strategy: bot.strategy,
+			seedAssets: bot.seedAssets,
+			createdAt: bot.createdAt
+		})
+		.from(bot);
+	return rows
+		.filter((row): row is EnteredBot => row.market === 'BTC' || row.market === 'ETH')
+		.sort((a, b) => a.createdAt - b.createdAt);
+}

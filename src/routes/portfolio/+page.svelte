@@ -2,39 +2,52 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import { getLocale, locales, localizeHref } from '$lib/paraglide/runtime';
 	import { resolve } from '$app/paths';
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import ConnectGate from '$lib/landing/ConnectGate.svelte';
+	import DepositStatus from '$lib/landing/DepositStatus.svelte';
 	import { purseFull } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import {
-		applyDeposit,
 		applyWithdraw,
 		bookHoldings,
 		bookTotals,
+		liveBookEntries,
 		loadBook,
 		saveBook,
+		syntheticBookEntries,
 		type BookEntry,
 		type Holding
 	} from '$lib/landing/book';
+	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
 	import { wallet } from '$lib/wallet/session.svelte';
 	import { untrack } from 'svelte';
 	import '../form.css';
 
 	type RoleFilter = 'all' | 'backed' | 'mine';
 
+	let { data } = $props();
+
 	const initialEntered = loadEnteredHero();
 	let entered = $state(initialEntered);
-	let entries = $state<BookEntry[]>(loadBook(initialEntered));
+	let storedEntries = $state<BookEntry[]>(loadBook(initialEntered));
 	let amountRaw = $state('0.00');
 	let slipMode = $state<'deposit' | 'withdraw'>('deposit');
 	let settleIntent = $state<'deposit' | 'withdraw' | null>(null);
 	let roleFilter = $state<RoleFilter>('all');
+	let phase = $state<DepositPhase>('idle');
+	let rejectedApprove = $state(false);
 	const selectedId = $derived(page.url.searchParams.get('horse'));
-
-	const holdings = $derived(bookHoldings(entries, entered));
+	const liveIds = $derived(new Set(data.horses.map((hero) => hero.id.toLowerCase())));
+	const extras = $derived(entered ? [...data.horses, entered] : data.horses);
+	const liveEntries = $derived(
+		wallet.address ? liveBookEntries(data.horses, data.deposits, wallet.address, data.decimals) : []
+	);
+	const syntheticEntries = $derived(syntheticBookEntries(storedEntries, liveIds));
+	const entries = $derived([...liveEntries, ...syntheticEntries]);
+	const holdings = $derived(bookHoldings(entries, extras));
 	const totals = $derived(bookTotals(holdings));
 	const filtered = $derived(
 		holdings.filter((holding) => {
@@ -45,10 +58,14 @@
 	);
 	const selected = $derived(holdings.find((holding) => holding.hero.id === selectedId) ?? null);
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
+	const busy = $derived(phase === 'approving' || phase === 'pending');
+	const liveSelected = $derived(Boolean(selected?.hero.live));
 	const canDeposit = $derived(
 		Boolean(selected?.backed && selected.hero.status === 'active' && !purseFull(selected.hero))
 	);
-	const canWithdraw = $derived(Boolean(selected?.backed && selected.navUsdso > 0));
+	const canWithdraw = $derived(
+		Boolean(selected?.backed && selected.navUsdso > 0 && !selected.hero.live)
+	);
 	const depositReady = $derived(canDeposit && amount > 0);
 	const withdrawReady = $derived(
 		Boolean(canWithdraw && amount > 0 && selected && amount <= selected.navUsdso + 1e-9)
@@ -96,6 +113,8 @@
 		amountRaw = '0.00';
 		slipMode = 'deposit';
 		settleIntent = null;
+		phase = 'idle';
+		rejectedApprove = false;
 		void goto(bookHref(holding.hero.id), {
 			replaceState: true,
 			noScroll: true,
@@ -107,6 +126,8 @@
 		amountRaw = '0.00';
 		slipMode = 'deposit';
 		settleIntent = null;
+		phase = 'idle';
+		rejectedApprove = false;
 		void goto(bookHref(null), {
 			replaceState: true,
 			noScroll: true,
@@ -121,6 +142,8 @@
 	function setSlipMode(next: 'deposit' | 'withdraw') {
 		slipMode = next;
 		settleIntent = null;
+		phase = 'idle';
+		rejectedApprove = false;
 		if (next === 'withdraw' && selected && amount > selected.navUsdso) {
 			amountRaw = selected.navUsdso.toFixed(2);
 		}
@@ -133,6 +156,10 @@
 		}
 		amountRaw = next.toFixed(2);
 		settleIntent = null;
+		if (!busy) {
+			phase = 'idle';
+			rejectedApprove = false;
+		}
 	}
 
 	function fillNav() {
@@ -141,28 +168,65 @@
 		settleIntent = null;
 	}
 
-	function completeSettle() {
-		if (!selected || !settleIntent) return;
-		if (settleIntent === 'deposit' && !depositReady) return;
-		if (settleIntent === 'withdraw' && !withdrawReady) return;
-		const next =
-			settleIntent === 'deposit'
-				? applyDeposit(entries, selected.hero.id, amount)
-				: applyWithdraw(entries, selected.hero.id, amount);
-		entries = next;
-		saveBook(next);
+	function completeWithdraw() {
+		if (!selected || selected.hero.live || !withdrawReady) return;
+		storedEntries = applyWithdraw(storedEntries, selected.hero.id, amount);
+		saveBook(storedEntries);
 		amountRaw = '0.00';
 		settleIntent = null;
 	}
 
-	function onSettle(event: SubmitEvent) {
+	async function onSwitchNetwork() {
+		const result = await wallet.switchToProductChain();
+		if (result === 'ok') phase = 'idle';
+	}
+
+	async function runLiveDeposit() {
+		if (!selected?.hero.live || !depositReady || busy) return;
+		const result = await stampDeposit({
+			live: true,
+			vaultAddress: selected.hero.id,
+			amountRaw,
+			connected: wallet.connected,
+			onProductChain: wallet.onProductChain,
+			onPhase: (next) => {
+				phase = next;
+			}
+		});
+		phase = result.phase;
+		rejectedApprove = result.rejectedApprove;
+		if (result.phase === 'confirmed') {
+			amountRaw = '0.00';
+			settleIntent = null;
+			await invalidateAll();
+		}
+	}
+
+	async function onSettle(event: SubmitEvent) {
 		event.preventDefault();
-		if (!selected || amount <= 0) return;
+		if (!selected || amount <= 0 || busy) return;
 		if (slipMode === 'deposit' && !depositReady) return;
 		if (slipMode === 'withdraw' && !withdrawReady) return;
 		settleIntent = slipMode;
+		rejectedApprove = false;
+		if (slipMode === 'deposit') {
+			if (!selected.hero.live) {
+				phase = 'not_live';
+				return;
+			}
+			if (!wallet.connected) {
+				phase = 'idle';
+				return;
+			}
+			if (!wallet.onProductChain) {
+				phase = 'wrong_network';
+				return;
+			}
+			await runLiveDeposit();
+			return;
+		}
 		if (!wallet.connected) return;
-		completeSettle();
+		completeWithdraw();
 	}
 
 	$effect(() => {
@@ -170,13 +234,13 @@
 		untrack(() => {
 			const nextEntered = loadEnteredHero();
 			entered = nextEntered;
-			entries = loadBook(nextEntered);
+			storedEntries = loadBook(nextEntered);
 		});
 	});
 
 	$effect(() => {
-		if (!wallet.connected || !settleIntent) return;
-		completeSettle();
+		if (!wallet.connected || settleIntent !== 'withdraw') return;
+		completeWithdraw();
 	});
 
 	function onKey(event: KeyboardEvent) {
@@ -335,11 +399,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					</div>
 					<dl class="overlay-tvl book-overlay-stats">
 						<div>
-							<dt>{m.your_shares()} <span class="tag">{m.synthetic()}</span></dt>
+							<dt>
+								{m.your_shares()}
+								{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
+							</dt>
 							<dd>{selected.backed ? shares(selected.sharesPct) : '—'}</dd>
 						</div>
 						<div>
-							<dt>{m.your_pnl()} <span class="tag">{m.synthetic()}</span></dt>
+							<dt>
+								{m.your_pnl()}
+								<span class="tag">{m.synthetic()}</span>
+							</dt>
 							<dd class="pnl" class:loss={selected.pnlUsdso < 0}>{money(selected.pnlUsdso)}</dd>
 						</div>
 					</dl>
@@ -380,7 +450,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 										inputmode="decimal"
 										autocomplete="off"
 										bind:value={amountRaw}
-										oninput={() => (settleIntent = null)}
+										oninput={() => {
+											settleIntent = null;
+											if (!busy) {
+												phase = 'idle';
+												rejectedApprove = false;
+											}
+										}}
 									/>
 								</div>
 								{#if slipMode === 'withdraw'}
@@ -407,7 +483,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								</dl>
 								<div class="book-actions">
 									{#if slipMode === 'deposit'}
-										<button class="stamp" type="submit" disabled={!depositReady}>
+										<button class="stamp" type="submit" disabled={!depositReady || busy}>
 											<img src="/landing/deposit-stamp.webp" alt="" />
 											<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
 										</button>
@@ -419,23 +495,27 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									{/if}
 								</div>
 							</form>
-							{#if amount <= 0}
-								<p class="slip-note">
-									{slipMode === 'withdraw' ? m.need_amount_redeem() : m.need_amount_lock()}
-								</p>
-							{:else if slipMode === 'withdraw' && amount > selected.navUsdso + 1e-9}
+							{#if slipMode === 'deposit'}
+								<DepositStatus
+									{phase}
+									{rejectedApprove}
+									{amount}
+									live={liveSelected}
+									connected={wallet.connected}
+									onProductChain={wallet.onProductChain}
+									intent={settleIntent === 'deposit'}
+									{busy}
+									onswitch={onSwitchNetwork}
+								/>
+							{:else if amount <= 0}
+								<p class="slip-note">{m.need_amount_redeem()}</p>
+							{:else if amount > selected.navUsdso + 1e-9}
 								<p class="slip-note">{m.need_shares()}</p>
 							{:else if settleIntent && !wallet.connected}
-								<p class="wallet-msg">
-									{settleIntent === 'withdraw' ? m.connect_to_sign_withdraw() : m.connect_to_sign()}
-								</p>
+								<p class="wallet-msg">{m.connect_to_sign_withdraw()}</p>
 								<ConnectGate />
-							{:else if slipMode === 'deposit' && purseFull(selected.hero)}
-								<p class="slip-note">{m.purse_full_note()}</p>
 							{:else}
-								<p class="slip-note">
-									{slipMode === 'withdraw' ? m.redeem_wallet_note() : m.deposit_wallet_note()}
-								</p>
+								<p class="slip-note">{m.redeem_wallet_note()}</p>
 							{/if}
 						</div>
 					{/if}

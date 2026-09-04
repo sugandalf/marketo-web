@@ -67,7 +67,14 @@ export function classifyWriteError(error: unknown): OpenVaultFailure {
 		if (typeof node === 'object' && node && 'shortMessage' in node) {
 			const short = String(node.shortMessage).toLowerCase();
 			if (short.includes('user rejected') || short.includes('denied')) return 'rejected';
-			if (short.includes('revert') || short.includes('operatorexists')) return 'reverted';
+			if (
+				short.includes('revert') ||
+				short.includes('operatorexists') ||
+				short.includes('invalidamount') ||
+				short.includes('depositcapexceeded')
+			) {
+				return 'reverted';
+			}
 		}
 	}
 	return 'rpc_error';

@@ -1,3 +1,4 @@
+import { formatUnits } from 'viem';
 import type { Hero } from './heroes';
 import { heroById, heroPnl, heroes } from './heroes';
 import { loadEnteredHero, type EnteredHero } from './entered';
@@ -107,9 +108,12 @@ function packHolding(entry: BookEntry, hero: Hero): Holding {
 	};
 }
 
-export function bookHoldings(entries: BookEntry[], entered: EnteredHero | null): Holding[] {
+export function bookHoldings(entries: BookEntry[], extras: Hero[] = []): Holding[] {
 	return entries
-		.map((entry) => holdingFrom(entry, entered?.id === entry.heroId ? entered : null))
+		.map((entry) => {
+			const extra = extras.find((hero) => hero.id === entry.heroId) ?? null;
+			return holdingFrom(entry, extra);
+		})
 		.filter((holding): holding is Holding => Boolean(holding))
 		.sort((a, b) => a.hero.program - b.hero.program);
 }
@@ -165,4 +169,52 @@ export function applyWithdraw(entries: BookEntry[], heroId: string, amount: numb
 		existing.backed = false;
 	}
 	return existing.backed || existing.mine ? next : next.filter((entry) => entry.heroId !== heroId);
+}
+
+export type DepositProjection = {
+	vaultAddress: string;
+	depositorAddress: string;
+	assets: string;
+};
+
+export function liveBookEntries(
+	horses: Hero[],
+	deposits: DepositProjection[],
+	address: string,
+	decimals: number
+): BookEntry[] {
+	const wallet = address.toLowerCase();
+	const capitalByVault = new Map<string, number>();
+	for (const row of deposits) {
+		if (row.depositorAddress.toLowerCase() !== wallet) continue;
+		const key = row.vaultAddress.toLowerCase();
+		const add = Number.parseFloat(formatUnits(BigInt(row.assets), decimals)) || 0;
+		capitalByVault.set(key, (capitalByVault.get(key) ?? 0) + add);
+	}
+
+	const entries: BookEntry[] = [];
+	const seen = new Set<string>();
+	for (const hero of horses) {
+		if (!hero.live) continue;
+		const capital = capitalByVault.get(hero.id.toLowerCase()) ?? 0;
+		const mine = hero.creatorAddress?.toLowerCase() === wallet;
+		const backed = capital > 0;
+		if (!backed && !mine) continue;
+		entries.push({
+			heroId: hero.id,
+			backed,
+			mine,
+			capitalUsdso: capital,
+			pnlUsdso: 0
+		});
+		seen.add(hero.id.toLowerCase());
+	}
+	return entries;
+}
+
+export function syntheticBookEntries(entries: BookEntry[], liveIds: Set<string>): BookEntry[] {
+	return entries.filter((entry) => {
+		if (liveIds.has(entry.heroId.toLowerCase())) return false;
+		return Boolean(heroById(entry.heroId));
+	});
 }

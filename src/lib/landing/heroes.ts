@@ -30,6 +30,9 @@ export type Hero = {
 	fights: PastFight[];
 	lastBacker: LastBacker | null;
 	strategy?: string;
+	live?: boolean;
+	creatorAddress?: string;
+	operatorAddress?: string;
 };
 
 const IN_FORM_LIMIT = 3;
@@ -223,11 +226,12 @@ export function heroAgeDays(hero: Hero, now = new Date()): number {
 }
 
 export function purseFill(hero: Hero): number {
-	if (hero.vaultMaxUsdso <= 0) return 0;
+	if (hero.live || hero.vaultMaxUsdso <= 0) return 0;
 	return Math.min(100, (hero.vaultUsdso / hero.vaultMaxUsdso) * 100);
 }
 
 export function purseFull(hero: Hero): boolean {
+	if (hero.live) return false;
 	return hero.vaultUsdso >= hero.vaultMaxUsdso;
 }
 
@@ -242,7 +246,16 @@ export function inFormHeroes(list: Hero[] = heroes): Hero[] {
 		.slice(0, IN_FORM_LIMIT);
 }
 
-export function homepageRoster(entered: Hero | null, wantedId: string | null): Hero[] {
+export function mergeLiveRoster(live: Hero[], rest: Hero[]): Hero[] {
+	const seen = new Set(live.map((hero) => hero.id.toLowerCase()));
+	return [...live, ...rest.filter((hero) => !seen.has(hero.id.toLowerCase()))];
+}
+
+export function homepageRoster(
+	entered: Hero | null,
+	wantedId: string | null,
+	live: Hero[] = []
+): Hero[] {
 	const form = inFormHeroes();
 	const extras: Hero[] = [];
 	const seen = new Set(form.map((hero) => hero.id));
@@ -251,9 +264,14 @@ export function homepageRoster(entered: Hero | null, wantedId: string | null): H
 		seen.add(hero.id);
 		extras.push(hero);
 	};
+	for (const hero of live) pin(hero);
 	pin(entered);
 	if (wantedId) {
-		pin(entered?.id === wantedId ? entered : heroById(wantedId));
+		pin(
+			entered?.id === wantedId
+				? entered
+				: (live.find((hero) => hero.id === wantedId) ?? heroById(wantedId))
+		);
 	}
 	return [...extras, ...form];
 }

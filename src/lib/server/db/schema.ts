@@ -30,3 +30,20 @@ export const bot = sqliteTable('bot', {
 		.notNull()
 		.$defaultFn(() => Date.now())
 });
+
+export const deposit = sqliteTable('deposit', {
+	id: text('id')
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	chainId: integer('chain_id').notNull(),
+	vaultAddress: text('vault_address').notNull(),
+	depositorAddress: text('depositor_address').notNull(),
+	senderAddress: text('sender_address').notNull(),
+	assetAddress: text('asset_address').notNull(),
+	assets: text('assets').notNull(),
+	shares: text('shares').notNull(),
+	txHash: text('tx_hash').notNull().unique(),
+	createdAt: integer('created_at')
+		.notNull()
+		.$defaultFn(() => Date.now())
+});

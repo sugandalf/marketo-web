@@ -2,38 +2,52 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import { getLocale, locales, localizeHref } from '$lib/paraglide/runtime';
 	import { resolve } from '$app/paths';
+	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
-	import ConnectGate from '$lib/landing/ConnectGate.svelte';
+	import DepositStatus from '$lib/landing/DepositStatus.svelte';
 	import { homepageRoster, heroById, type Hero } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
+	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
 	import { wallet } from '$lib/wallet/session.svelte';
 	import './form.css';
+
+	let { data } = $props();
 
 	let entered = $state(loadEnteredHero());
 	let selectedId = $state(page.url.searchParams.get('horse') ?? '');
 	let amountRaw = $state('0.00');
 	let depositIntent = $state(false);
 	let booted = $state(false);
+	let phase = $state<DepositPhase>('idle');
+	let rejectedApprove = $state(false);
 
 	const wanted = $derived(page.url.searchParams.get('horse'));
-	const roster = $derived(homepageRoster(entered, wanted));
+	const live = $derived(data.horses);
+	const roster = $derived(homepageRoster(entered, wanted, live));
 	const selected = $derived(roster.find((hero) => hero.id === selectedId) ?? roster[0] ?? null);
 	const bench = $derived(selected ? roster.filter((hero) => hero.id !== selected.id) : roster);
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
 	const sharePct = $derived(
 		selected && amount > 0 ? (amount / (selected.vaultUsdso + amount)) * 100 : 0
 	);
+	const busy = $derived(phase === 'approving' || phase === 'pending');
+	const liveSelected = $derived(Boolean(selected?.live));
 
 	$effect(() => {
 		if (booted) return;
 		const extra = loadEnteredHero();
 		entered = extra;
-		const wanted = page.url.searchParams.get('horse');
-		const card = homepageRoster(extra, wanted);
-		if (wanted && (extra?.id === wanted || heroById(wanted))) {
-			selectedId = wanted;
+		const wantedHorse = page.url.searchParams.get('horse');
+		const card = homepageRoster(extra, wantedHorse, data.horses);
+		if (
+			wantedHorse &&
+			(extra?.id === wantedHorse ||
+				heroById(wantedHorse) ||
+				data.horses.some((hero) => hero.id === wantedHorse))
+		) {
+			selectedId = wantedHorse;
 		} else if (extra) {
 			selectedId = extra.id;
 		} else if (card[0]) {
@@ -65,17 +79,60 @@
 	function addAmount(delta: number) {
 		amountRaw = (amount + delta).toFixed(2);
 		depositIntent = false;
+		if (!busy) {
+			phase = 'idle';
+			rejectedApprove = false;
+		}
 	}
 
 	function selectHero(hero: Hero) {
 		selectedId = hero.id;
 		depositIntent = false;
+		if (!busy) {
+			phase = 'idle';
+			rejectedApprove = false;
+		}
 	}
 
-	function onDeposit(event: SubmitEvent) {
+	async function onSwitchNetwork() {
+		const result = await wallet.switchToProductChain();
+		if (result === 'ok') phase = 'idle';
+	}
+
+	async function onDeposit(event: SubmitEvent) {
 		event.preventDefault();
-		if (!selected || amount <= 0) return;
+		if (!selected || amount <= 0 || busy) return;
 		depositIntent = true;
+		rejectedApprove = false;
+		if (!selected.live) {
+			phase = 'not_live';
+			return;
+		}
+		if (!wallet.connected) {
+			phase = 'idle';
+			return;
+		}
+		if (!wallet.onProductChain) {
+			phase = 'wrong_network';
+			return;
+		}
+		const result = await stampDeposit({
+			live: true,
+			vaultAddress: selected.id,
+			amountRaw,
+			connected: wallet.connected,
+			onProductChain: wallet.onProductChain,
+			onPhase: (next) => {
+				phase = next;
+			}
+		});
+		phase = result.phase;
+		rejectedApprove = result.rejectedApprove;
+		if (result.phase === 'confirmed') {
+			amountRaw = '0.00';
+			depositIntent = false;
+			await invalidateAll();
+		}
 	}
 </script>
 
@@ -122,7 +179,10 @@
 						</div>
 					</div>
 					<dl class="purse">
-						<dt>{m.vault_purse()} <span class="tag">{m.synthetic()}</span></dt>
+						<dt>
+							{m.vault_purse()}
+							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
+						</dt>
 						<dd>{purse(selected.vaultUsdso)}</dd>
 					</dl>
 				</article>
@@ -153,7 +213,13 @@
 								inputmode="decimal"
 								autocomplete="off"
 								bind:value={amountRaw}
-								oninput={() => (depositIntent = false)}
+								oninput={() => {
+									depositIntent = false;
+									if (!busy) {
+										phase = 'idle';
+										rejectedApprove = false;
+									}
+								}}
 							/>
 						</div>
 						<div class="chips">
@@ -163,26 +229,31 @@
 							<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
 						</div>
 						<dl class="strip-preview">
-							<dt>{m.est_shares()} <span class="tag">{m.synthetic()}</span></dt>
+							<dt>
+								{m.est_shares()}
+								{#if !liveSelected || phase !== 'confirmed'}<span class="tag">{m.synthetic()}</span
+									>{/if}
+							</dt>
 							<dd>
 								{sharePct.toFixed(2)}%
 							</dd>
 						</dl>
-						<button class="stamp" type="submit">
+						<button class="stamp" type="submit" disabled={busy}>
 							<img src="/landing/deposit-stamp.webp" alt="" />
 							<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
 						</button>
 					</form>
-					{#if amount <= 0}
-						<p class="slip-note">{m.need_amount()}</p>
-					{:else if depositIntent && !wallet.connected}
-						<p class="wallet-msg">{m.connect_to_sign()}</p>
-						<ConnectGate />
-					{:else if wallet.connected}
-						<p class="wallet-msg">{m.wallet_ready()}</p>
-					{:else}
-						<p class="slip-note">{m.deposit_wallet_note()}</p>
-					{/if}
+					<DepositStatus
+						{phase}
+						{rejectedApprove}
+						{amount}
+						live={liveSelected}
+						connected={wallet.connected}
+						onProductChain={wallet.onProductChain}
+						intent={depositIntent}
+						{busy}
+						onswitch={onSwitchNetwork}
+					/>
 				</aside>
 			</div>
 		{:else}
