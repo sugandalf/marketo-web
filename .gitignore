@@ -27,6 +27,9 @@ project.inlang/cache/
 # SQLite
 *.db
 
+# DreamDEX vault example bot local state
+examples/dreamdex-vault-bot/.state/
+
 # Impeccable local / generated
 .impeccable/config.local.json
 .impeccable/hook.cache.json

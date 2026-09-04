@@ -15,7 +15,8 @@
 		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:studio": "drizzle-kit studio",
+		"bot:dreamdex": "bun run examples/dreamdex-vault-bot/src/index.ts"
 	},
 	"devDependencies": {
 		"@inlang/paraglide-js": "^2.18.2",
@@ -41,6 +42,7 @@
 	"dependencies": {
 		"@fontsource/barlow-condensed": "^5.3.0",
 		"@fontsource/big-shoulders-display": "^5.3.0",
+		"@somnia-chain/markets-sdk": "^0.29.0",
 		"@wagmi/connectors": "^8.2.0",
 		"@wagmi/core": "^3.6.5",
 		"better-sqlite3": "^13.0.2",
