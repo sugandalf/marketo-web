@@ -33,6 +33,7 @@ export type Hero = {
 	live?: boolean;
 	creatorAddress?: string;
 	operatorAddress?: string;
+	pnlUsdso?: number;
 };
 
 const IN_FORM_LIMIT = 3;
@@ -216,6 +217,7 @@ export function recentPnl(hero: Hero): number {
 }
 
 export function heroPnl(hero: Hero): number {
+	if (hero.pnlUsdso !== undefined) return hero.pnlUsdso;
 	return hero.fights.reduce((sum, fight) => sum + fight.pnlUsdso, 0);
 }
 

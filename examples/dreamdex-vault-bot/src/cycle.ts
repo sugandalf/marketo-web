@@ -65,9 +65,7 @@ export async function claimSettled(ctx: CycleContext, vault: Hex): Promise<void>
 	}
 	for (const row of claims) {
 		if (row.amount <= 0n) continue;
-		const marketId = (
-			row.marketId.startsWith('0x') ? row.marketId : `0x${row.marketId}`
-		) as Hex;
+		const marketId = (row.marketId.startsWith('0x') ? row.marketId : `0x${row.marketId}`) as Hex;
 		await sendVaultWrite(
 			ctx.gate,
 			'redeem',

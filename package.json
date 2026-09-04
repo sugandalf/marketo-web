@@ -16,7 +16,8 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
-		"bot:dreamdex": "bun run examples/dreamdex-vault-bot/src/index.ts"
+		"bot:dreamdex": "bun run examples/dreamdex-vault-bot/src/index.ts",
+		"bot:performance": "bun run src/lib/server/performance/cli.ts"
 	},
 	"devDependencies": {
 		"@inlang/paraglide-js": "^2.18.2",

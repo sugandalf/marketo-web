@@ -10,6 +10,14 @@ bun run bot:dreamdex
 
 `DRY_RUN=true` by default: discovers live windows and logs intended writes, no transactions.
 
+Homepage and `/program` do **not** read this bot’s logs. Live-horse TVL, PnL, and past performances come from SQLite rows written by a separate read-only indexer:
+
+```bash
+bun run bot:performance
+```
+
+Run that process beside the web app (`DATABASE_URL`, RPC, optional `INDEXER_URL` / `WS_RPC_URL`, `STATS_INTERVAL_MS` default 30000). It does not load `OPERATOR_PRIVATE_KEY` and does not send vault writes. Until it has stored a snapshot, live horses show empty fights and zero purse.
+
 ## Live mode
 
 Set in the repo `.env` (never `PUBLIC_*`):

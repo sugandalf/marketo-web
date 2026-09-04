@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core';
 
 export const task = sqliteTable('task', {
 	id: text('id')
@@ -65,3 +65,41 @@ export const withdrawal = sqliteTable('withdrawal', {
 		.notNull()
 		.$defaultFn(() => Date.now())
 });
+
+export const botStats = sqliteTable(
+	'bot_stats',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		chainId: integer('chain_id').notNull(),
+		vaultAddress: text('vault_address').notNull(),
+		tvlAssets: text('tvl_assets').notNull(),
+		pnlAssets: text('pnl_assets').notNull(),
+		realizedPnlAssets: text('realized_pnl_assets').notNull(),
+		unrealizedPnlAssets: text('unrealized_pnl_assets'),
+		updatedAt: integer('updated_at')
+			.notNull()
+			.$defaultFn(() => Date.now())
+	},
+	(t) => [unique('bot_stats_chain_vault_unique').on(t.chainId, t.vaultAddress)]
+);
+
+export const botFight = sqliteTable(
+	'bot_fight',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		chainId: integer('chain_id').notNull(),
+		vaultAddress: text('vault_address').notNull(),
+		marketId: text('market_id').notNull(),
+		date: text('date').notNull(),
+		window: text('window').notNull(),
+		market: text('market').notNull(),
+		side: text('side').notNull(),
+		pnlAssets: text('pnl_assets').notNull(),
+		settledAt: integer('settled_at').notNull()
+	},
+	(t) => [unique('bot_fight_vault_market_unique').on(t.vaultAddress, t.marketId)]
+);

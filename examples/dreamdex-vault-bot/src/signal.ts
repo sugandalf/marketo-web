@@ -124,12 +124,18 @@ export function estimateUp(i: ModelInput): Estimate {
 	return { pUp, tilt: pUp - i.anchorUp, anchored: false };
 }
 
-export function marketBoundUp(book: { bids: [number, number][]; asks: [number, number][] }): number | null {
+export function marketBoundUp(book: {
+	bids: [number, number][];
+	asks: [number, number][];
+}): number | null {
 	const p = book.asks[0]?.[0] ?? book.bids[0]?.[0];
 	return p !== undefined && p > 0 && p < 1 ? p : null;
 }
 
-export function marketImpliedUp(book: { bids: [number, number][]; asks: [number, number][] }): number | null {
+export function marketImpliedUp(book: {
+	bids: [number, number][];
+	asks: [number, number][];
+}): number | null {
 	const bid = book.bids[0]?.[0];
 	const ask = book.asks[0]?.[0];
 	if (bid === undefined || ask === undefined) return null;

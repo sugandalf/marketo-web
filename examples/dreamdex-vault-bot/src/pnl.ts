@@ -110,9 +110,7 @@ async function markOnchain(
 	}
 	const noPrice = yesPrice === null ? null : one - yesPrice;
 	const markValue =
-		yesPrice === null || noPrice === null
-			? null
-			: (yes * yesPrice) / one + (no * noPrice) / one;
+		yesPrice === null || noPrice === null ? null : (yes * yesPrice) / one + (no * noPrice) / one;
 	const status = onchain.isVoided
 		? 'Voided'
 		: onchain.isResolved

@@ -292,8 +292,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					<span>{m.col_name()}</span>
 					<span>{m.col_age()}</span>
 					<span>{m.col_created()}</span>
-					<span>{m.col_pnl()} <span class="tag">{m.synthetic()}</span></span>
-					<span>{m.col_purse()} <span class="tag">{m.synthetic()}</span></span>
+					<span>{m.col_pnl()}</span>
+					<span>{m.col_purse()}</span>
 					<span>{m.col_status()}</span>
 				</div>
 				{#if filtered.length}
@@ -317,9 +317,15 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 							</span>
 							<span class="tote-age">{m.age_days({ days: heroAgeDays(hero) })}</span>
 							<span>{createdDate(hero.created)}</span>
-							<span class="pnl" class:loss={heroPnl(hero) < 0}>{money(heroPnl(hero))}</span>
+							<span class="pnl" class:loss={heroPnl(hero) < 0}
+								>{money(heroPnl(hero))}{#if !hero.live}<span class="tag">{m.synthetic()}</span
+									>{/if}</span
+							>
 							<span class="tote-purse">
-								<span>{purse(hero.vaultUsdso)}</span>
+								<span
+									>{purse(hero.vaultUsdso)}{#if !hero.live}<span class="tag">{m.synthetic()}</span
+										>{/if}</span
+								>
 								<span class="tvl-track" aria-hidden="true">
 									<i style="width: {purseFill(hero)}%"></i>
 								</span>
@@ -357,10 +363,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					<div class="pp">
 						<div class="pp-head">
 							<span>{m.past_performances()}</span>
-							<span class="tag">{m.synthetic()}</span>
+							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 						</div>
 						{#if selected.fights.length}
-							{#each selected.fights as fight (fight.date + fight.market)}
+							{#each selected.fights as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
 								<div class="pp-row overlay-pp">
 									<span>{fightDate(fight.date)}</span>
 									<span>{fight.window}</span>

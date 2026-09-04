@@ -149,14 +149,20 @@ export async function takeFollow(
 	ctx.warned.delete(`warm:${asset}`);
 
 	const ttl = Number.isFinite(expiryMs) ? expiryMs - now : null;
-	const ref = await ctx.refs.referenceFor({ marketId: market.marketId, strike: market.strike }, mom.spot);
+	const ref = await ctx.refs.referenceFor(
+		{ marketId: market.marketId, strike: market.strike },
+		mom.spot
+	);
 	const horizonOk =
-		ctx.follow.maxHorizons <= 0 || (ttl !== null && ttl <= ctx.follow.maxHorizons * ctx.follow.windowMs);
+		ctx.follow.maxHorizons <= 0 ||
+		(ttl !== null && ttl <= ctx.follow.maxHorizons * ctx.follow.windowMs);
 	const useMomentum = horizonOk && Math.abs(mom.r) >= ctx.follow.threshold;
 	if (!ref && !useMomentum) {
 		note(
 			cycle,
-			horizonOk ? 'no view and no reference price' : 'no reference, and expiry too far out for momentum'
+			horizonOk
+				? 'no view and no reference price'
+				: 'no reference, and expiry too far out for momentum'
 		);
 		return;
 	}
@@ -206,7 +212,10 @@ export async function takeFollow(
 	const bullish = tilt > 0;
 	const leg: Leg = bullish ? 'yes' : 'no';
 
-	const yesRaw = await ctx.adapter.outcomeBalance(market.onchain.outcomeToken, market.onchain.yesId);
+	const yesRaw = await ctx.adapter.outcomeBalance(
+		market.onchain.outcomeToken,
+		market.onchain.yesId
+	);
 	const noRaw = await ctx.adapter.outcomeBalance(market.onchain.outcomeToken, market.onchain.noId);
 	const heldYes = Number(yesRaw) / Number(one);
 	const heldNo = Number(noRaw) / Number(one);
@@ -343,6 +352,7 @@ export function formatHeartbeat(cycle: FollowCycle, position: Positions): string
 		: '';
 	const gross = position.totalGross();
 	const netTotal = position.totalNet();
-	const book = gross === 0 ? 'flat' : `net ${netTotal}${gross === netTotal ? '' : ` of ${gross} gross`}`;
+	const book =
+		gross === 0 ? 'flat' : `net ${netTotal}${gross === netTotal ? '' : ` of ${gross} gross`}`;
 	return `idle · ${cycle.scanned} tradable · ${book} · ${reasons}${gap}${closest}`;
 }

@@ -22,6 +22,13 @@
       "when": 1788493484132,
       "tag": "0002_brown_doctor_doom",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788530340367,
+      "tag": "0003_regular_outlaw_kid",
+      "breakpoints": true
     }
   ]
 }

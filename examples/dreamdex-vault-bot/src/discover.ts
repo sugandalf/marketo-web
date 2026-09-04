@@ -169,8 +169,7 @@ async function fromLogs(
 		intervalSec: number;
 		strike: string;
 	}[] = [];
-	const windows =
-		cadenceSec >= 3600 ? 12 : cadenceSec >= 900 ? 8 : cadenceSec > 0 ? 6 : 12;
+	const windows = cadenceSec >= 3600 ? 12 : cadenceSec >= 900 ? 8 : cadenceSec > 0 ? 6 : 12;
 	log(`MarketCreated log fallback, last ${windows * 1000} blocks`);
 	for (let i = 0; i < windows; i++) {
 		const to = head - BigInt(i * 1000);

@@ -159,10 +159,10 @@
 						<div class="pp">
 							<div class="pp-head">
 								<span>{m.past_performances()}</span>
-								<span class="tag">{m.synthetic()}</span>
+								{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 							</div>
 							{#if selected.fights.length}
-								{#each selected.fights as fight (fight.date + fight.market)}
+								{#each selected.fights as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
 									<div class="pp-row">
 										<span>{fightDate(fight.date)}</span>
 										<span>{fight.window}</span>
@@ -285,7 +285,7 @@
 								: m.pedigree({ window: hero.window, market: hero.market })}
 						</span>
 						<span class="entry-pp">
-							{#each hero.fights.slice(0, 3) as fight (fight.date + fight.market)}
+							{#each hero.fights.slice(0, 3) as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
 								<span>
 									{fightDate(fight.date)}
 									<span class="vs {fight.market.toLowerCase()}"
