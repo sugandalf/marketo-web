@@ -182,5 +182,12 @@
 	"deposit_reverted": "Setoran dibatalkan di rantai. Tidak ada yang terkunci.",
 	"deposit_rpc": "Permintaan jaringan gagal. Tidak ada yang dikonfirmasi.",
 	"deposit_cap": "Jumlah itu di atas sisa kapasitas vault.",
-	"deposit_not_live": "Kuda ini bukan vault hidup. Tidak ada yang dikirim."
+	"deposit_not_live": "Kuda ini bukan vault hidup. Tidak ada yang dikirim.",
+	"withdraw_pending": "Menunggu konfirmasi penebusan. Belum ada yang keluar dari vault.",
+	"withdraw_confirmed": "Penebusan dikonfirmasi. Sisa NAV ada di buku Anda.",
+	"withdraw_rejected": "Penebusan dibatalkan. Tidak ada yang dikirim.",
+	"withdraw_reverted": "Penebusan dibatalkan di rantai. Tidak ada yang keluar dari vault.",
+	"withdraw_rpc": "Permintaan jaringan gagal. Tidak ada yang dikonfirmasi.",
+	"withdraw_exceeds": "Jumlah itu di atas aset yang dapat ditebus pada kuda ini.",
+	"withdraw_not_live": "Kuda ini bukan vault hidup. Tidak ada yang dikirim."
 }

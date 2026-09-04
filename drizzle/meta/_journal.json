@@ -15,6 +15,13 @@
       "when": 1788490148727,
       "tag": "0001_colorful_lord_tyger",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788493484132,
+      "tag": "0002_brown_doctor_doom",
+      "breakpoints": true
     }
   ]
 }

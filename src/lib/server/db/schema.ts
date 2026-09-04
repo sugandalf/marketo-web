@@ -47,3 +47,21 @@ export const deposit = sqliteTable('deposit', {
 		.notNull()
 		.$defaultFn(() => Date.now())
 });
+
+export const withdrawal = sqliteTable('withdrawal', {
+	id: text('id')
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	chainId: integer('chain_id').notNull(),
+	vaultAddress: text('vault_address').notNull(),
+	ownerAddress: text('owner_address').notNull(),
+	receiverAddress: text('receiver_address').notNull(),
+	senderAddress: text('sender_address').notNull(),
+	assetAddress: text('asset_address').notNull(),
+	assets: text('assets').notNull(),
+	shares: text('shares').notNull(),
+	txHash: text('tx_hash').notNull().unique(),
+	createdAt: integer('created_at')
+		.notNull()
+		.$defaultFn(() => Date.now())
+});

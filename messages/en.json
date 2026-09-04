@@ -182,5 +182,12 @@
 	"deposit_reverted": "The deposit reverted. Nothing was locked.",
 	"deposit_rpc": "The network request failed. Nothing was confirmed.",
 	"deposit_cap": "That amount is above the remaining vault cap.",
-	"deposit_not_live": "This horse is not a live vault. Nothing was sent."
+	"deposit_not_live": "This horse is not a live vault. Nothing was sent.",
+	"withdraw_pending": "Waiting for the redeem to confirm. Nothing has left the vault yet.",
+	"withdraw_confirmed": "Redeem confirmed. Your remaining NAV is on the book.",
+	"withdraw_rejected": "Redeem canceled. Nothing was sent.",
+	"withdraw_reverted": "The redeem reverted. Nothing left the vault.",
+	"withdraw_rpc": "The network request failed. Nothing was confirmed.",
+	"withdraw_exceeds": "That amount is above the redeemable assets on this horse.",
+	"withdraw_not_live": "This horse is not a live vault. Nothing was sent."
 }

@@ -71,7 +71,8 @@ export function classifyWriteError(error: unknown): OpenVaultFailure {
 				short.includes('revert') ||
 				short.includes('operatorexists') ||
 				short.includes('invalidamount') ||
-				short.includes('depositcapexceeded')
+				short.includes('depositcapexceeded') ||
+				short.includes('erc4626exceededmaxwithdraw')
 			) {
 				return 'reverted';
 			}

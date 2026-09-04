@@ -177,37 +177,47 @@ export type DepositProjection = {
 	assets: string;
 };
 
+export type WithdrawalProjection = {
+	vaultAddress: string;
+	ownerAddress: string;
+	assets: string;
+};
+
 export function liveBookEntries(
 	horses: Hero[],
 	deposits: DepositProjection[],
+	withdrawals: WithdrawalProjection[],
 	address: string,
 	decimals: number
 ): BookEntry[] {
 	const wallet = address.toLowerCase();
-	const capitalByVault = new Map<string, number>();
+	const netByVault = new Map<string, bigint>();
 	for (const row of deposits) {
 		if (row.depositorAddress.toLowerCase() !== wallet) continue;
 		const key = row.vaultAddress.toLowerCase();
-		const add = Number.parseFloat(formatUnits(BigInt(row.assets), decimals)) || 0;
-		capitalByVault.set(key, (capitalByVault.get(key) ?? 0) + add);
+		netByVault.set(key, (netByVault.get(key) ?? 0n) + BigInt(row.assets));
+	}
+	for (const row of withdrawals) {
+		if (row.ownerAddress.toLowerCase() !== wallet) continue;
+		const key = row.vaultAddress.toLowerCase();
+		netByVault.set(key, (netByVault.get(key) ?? 0n) - BigInt(row.assets));
 	}
 
 	const entries: BookEntry[] = [];
-	const seen = new Set<string>();
 	for (const hero of horses) {
 		if (!hero.live) continue;
-		const capital = capitalByVault.get(hero.id.toLowerCase()) ?? 0;
+		const net = netByVault.get(hero.id.toLowerCase()) ?? 0n;
+		const remaining = net > 0n ? net : 0n;
 		const mine = hero.creatorAddress?.toLowerCase() === wallet;
-		const backed = capital > 0;
+		const backed = remaining > 0n;
 		if (!backed && !mine) continue;
 		entries.push({
 			heroId: hero.id,
 			backed,
 			mine,
-			capitalUsdso: capital,
+			capitalUsdso: remaining > 0n ? Number.parseFloat(formatUnits(remaining, decimals)) || 0 : 0,
 			pnlUsdso: 0
 		});
-		seen.add(hero.id.toLowerCase());
 	}
 	return entries;
 }

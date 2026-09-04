@@ -5,6 +5,7 @@ import { heroes } from '$lib/landing/heroes';
 import { listEnteredBots, type EnteredBot } from './bots';
 import { somniaPublicClient } from './chain';
 import { listDeposits, type DepositRow } from './deposits';
+import { listWithdrawals, type WithdrawalRow } from './withdrawals';
 
 export type LiveHorse = Hero & {
 	live: true;
@@ -15,6 +16,7 @@ export type LiveHorse = Hero & {
 export type FieldPayload = {
 	horses: LiveHorse[];
 	deposits: DepositRow[];
+	withdrawals: WithdrawalRow[];
 	decimals: number;
 };
 
@@ -56,19 +58,31 @@ function lastBackerFor(
 	};
 }
 
-function purseFor(botRow: EnteredBot, deposits: DepositRow[], decimals: number): number {
+function purseFor(
+	botRow: EnteredBot,
+	deposits: DepositRow[],
+	withdrawals: WithdrawalRow[],
+	decimals: number
+): number {
 	let total = BigInt(botRow.seedAssets);
 	for (const row of deposits) {
 		if (row.vaultAddress.toLowerCase() === botRow.vaultAddress.toLowerCase()) {
 			total += BigInt(row.assets);
 		}
 	}
+	for (const row of withdrawals) {
+		if (row.vaultAddress.toLowerCase() === botRow.vaultAddress.toLowerCase()) {
+			total -= BigInt(row.assets);
+		}
+	}
+	if (total < 0n) total = 0n;
 	return toDisplay(total, decimals);
 }
 
 export function horseFromBot(
 	botRow: EnteredBot,
 	deposits: DepositRow[],
+	withdrawals: WithdrawalRow[],
 	decimals: number,
 	program: number
 ): LiveHorse {
@@ -78,7 +92,7 @@ export function horseFromBot(
 		name: botRow.name,
 		market: botRow.market,
 		window: '15m',
-		vaultUsdso: purseFor(botRow, deposits, decimals),
+		vaultUsdso: purseFor(botRow, deposits, withdrawals, decimals),
 		vaultMaxUsdso: 0,
 		created: new Date(botRow.createdAt).toISOString().slice(0, 10),
 		status: 'active',
@@ -92,14 +106,15 @@ export function horseFromBot(
 }
 
 export async function loadField(): Promise<FieldPayload> {
-	const [bots, deposits, decimals] = await Promise.all([
+	const [bots, deposits, withdrawals, decimals] = await Promise.all([
 		listEnteredBots(),
 		listDeposits(),
+		listWithdrawals(),
 		assetDecimals()
 	]);
 	const start = nextProgramStart();
 	const horses = bots.map((botRow, index) =>
-		horseFromBot(botRow, deposits, decimals, start + index)
+		horseFromBot(botRow, deposits, withdrawals, decimals, start + index)
 	);
-	return { horses, deposits, decimals };
+	return { horses, deposits, withdrawals, decimals };
 }
