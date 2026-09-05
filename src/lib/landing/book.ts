@@ -1,6 +1,6 @@
 import { formatUnits } from 'viem';
 import type { Hero } from './heroes';
-import { heroById, heroPnl, heroes } from './heroes';
+import { heroPnl } from './heroes';
 import { loadEnteredHero, type EnteredHero } from './entered';
 
 const KEY = 'marketo:book:v2';
@@ -21,18 +21,6 @@ export type Holding = BookEntry & {
 	sharesPct: number;
 	capitalFill: number;
 };
-
-/** Illustrative book until chain data exists. Figures are synthetic. */
-const DEMO: BookEntry[] = [
-	{ heroId: 'warden', backed: true, mine: false, capitalUsdso: 2780, pnlUsdso: 820 },
-	{ heroId: 'kite', backed: true, mine: false, capitalUsdso: 1040, pnlUsdso: 260 },
-	{ heroId: 'ash', backed: true, mine: true, capitalUsdso: 680, pnlUsdso: 160 },
-	{ heroId: 'redline', backed: false, mine: true, capitalUsdso: 0, pnlUsdso: 0 }
-];
-
-function cloneDemo(): BookEntry[] {
-	return DEMO.map((entry) => ({ ...entry }));
-}
 
 function readStored(): BookEntry[] | null {
 	if (typeof sessionStorage === 'undefined') return null;
@@ -71,7 +59,7 @@ function withEntered(entries: BookEntry[], entered: EnteredHero | null): BookEnt
 }
 
 export function loadBook(entered: EnteredHero | null = loadEnteredHero()): BookEntry[] {
-	return withEntered(readStored() ?? cloneDemo(), entered);
+	return withEntered(readStored() ?? [], entered);
 }
 
 export function saveBook(entries: BookEntry[]) {
@@ -79,14 +67,8 @@ export function saveBook(entries: BookEntry[]) {
 }
 
 export function holdingFrom(entry: BookEntry, extraHero?: Hero | null): Holding | null {
-	const hero = extraHero?.id === entry.heroId ? extraHero : heroById(entry.heroId);
-	if (!hero && !extraHero) {
-		const rosterHero = heroes.find((item) => item.id === entry.heroId);
-		if (!rosterHero) return null;
-		return packHolding(entry, rosterHero);
-	}
-	if (!hero) return extraHero ? packHolding(entry, extraHero) : null;
-	return packHolding(entry, hero);
+	if (!extraHero) return null;
+	return packHolding(entry, extraHero);
 }
 
 function packHolding(entry: BookEntry, hero: Hero): Holding {
@@ -220,11 +202,4 @@ export function liveBookEntries(
 		});
 	}
 	return entries;
-}
-
-export function syntheticBookEntries(entries: BookEntry[], liveIds: Set<string>): BookEntry[] {
-	return entries.filter((entry) => {
-		if (liveIds.has(entry.heroId.toLowerCase())) return false;
-		return Boolean(heroById(entry.heroId));
-	});
 }

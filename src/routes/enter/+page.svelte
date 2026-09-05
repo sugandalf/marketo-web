@@ -16,6 +16,7 @@
 	import { persistBot } from '$lib/chain/persist';
 	import { HORSE_NAME_MAX, STRATEGY_MAX } from '$lib/chain/botRecord';
 	import { shortAddress } from '$lib/wallet/address';
+	import VaultAddress from '$lib/landing/VaultAddress.svelte';
 	import { getAddress, isAddress } from 'viem';
 	import { untrack } from 'svelte';
 	import '../form.css';
@@ -264,12 +265,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					<div class="mini-pp">
 						<div class="pp-head">
 							<span>{m.past_performances()}</span>
-							<span class="tag">{m.synthetic()}</span>
 						</div>
 						<p class="mini-empty">{m.no_fights_yet()}</p>
 					</div>
 					<dl class="mini-purse">
-						<dt>{m.vault_purse()} <span class="tag">{m.synthetic()}</span></dt>
+						<dt>{m.vault_purse()}</dt>
 						<dd>{purse(amount)}</dd>
 					</dl>
 				</article>
@@ -296,6 +296,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<p class="field-note">
 							{m.receipt_bot_wallet({ address: shortAddress(receiptOperator) })}
 						</p>
+						{#if enteredId}
+							<VaultAddress address={enteredId} />
+						{/if}
 						<a class="see-card" href="{resolve(localizeHref('/') as Pathname)}?horse={enteredId}">
 							{m.see_on_card()}
 						</a>

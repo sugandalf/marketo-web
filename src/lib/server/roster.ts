@@ -1,7 +1,7 @@
 import { erc20Abi, formatUnits } from 'viem';
 import { chainConfig } from '$lib/chain/config';
 import type { Hero, LastBacker, PastFight } from '$lib/landing/heroes';
-import { heroes } from '$lib/landing/heroes';
+import { purseQuota } from '$lib/landing/heroes';
 import { listEnteredBots, type EnteredBot } from './bots';
 import { somniaPublicClient } from './chain';
 import { listDeposits, type DepositRow } from './deposits';
@@ -17,6 +17,7 @@ export type LiveHorse = Hero & {
 	live: true;
 	creatorAddress: string;
 	operatorAddress: string;
+	vaultAddress: string;
 };
 
 export type FieldPayload = {
@@ -25,10 +26,6 @@ export type FieldPayload = {
 	withdrawals: WithdrawalRow[];
 	decimals: number;
 };
-
-function nextProgramStart(): number {
-	return Math.max(...heroes.map((hero) => hero.program), 0) + 1;
-}
 
 function toDisplay(amount: bigint, decimals: number): number {
 	const n = Number.parseFloat(formatUnits(amount, decimals));
@@ -59,18 +56,31 @@ async function assetDecimals(): Promise<number> {
 function lastBackerFor(
 	vaultAddress: string,
 	deposits: DepositRow[],
+	withdrawals: WithdrawalRow[],
 	decimals: number
 ): LastBacker | null {
-	const latest = deposits
-		.filter((row) => row.vaultAddress.toLowerCase() === vaultAddress.toLowerCase())
-		.sort((a, b) => b.createdAt - a.createdAt)[0];
-	if (!latest) return null;
-	return {
-		kind: 'deposit',
-		amountUsdso: toDisplay(BigInt(latest.assets), decimals),
-		address: latest.depositorAddress,
-		at: new Date(latest.createdAt).toISOString()
-	};
+	const key = vaultAddress.toLowerCase();
+	const events: LastBacker[] = [];
+	for (const row of deposits) {
+		if (row.vaultAddress.toLowerCase() !== key) continue;
+		events.push({
+			kind: 'deposit',
+			amountUsdso: toDisplay(BigInt(row.assets), decimals),
+			address: row.depositorAddress,
+			at: new Date(row.createdAt).toISOString()
+		});
+	}
+	for (const row of withdrawals) {
+		if (row.vaultAddress.toLowerCase() !== key) continue;
+		events.push({
+			kind: 'withdraw',
+			amountUsdso: toDisplay(BigInt(row.assets), decimals),
+			address: row.ownerAddress,
+			at: new Date(row.createdAt).toISOString()
+		});
+	}
+	events.sort((a, b) => Date.parse(b.at) - Date.parse(a.at));
+	return events[0] ?? null;
 }
 
 function fightsFor(vaultAddress: string, fights: BotFightRow[], decimals: number): PastFight[] {
@@ -89,11 +99,13 @@ function fightsFor(vaultAddress: string, fights: BotFightRow[], decimals: number
 export function horseFromBot(
 	botRow: EnteredBot,
 	deposits: DepositRow[],
+	withdrawals: WithdrawalRow[],
 	decimals: number,
 	program: number,
 	stats: BotStatsRow | undefined,
 	fights: BotFightRow[]
 ): LiveHorse {
+	const seedUsdso = toDisplay(parseAmount(botRow.seedAssets), decimals);
 	const horse: LiveHorse = {
 		id: botRow.vaultAddress,
 		program,
@@ -101,15 +113,16 @@ export function horseFromBot(
 		market: botRow.market,
 		window: '15m',
 		vaultUsdso: stats ? toDisplay(parseAmount(stats.tvlAssets), decimals) : 0,
-		vaultMaxUsdso: 0,
+		vaultMaxUsdso: purseQuota(seedUsdso),
 		created: new Date(botRow.createdAt).toISOString().slice(0, 10),
 		status: 'active',
 		fights: fightsFor(botRow.vaultAddress, fights, decimals),
-		lastBacker: lastBackerFor(botRow.vaultAddress, deposits, decimals),
+		lastBacker: lastBackerFor(botRow.vaultAddress, deposits, withdrawals, decimals),
 		strategy: botRow.strategy,
 		live: true,
 		creatorAddress: botRow.creatorAddress,
-		operatorAddress: botRow.operatorAddress
+		operatorAddress: botRow.operatorAddress,
+		vaultAddress: botRow.vaultAddress
 	};
 	if (stats) {
 		horse.pnlUsdso = toDisplay(parseAmount(stats.pnlAssets), decimals);
@@ -127,13 +140,13 @@ export async function loadField(): Promise<FieldPayload> {
 		listBotFights()
 	]);
 	const statsByVault = new Map(statsRows.map((row) => [row.vaultAddress.toLowerCase(), row]));
-	const start = nextProgramStart();
 	const horses = bots.map((botRow, index) =>
 		horseFromBot(
 			botRow,
 			deposits,
+			withdrawals,
 			decimals,
-			start + index,
+			index + 1,
 			statsByVault.get(botRow.vaultAddress.toLowerCase()),
 			fightRows
 		)

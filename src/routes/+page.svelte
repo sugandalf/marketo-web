@@ -7,8 +7,9 @@
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
-	import { homepageRoster, heroById, type Hero } from '$lib/landing/heroes';
+	import { homepageRoster, heroVaultAddress, type Hero } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
+	import VaultAddress from '$lib/landing/VaultAddress.svelte';
 	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
 	import { wallet } from '$lib/wallet/session.svelte';
 	import './form.css';
@@ -28,6 +29,7 @@
 	const roster = $derived(homepageRoster(entered, wanted, live));
 	const selected = $derived(roster.find((hero) => hero.id === selectedId) ?? roster[0] ?? null);
 	const bench = $derived(selected ? roster.filter((hero) => hero.id !== selected.id) : roster);
+	const selectedVault = $derived(selected ? heroVaultAddress(selected) : null);
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
 	const sharePct = $derived(
 		selected && amount > 0 ? (amount / (selected.vaultUsdso + amount)) * 100 : 0
@@ -43,9 +45,7 @@
 		const card = homepageRoster(extra, wantedHorse, data.horses);
 		if (
 			wantedHorse &&
-			(extra?.id === wantedHorse ||
-				heroById(wantedHorse) ||
-				data.horses.some((hero) => hero.id === wantedHorse))
+			(extra?.id === wantedHorse || data.horses.some((hero) => hero.id === wantedHorse))
 		) {
 			selectedId = wantedHorse;
 		} else if (extra) {
@@ -156,10 +156,12 @@
 								? selected.strategy
 								: m.pedigree({ window: selected.window, market: selected.market })}
 						</p>
+						{#if selectedVault}
+							<VaultAddress address={selectedVault} />
+						{/if}
 						<div class="pp">
 							<div class="pp-head">
 								<span>{m.past_performances()}</span>
-								{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 							</div>
 							{#if selected.fights.length}
 								{#each selected.fights as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
@@ -179,10 +181,7 @@
 						</div>
 					</div>
 					<dl class="purse">
-						<dt>
-							{m.vault_purse()}
-							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
-						</dt>
+						<dt>{m.vault_purse()}</dt>
 						<dd>{purse(selected.vaultUsdso)}</dd>
 					</dl>
 				</article>
@@ -229,11 +228,7 @@
 							<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
 						</div>
 						<dl class="strip-preview">
-							<dt>
-								{m.est_shares()}
-								{#if !liveSelected || phase !== 'confirmed'}<span class="tag">{m.synthetic()}</span
-									>{/if}
-							</dt>
+							<dt>{m.est_shares()}</dt>
 							<dd>
 								{sharePct.toFixed(2)}%
 							</dd>

@@ -1,5 +1,5 @@
 import type { Hero, Market } from './heroes';
-import { heroes } from './heroes';
+import { purseQuota } from './heroes';
 
 const KEY = 'marketo:entered-horse';
 
@@ -18,13 +18,11 @@ export function slugHeroId(name: string) {
 }
 
 export function nextProgram() {
-	return Math.max(...heroes.map((hero) => hero.program), 0) + 1;
+	return 1;
 }
 
 export function uniqueHeroId(name: string) {
-	const base = slugHeroId(name);
-	if (!heroes.some((hero) => hero.id === base)) return base;
-	return `${base}-${nextProgram()}`;
+	return slugHeroId(name);
 }
 
 export function saveEnteredHero(hero: EnteredHero) {
@@ -39,13 +37,17 @@ export function loadEnteredHero(): EnteredHero | null {
 		if (!raw) return null;
 		const parsed = JSON.parse(raw) as EnteredHero;
 		if (!parsed?.id || !parsed?.name) return null;
+		const vaultAddress =
+			parsed.vaultAddress ?? (parsed.id.startsWith('0x') ? parsed.id : undefined);
 		return {
 			...parsed,
-			vaultMaxUsdso: parsed.vaultMaxUsdso ?? 20000,
+			vaultMaxUsdso: parsed.vaultMaxUsdso ?? purseQuota(parsed.vaultUsdso ?? 0),
 			created: parsed.created ?? new Date().toISOString().slice(0, 10),
 			status: parsed.status ?? 'active',
 			lastBacker: parsed.lastBacker ?? null,
-			fights: parsed.fights ?? []
+			fights: parsed.fights ?? [],
+			live: parsed.live ?? Boolean(vaultAddress),
+			vaultAddress
 		};
 	} catch {
 		return null;
@@ -60,19 +62,22 @@ export function buildEnteredHero(input: {
 	amount: number;
 	botWallet: string;
 }): EnteredHero {
+	const vaultAddress = input.id;
 	return {
-		id: input.id ?? uniqueHeroId(input.name),
+		id: vaultAddress ?? uniqueHeroId(input.name),
 		program: nextProgram(),
 		name: input.name.trim().toUpperCase(),
 		market: input.market,
 		window: '15m',
 		vaultUsdso: input.amount,
-		vaultMaxUsdso: 20000,
+		vaultMaxUsdso: purseQuota(input.amount),
 		created: new Date().toISOString().slice(0, 10),
 		status: 'active',
 		lastBacker: null,
 		fights: [],
 		strategy: input.strategy.trim(),
-		botWallet: input.botWallet
+		botWallet: input.botWallet,
+		live: Boolean(vaultAddress),
+		vaultAddress
 	};
 }

@@ -8,15 +8,16 @@
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
 	import {
-		heroes,
-		heroById,
 		heroAgeDays,
 		heroPnl,
+		heroVaultAddress,
 		purseFill,
 		purseFull,
 		mergeLiveRoster,
+		recentFights,
 		type Hero
 	} from '$lib/landing/heroes';
+	import VaultAddress from '$lib/landing/VaultAddress.svelte';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
 	import { wallet } from '$lib/wallet/session.svelte';
@@ -37,17 +38,12 @@
 	let phase = $state<DepositPhase>('idle');
 	let rejectedApprove = $state(false);
 
-	const roster = $derived(
-		mergeLiveRoster(
-			data.horses,
-			entered ? [entered, ...heroes.filter((hero) => hero.id !== entered?.id)] : heroes
-		)
-	);
+	const roster = $derived(mergeLiveRoster(data.horses, entered ? [entered] : []));
 	const selected = $derived(
-		selectedId
-			? (roster.find((hero) => hero.id === selectedId) ?? heroById(selectedId) ?? null)
-			: null
+		selectedId ? (roster.find((hero) => hero.id === selectedId) ?? null) : null
 	);
+	const overlayFights = $derived(selected ? recentFights(selected) : []);
+	const selectedVault = $derived(selected ? heroVaultAddress(selected) : null);
 	const busy = $derived(phase === 'approving' || phase === 'pending');
 	const liveSelected = $derived(Boolean(selected?.live));
 
@@ -127,6 +123,13 @@
 	function programHref(id: string | null) {
 		const path = resolve(localizeHref('/program') as Pathname);
 		return id ? `${path}?horse=${id}` : path;
+	}
+
+	function onToteKey(event: KeyboardEvent, hero: Hero) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			openHorse(hero);
+		}
 	}
 
 	function openHorse(hero: Hero) {
@@ -290,6 +293,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					<span>{m.col_no()}</span>
 					<span>{m.silks()}</span>
 					<span>{m.col_name()}</span>
+					<span>{m.vault_address()}</span>
 					<span>{m.col_age()}</span>
 					<span>{m.col_created()}</span>
 					<span>{m.col_pnl()}</span>
@@ -298,12 +302,15 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				</div>
 				{#if filtered.length}
 					{#each filtered as hero (hero.id)}
-						<button
+						{@const vault = heroVaultAddress(hero)}
+						<div
 							class="tote-row"
-							type="button"
+							role="button"
+							tabindex="0"
 							aria-pressed={selected?.id === hero.id}
 							aria-label={m.open_horse({ name: hero.name })}
 							onclick={() => openHorse(hero)}
+							onkeydown={(event) => onToteKey(event, hero)}
 						>
 							<span class="tote-num">{hero.program}</span>
 							<span class="silks {hero.market.toLowerCase()}">{hero.market}</span>
@@ -315,28 +322,29 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 										: m.pedigree({ window: hero.window, market: hero.market })}
 								</span>
 							</span>
+							<span class="tote-vault-cell">
+								{#if vault}
+									<VaultAddress compact address={vault} />
+								{:else}
+									—
+								{/if}
+							</span>
 							<span class="tote-age">{m.age_days({ days: heroAgeDays(hero) })}</span>
-							<span>{createdDate(hero.created)}</span>
-							<span class="pnl" class:loss={heroPnl(hero) < 0}
-								>{money(heroPnl(hero))}{#if !hero.live}<span class="tag">{m.synthetic()}</span
-									>{/if}</span
-							>
+							<span class="tote-created">{createdDate(hero.created)}</span>
+							<span class="pnl" class:loss={heroPnl(hero) < 0}>{money(heroPnl(hero))}</span>
 							<span class="tote-purse">
-								<span
-									>{purse(hero.vaultUsdso)}{#if !hero.live}<span class="tag">{m.synthetic()}</span
-										>{/if}</span
-								>
+								<span>{purse(hero.vaultUsdso)}</span>
 								<span class="tvl-track" aria-hidden="true">
 									<i style="width: {purseFill(hero)}%"></i>
 								</span>
-								{#if !hero.live}
+								{#if hero.vaultMaxUsdso > 0}
 									<span class="tvl-max">{m.purse_max({ max: purse(hero.vaultMaxUsdso) })}</span>
 								{/if}
 							</span>
 							<span class="status-tag" class:scratched={hero.status === 'scratched'}>
 								{hero.status === 'scratched' ? m.status_scratched() : m.status_active()}
 							</span>
-						</button>
+						</div>
 					{/each}
 				{:else}
 					<p class="tote-empty">{m.no_horses_match()}</p>
@@ -358,15 +366,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									? selected.strategy
 									: m.pedigree({ window: selected.window, market: selected.market })}
 							</p>
+							{#if selectedVault}
+								<VaultAddress address={selectedVault} />
+							{/if}
 						</div>
 					</div>
 					<div class="pp">
 						<div class="pp-head">
 							<span>{m.past_performances()}</span>
-							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 						</div>
-						{#if selected.fights.length}
-							{#each selected.fights as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
+						{#if overlayFights.length}
+							{#each overlayFights as fight, i (`${fight.date}:${fight.window}:${fight.market}:${fight.side}:${fight.pnlUsdso}:${i}`)}
 								<div class="pp-row overlay-pp">
 									<span>{fightDate(fight.date)}</span>
 									<span>{fight.window}</span>
@@ -382,22 +392,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						{/if}
 					</div>
 					<dl class="overlay-tvl">
-						<dt>
-							{m.vault_purse()}
-							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
-						</dt>
+						<dt>{m.vault_purse()}</dt>
 						<dd class="pnl" class:loss={false}>{purse(selected.vaultUsdso)}</dd>
 						<dd class="tvl-track overlay-track" aria-hidden="true">
 							<i style="width: {purseFill(selected)}%"></i>
 						</dd>
-						{#if !liveSelected}
+						{#if selected.vaultMaxUsdso > 0}
 							<dd class="tvl-max">{m.purse_max({ max: purse(selected.vaultMaxUsdso) })}</dd>
 						{/if}
 					</dl>
 					<div class="last-backer">
 						<div class="pp-head">
 							<span>{m.last_backer()}</span>
-							{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 						</div>
 						{#if selected.lastBacker}
 							<p>

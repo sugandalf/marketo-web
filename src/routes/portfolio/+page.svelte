@@ -9,7 +9,7 @@
 	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
 	import WithdrawStatus from '$lib/landing/WithdrawStatus.svelte';
-	import { purseFull } from '$lib/landing/heroes';
+	import { purseFull, heroVaultAddress } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import {
 		applyWithdraw,
@@ -18,7 +18,6 @@
 		liveBookEntries,
 		loadBook,
 		saveBook,
-		syntheticBookEntries,
 		type BookEntry,
 		type Holding
 	} from '$lib/landing/book';
@@ -28,6 +27,7 @@
 	import { wallet } from '$lib/wallet/session.svelte';
 	import { untrack } from 'svelte';
 	import { formatUnits, getAddress } from 'viem';
+	import VaultAddress from '$lib/landing/VaultAddress.svelte';
 	import '../form.css';
 
 	type RoleFilter = 'all' | 'backed' | 'mine';
@@ -46,15 +46,13 @@
 	let rejectedApprove = $state(false);
 	let maxWithdrawRaw = $state<bigint | null>(null);
 	const selectedId = $derived(page.url.searchParams.get('horse'));
-	const liveIds = $derived(new Set(data.horses.map((hero) => hero.id.toLowerCase())));
 	const extras = $derived(entered ? [...data.horses, entered] : data.horses);
 	const liveEntries = $derived(
 		wallet.address
 			? liveBookEntries(data.horses, data.deposits, data.withdrawals, wallet.address, data.decimals)
 			: []
 	);
-	const syntheticEntries = $derived(syntheticBookEntries(storedEntries, liveIds));
-	const entries = $derived([...liveEntries, ...syntheticEntries]);
+	const entries = $derived(liveEntries);
 	const holdings = $derived(bookHoldings(entries, extras));
 	const totals = $derived(bookTotals(holdings));
 	const filtered = $derived(
@@ -65,6 +63,7 @@
 		})
 	);
 	const selected = $derived(holdings.find((holding) => holding.hero.id === selectedId) ?? null);
+	const selectedVault = $derived(selected ? heroVaultAddress(selected.hero) : null);
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
 	const busy = $derived(
 		depositPhase === 'approving' || depositPhase === 'pending' || withdrawPhase === 'pending'
@@ -142,6 +141,13 @@
 	function bookHref(id: string | null) {
 		const path = resolve(localizeHref('/portfolio') as Pathname);
 		return id ? `${path}?horse=${id}` : path;
+	}
+
+	function onToteKey(event: KeyboardEvent, holding: Holding) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			openHolding(holding);
+		}
 	}
 
 	function openHolding(holding: Holding) {
@@ -378,7 +384,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<dt>{m.capital_at_risk()}</dt>
 						<dd class="book-risk">{purse(totals.atRisk)}</dd>
 					</div>
-					<span class="tag">{m.synthetic()}</span>
 				</dl>
 			{/if}
 			<div class="conditions" role="toolbar" aria-label={m.the_book()}>
@@ -410,6 +415,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<span>{m.col_no()}</span>
 						<span>{m.silks()}</span>
 						<span>{m.col_name()}</span>
+						<span>{m.vault_address()}</span>
 						<span>{m.col_role()}</span>
 						<span>{m.col_shares()}</span>
 						<span>{m.col_pnl()}</span>
@@ -417,12 +423,15 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					</div>
 					{#if filtered.length}
 						{#each filtered as holding (holding.hero.id)}
-							<button
+							{@const vault = heroVaultAddress(holding.hero)}
+							<div
 								class="tote-row"
-								type="button"
+								role="button"
+								tabindex="0"
 								aria-pressed={selected?.hero.id === holding.hero.id}
 								aria-label={m.open_horse({ name: holding.hero.name })}
 								onclick={() => openHolding(holding)}
+								onkeydown={(event) => onToteKey(event, holding)}
 							>
 								<span class="tote-num">{holding.hero.program}</span>
 								<span class="silks {holding.hero.market.toLowerCase()}">{holding.hero.market}</span>
@@ -433,6 +442,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 											? holding.hero.strategy
 											: m.pedigree({ window: holding.hero.window, market: holding.hero.market })}
 									</span>
+								</span>
+								<span class="tote-vault-cell">
+									{#if vault}
+										<VaultAddress compact address={vault} />
+									{:else}
+										—
+									{/if}
 								</span>
 								<span class="book-roles">
 									{#if holding.backed}
@@ -452,7 +468,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									<span class="tvl-max">{m.purse_max({ max: purse(holding.hero.vaultUsdso) })}</span
 									>
 								</span>
-							</button>
+							</div>
 						{/each}
 					{:else if roleFilter === 'backed'}
 						<p class="tote-empty">
@@ -490,21 +506,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									? selected.hero.strategy
 									: m.pedigree({ window: selected.hero.window, market: selected.hero.market })}
 							</p>
+							{#if selectedVault}
+								<VaultAddress address={selectedVault} />
+							{/if}
 						</div>
 					</div>
 					<dl class="overlay-tvl book-overlay-stats">
 						<div>
-							<dt>
-								{m.your_shares()}
-								{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
-							</dt>
+							<dt>{m.your_shares()}</dt>
 							<dd>{selected.backed ? shares(selected.sharesPct) : '—'}</dd>
 						</div>
 						<div>
-							<dt>
-								{m.your_pnl()}
-								<span class="tag">{m.synthetic()}</span>
-							</dt>
+							<dt>{m.your_pnl()}</dt>
 							<dd class="pnl" class:loss={selected.pnlUsdso < 0}>{money(selected.pnlUsdso)}</dd>
 						</div>
 					</dl>
@@ -558,10 +571,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									/>
 								</div>
 								{#if activeSlip === 'withdraw'}
-									<p class="form-note">
-										{m.nav_available({ nav: purse(redeemableUsdso) })}
-										{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
-									</p>
+									<p class="form-note">{m.nav_available({ nav: purse(redeemableUsdso) })}</p>
 								{/if}
 								<div class="chips">
 									<button type="button" onclick={() => addAmount(10)}>{m.add_ten()}</button>
@@ -577,7 +587,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 										{activeSlip === 'withdraw'
 											? m.est_shares_remaining()
 											: m.est_shares_after_lock()}
-										{#if !liveSelected}<span class="tag">{m.synthetic()}</span>{/if}
 									</dt>
 									<dd>{shares(estShares)}</dd>
 								</dl>

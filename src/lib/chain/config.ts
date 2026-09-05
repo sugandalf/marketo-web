@@ -4,9 +4,15 @@ import { productChainId, somniaShannon } from '$lib/wallet/chains';
 
 const DEFAULT_FACTORY = '0x6EbBD76076faE4FBaD7C4B5bc9c8c6feeB82e4a9';
 const DEFAULT_RPC = 'https://dream-rpc.somnia.network';
+const DEFAULT_EXPLORER = somniaShannon.blockExplorers.default.url;
 
 export const productChain = somniaShannon;
 export const productRpcUrl = env.PUBLIC_SOMNIA_RPC_URL?.trim() || DEFAULT_RPC;
+export const explorerBaseUrl = env.PUBLIC_EXPLORER_BASE_URL?.trim() || DEFAULT_EXPLORER;
+
+export function explorerAddressUrl(address: string): string {
+	return `${explorerBaseUrl.replace(/\/+$/, '')}/address/${address}`;
+}
 
 function parseAddress(value: string | undefined): Address | null | 'invalid' {
 	const trimmed = value?.trim();
