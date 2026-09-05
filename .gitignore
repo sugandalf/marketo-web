@@ -35,3 +35,4 @@ examples/dreamdex-vault-bot/.state/
 .impeccable/config.local.json
 .impeccable/hook.cache.json
 .impeccable/questions/
+.impeccable/review/
