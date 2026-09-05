@@ -3,7 +3,7 @@ import { log } from './log.ts';
 
 export const PRODUCT_CHAIN_ID = 50312;
 export const DEFAULT_INTERVAL_MS = 8_000;
-export const DEFAULT_MAX_SHARES = 5;
+export const DEFAULT_MAX_SHARES = 1;
 export const DEFAULT_RPC = 'https://dream-rpc.somnia.network';
 export const DEFAULT_WS = 'wss://api.infra.testnet.somnia.network/ws';
 export const DEFAULT_INDEXER = 'https://dev.smk.somnia.host/v1/graphql';
@@ -55,6 +55,7 @@ export type OracleFollowConfig = {
 	minVol: number;
 	model: 'strike' | 'momentum';
 	edge: number;
+	minAsk: number;
 	maxDisagreement: number;
 	maxShares: number;
 	maxExposure: number;
@@ -78,7 +79,8 @@ export type BotConfig = {
 	maxShares: number;
 	maxMarkets: number;
 	underlying: string;
-	cadenceSec: number;
+	/** Empty → any cadence. `EC_INTERVAL=15m,1h` becomes `[900, 3600]`. */
+	cadenceSec: number[];
 	pnlIntervalMs: number;
 	seedRaw: bigint | null;
 	operatorId: number;
@@ -94,9 +96,11 @@ const CADENCE_ALIASES: Record<string, number> = {
 	'24h': 86400
 };
 
-/** DreamDEX ladder: 1m, 5m, 15m, 1h, 4h, 24h. Unset → any cadence. */
-function parseCadence(raw: string | undefined): number {
-	if (!raw) return 0;
+export function formatCadence(sec: number): string {
+	return sec >= 3600 ? `${sec / 3600}h` : `${sec / 60}m`;
+}
+
+function parseOneCadence(raw: string): number | null {
 	const key = raw.toLowerCase();
 	if (CADENCE_ALIASES[key] !== undefined) return CADENCE_ALIASES[key];
 	const n = Number(raw);
@@ -104,8 +108,26 @@ function parseCadence(raw: string | undefined): number {
 		const sec = Math.floor(n);
 		if (Object.values(CADENCE_ALIASES).includes(sec)) return sec;
 	}
-	log(`unknown EC_INTERVAL=${raw} (use 5m, 15m, or 1h); trading any cadence`);
-	return 0;
+	return null;
+}
+
+/** DreamDEX ladder. `15m,1h` or unset (any). Unknown tokens are skipped. */
+function parseCadences(raw: string | undefined): number[] {
+	if (!raw) return [];
+	const out: number[] = [];
+	let unknown = false;
+	for (const part of raw.split(/[,\s]+/).filter(Boolean)) {
+		const sec = parseOneCadence(part);
+		if (sec === null) {
+			unknown = true;
+			continue;
+		}
+		if (!out.includes(sec)) out.push(sec);
+	}
+	if (unknown || (raw.trim() !== '' && out.length === 0)) {
+		log(`unknown EC_INTERVAL=${raw} (use 5m, 15m, 1h or 15m,1h); trading ${out.length ? out.map(formatCadence).join(',') : 'any cadence'}`);
+	}
+	return out;
 }
 
 export function loadConfig(): BotConfig {
@@ -120,7 +142,7 @@ export function loadConfig(): BotConfig {
 		maxShares: parseIntEnv('OF_MAX_SHARES', parseIntEnv('TAKE_MAX_SHARES', DEFAULT_MAX_SHARES)),
 		maxMarkets: parseIntEnv('TAKE_MAX_MARKETS', 0),
 		underlying: (env('EC_UNDERLYING') ?? '').toUpperCase(),
-		cadenceSec: parseCadence(env('EC_INTERVAL') ?? env('EC_CADENCE')),
+		cadenceSec: parseCadences(env('EC_INTERVAL') ?? env('EC_CADENCE')),
 		pnlIntervalMs: parseIntEnv('PNL_INTERVAL_MS', 30_000),
 		seedRaw: parseSeed(env('VAULT_SEED_TUSDC')),
 		operatorId: parseIntEnv('OPERATOR_ID', 0),
@@ -128,15 +150,16 @@ export function loadConfig(): BotConfig {
 			windowMs: parseIntEnv('OF_MOMENTUM_WINDOW_MS', 60_000),
 			threshold: parseNum('OF_MOMENTUM_THRESHOLD', 0.0005),
 			sensitivity: parseNum('OF_SENSITIVITY', 20),
-			expectedMove: parseNum('OF_EXPECTED_MOVE', 0.0015),
-			minVol: parseNum('OF_MIN_VOL', 0.0002),
+			expectedMove: parseNum('OF_EXPECTED_MOVE', 0.004),
+			minVol: parseNum('OF_MIN_VOL', 0.001),
 			model: (env('OF_MODEL') ?? 'strike') === 'momentum' ? 'momentum' : 'strike',
-			edge: parseNum('OF_EDGE', 0.03),
-			maxDisagreement: parseNum('OF_MAX_DISAGREEMENT', 0.1),
+			edge: parseNum('OF_EDGE', 0.08),
+			minAsk: parseNum('OF_MIN_ASK', 0.1),
+			maxDisagreement: parseNum('OF_MAX_DISAGREEMENT', 0.05),
 			maxShares: parseIntEnv('OF_MAX_SHARES', parseIntEnv('TAKE_MAX_SHARES', DEFAULT_MAX_SHARES)),
-			maxExposure: parseIntEnv('OF_MAX_EXPOSURE', 50),
+			maxExposure: parseIntEnv('OF_MAX_EXPOSURE', 8),
 			cooldownMs: parseIntEnv('OF_COOLDOWN_MS', 30_000),
-			maxHorizons: parseNum('OF_MAX_HORIZONS', 30),
+			maxHorizons: parseNum('OF_MAX_HORIZONS', 15),
 			maxSpotAgeMs: parseIntEnv('OF_MAX_SPOT_AGE_MS', 15_000),
 			volWindowMs: parseIntEnv('OF_VOL_WINDOW_MS', 600_000),
 			nearExpiryStopMs: env('OF_NEAR_EXPIRY_STOP_MS')

@@ -27,7 +27,7 @@ VAULT_ADDRESS=0x...
 OPERATOR_PRIVATE_KEY=0x...   # must be the vault's on-chain operator
 DRY_RUN=false
 EC_UNDERLYING=ETH
-EC_INTERVAL=5m
+EC_INTERVAL=15m,1h
 ```
 
 Fund the vault with tUSDC and the operator with STT.
@@ -36,10 +36,10 @@ Fund the vault with tUSDC and the operator with STT.
 
 1. **Redeem** every `.state/` market that is Resolved (winner only) or Voided (both sides), then **claim-sweep** indexer `getClaimable(vault)` for anything that settled while idle.
 2. **PnL** every 30s for those ids.
-3. **Oracle-follow take** on live ETH 5m (with your filters): sample the SDK price feed, fair-value from opening/strike + vol, cross `BUY_YES` or `BUY_NO` only when the ask is cheaper than fair by `OF_EDGE` (default 3c) and not further than `OF_MAX_DISAGREEMENT`.
+3. **Oracle-follow take** on live ETH 15m and 1h (with your filters; `EC_INTERVAL` accepts a comma list). Sample the SDK price feed, fair-value from opening/strike + vol. Buys `YES` only when the model `pUp > 0.5` (and `NO` only when `pUp < 0.5`) — it will not buy YES just because the model is less bearish than the book. Cross the ask only when it is at least `OF_MIN_ASK` (default 10c), cheaper than fair by `OF_EDGE` (default 8c), and not further than `OF_MAX_DISAGREEMENT` (default 5c). Each cycle drops resolved/filtered markets from the in-memory exposure cap.
 4. First ~60s **warms up** spot history (`warming up spot history for ETH`). Heartbeat logs `idle · N tradable · no edge ×…`.
-5. Stops taking 40% of the window before expiry (2 min on 5m). SIGINT cancels any tracked IOC leftovers.
+5. Stops taking 40% of the window before expiry (6 min on 15m; 24 min on 1h). SIGINT cancels any tracked IOC leftovers.
 
-Optional knobs match the kit (`OF_EDGE`, `OF_MAX_SHARES`, `OF_COOLDOWN_MS`, `OPERATOR_ID`, `PRICE_FEED_URL`, `PNL_INTERVAL_MS`, `VAULT_SEED_TUSDC`).
+Optional knobs: `OF_EDGE`, `OF_MIN_ASK`, `OF_MAX_DISAGREEMENT`, `OF_MAX_SHARES`, `OF_MAX_EXPOSURE`, `OF_MAX_HORIZONS`, `OF_NEAR_EXPIRY_STOP_MS`, `OF_EXPECTED_MOVE`, `OF_MIN_VOL`, `OF_COOLDOWN_MS`, `OPERATOR_ID`, `PRICE_FEED_URL`, `PNL_INTERVAL_MS`, `VAULT_SEED_TUSDC`.
 
 The adapter does not wrap `withdraw`, `deposit`, or share mint/redeem.

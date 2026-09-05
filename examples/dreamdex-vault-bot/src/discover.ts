@@ -79,7 +79,7 @@ export type EligibleMarket = {
 
 function minLeftSec(intervalSec: number): number {
 	const window = intervalSec > 0 ? intervalSec : 900;
-	return Math.max(30, Math.min(300, Math.floor(window * 0.4)));
+	return Math.max(30, Math.min(3600, Math.floor(window * 0.4)));
 }
 
 const CADENCE_LADDER = [60, 300, 900, 3600, 14400, 86400] as const;
@@ -93,9 +93,9 @@ function snapCadence(sec: number): number {
 	return Math.round(sec);
 }
 
-function matchesCadence(intervalSec: number, wanted: number): boolean {
-	if (!wanted) return true;
-	return snapCadence(intervalSec) === wanted;
+function matchesCadence(intervalSec: number, wanted: number[]): boolean {
+	if (wanted.length === 0) return true;
+	return wanted.includes(snapCadence(intervalSec));
 }
 
 function asMarketId(id: string): Hex {
@@ -114,18 +114,10 @@ async function withTimeout<T>(promise: Promise<T>, ms: number, label: string): P
 	}
 }
 
-async function fromIndexer(
+async function listLive(
 	exchange: ReadExchange,
-	underlying: string,
-	cadenceSec: number,
-	operatorId: number
+	filter: LiveBinaryMarketsFilter
 ): Promise<BinaryMarket[]> {
-	const filter: LiveBinaryMarketsFilter = {};
-	if (underlying) filter.asset = underlying;
-	if (cadenceSec > 0) filter.intervalSec = cadenceSec;
-	if (operatorId > 0) filter.operatorId = operatorId;
-	filter.limit = 20;
-	filter.status = 'Trading';
 	const run = () =>
 		withTimeout(
 			exchange.client.listLiveBinaryMarkets(filter),
@@ -141,10 +133,49 @@ async function fromIndexer(
 	}
 }
 
+async function fromIndexer(
+	exchange: ReadExchange,
+	underlying: string,
+	cadenceSec: number[],
+	operatorId: number
+): Promise<BinaryMarket[]> {
+	const base = (): LiveBinaryMarketsFilter => {
+		const filter: LiveBinaryMarketsFilter = {};
+		if (underlying) filter.asset = underlying;
+		if (operatorId > 0) filter.operatorId = operatorId;
+		filter.limit = 20;
+		filter.status = 'Trading';
+		return filter;
+	};
+	if (cadenceSec.length <= 1) {
+		const filter = base();
+		if (cadenceSec[0]) filter.intervalSec = cadenceSec[0];
+		return await listLive(exchange, filter);
+	}
+	const pages = await Promise.all(
+		cadenceSec.map((intervalSec) => {
+			const filter = base();
+			filter.intervalSec = intervalSec;
+			return listLive(exchange, filter);
+		})
+	);
+	const merged: BinaryMarket[] = [];
+	const seen = new Set<string>();
+	for (const page of pages) {
+		for (const row of page) {
+			const id = row.marketId.toLowerCase();
+			if (seen.has(id)) continue;
+			seen.add(id);
+			merged.push(row);
+		}
+	}
+	return merged;
+}
+
 async function fromLogs(
 	publicClient: PublicClient,
 	underlying: string,
-	cadenceSec: number
+	cadenceSec: number[]
 ): Promise<
 	{
 		marketId: Hex;
@@ -169,7 +200,8 @@ async function fromLogs(
 		intervalSec: number;
 		strike: string;
 	}[] = [];
-	const windows = cadenceSec >= 3600 ? 12 : cadenceSec >= 900 ? 8 : cadenceSec > 0 ? 6 : 12;
+	const maxCadence = cadenceSec.length > 0 ? Math.max(...cadenceSec) : 0;
+	const windows = maxCadence >= 3600 ? 12 : maxCadence >= 900 ? 8 : maxCadence > 0 ? 6 : 12;
 	log(`MarketCreated log fallback, last ${windows * 1000} blocks`);
 	for (let i = 0; i < windows; i++) {
 		const to = head - BigInt(i * 1000);
@@ -213,7 +245,7 @@ export async function discoverEligible(opts: {
 	publicClient: PublicClient;
 	vaultAsset: Address | null;
 	underlying: string;
-	cadenceSec: number;
+	cadenceSec: number[];
 	operatorId: number;
 }): Promise<EligibleMarket[]> {
 	let rows: BinaryMarket[] = [];

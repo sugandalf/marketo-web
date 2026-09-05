@@ -81,7 +81,8 @@ function toHumanBook(
 
 function nearExpiryStopMs(intervalSec: number, overrideMs: number | null): number {
 	if (overrideMs !== null) return overrideMs;
-	if (intervalSec > 0) return Math.max(30_000, Math.min(300_000, intervalSec * 1000 * 0.4));
+	// 40% of the window, at least 30s, at most 1h (so 1h markets stop ~24m before expiry).
+	if (intervalSec > 0) return Math.max(30_000, Math.min(3_600_000, intervalSec * 1000 * 0.4));
 	return 300_000;
 }
 
@@ -95,7 +96,7 @@ async function syncOnce(ctx: FollowContext, marketId: Hex): Promise<void> {
 
 /**
  * Directional IOC take — BUY_YES or BUY_NO only (never SELL, never mint a pair).
- * Port of dreamdex-bot-kit ec-oracle-follow, vault adapter as trader.
+ * YES only when model pUp > 0.5, NO only when pUp < 0.5; skip asks below minAsk.
  */
 export async function takeFollow(
 	ctx: FollowContext,
@@ -205,12 +206,18 @@ export async function takeFollow(
 		anchorUp
 	});
 
-	if (tilt === 0) {
+	// Direction from the model, not from tilt. Tilt-only bought YES into down windows
+	// whenever the model was merely less bearish than the book (pUp 0.20 vs market 0.09).
+	if (pUp === 0.5) {
+		note(cycle, 'no directional view');
+		return;
+	}
+	const bullish = pUp > 0.5;
+	const leg: Leg = bullish ? 'yes' : 'no';
+	if ((bullish && tilt <= 0) || (!bullish && tilt >= 0)) {
 		note(cycle, 'no disagreement with market');
 		return;
 	}
-	const bullish = tilt > 0;
-	const leg: Leg = bullish ? 'yes' : 'no';
 
 	const yesRaw = await ctx.adapter.outcomeBalance(
 		market.onchain.outcomeToken,
@@ -258,6 +265,10 @@ export async function takeFollow(
 	}
 	const askPx = Number(top.price) / Number(one);
 	const askAmt = Number(top.quantity) / Number(one);
+	if (ctx.follow.minAsk > 0 && askPx < ctx.follow.minAsk) {
+		note(cycle, 'ask below floor');
+		return;
+	}
 	const short = askPx - (fairFav - ctx.follow.edge);
 	if (short > 0) {
 		if (!cycle.best || short < cycle.best.short) {

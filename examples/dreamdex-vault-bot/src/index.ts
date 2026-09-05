@@ -9,7 +9,7 @@ import {
 } from 'viem';
 import { somniaShannon } from '@somnia-chain/markets-sdk/chains';
 import { createVaultAdapter, type VaultAdapter } from './adapter.ts';
-import { loadConfig } from './config.ts';
+import { formatCadence, loadConfig } from './config.ts';
 import { cancelTracked, claimSettled, redeemVaultPositions, type CycleContext } from './cycle.ts';
 import { createReadExchange, discoverEligible, TUSDC } from './discover.ts';
 import { formatHeartbeat, newFollowCycle, takeFollow, type FollowContext } from './follow.ts';
@@ -105,15 +105,12 @@ async function main(): Promise<void> {
 
 	const who = account?.address ?? '(no key, dry run)';
 	const cadence =
-		cfg.cadenceSec > 0
-			? cfg.cadenceSec >= 3600
-				? `${cfg.cadenceSec / 3600}h`
-				: `${cfg.cadenceSec / 60}m`
-			: 'any';
+		cfg.cadenceSec.length > 0 ? cfg.cadenceSec.map(formatCadence).join(',') : 'any';
 	log(
 		`dreamdex-vault-bot up as ${who} vault=${cfg.vault ?? '(none)'} dryRun=${cfg.dryRun} ` +
-			`oracle-follow model=${cfg.follow.model} interval=${cfg.intervalMs}ms cadence=${cadence} ` +
-			`edge=${cfg.follow.edge} tUSDC=${TUSDC}`
+			`oracle-follow model=${cfg.follow.model} interval=${cfg.intervalMs}ms ` +
+			`underlying=${cfg.underlying || 'any'} cadence=${cadence} ` +
+			`edge=${cfg.follow.edge} minAsk=${cfg.follow.minAsk} tUSDC=${TUSDC}`
 	);
 
 	let stop = false;
@@ -180,6 +177,12 @@ async function main(): Promise<void> {
 					lastEmptyAt = now;
 					log('no eligible tUSDC market to trade');
 				}
+			}
+			const liveIds = markets.map((m) => m.marketId);
+			follow.position.retain(liveIds);
+			const liveLower = new Set(liveIds.map((id) => id.toLowerCase()));
+			for (const key of follow.lastTake.keys()) {
+				if (!liveLower.has(key.toLowerCase())) follow.lastTake.delete(key);
 			}
 			const cycle = newFollowCycle();
 			for (const market of markets) {

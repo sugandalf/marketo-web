@@ -39,6 +39,14 @@ export class Positions {
 		this.held.delete(symbol);
 	}
 
+	/** Drop markets that are no longer in the live tradable set (resolved, filtered, expired). */
+	retain(keys: Iterable<string>): void {
+		const keep = new Set([...keys].map((k) => k.toLowerCase()));
+		for (const key of [...this.held.keys()]) {
+			if (!keep.has(key.toLowerCase())) this.held.delete(key);
+		}
+	}
+
 	net(symbol: string): number {
 		return netOf(this.in(symbol));
 	}
