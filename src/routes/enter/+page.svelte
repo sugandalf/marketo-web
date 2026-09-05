@@ -7,7 +7,7 @@
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import { nextProgram, buildEnteredHero, saveEnteredHero } from '$lib/landing/entered';
-	import type { Market } from '$lib/landing/heroes';
+	import { purseQuota, type Market } from '$lib/landing/heroes';
 	import { wallet } from '$lib/wallet/session.svelte';
 	import { chainConfig } from '$lib/chain/config';
 	import { formatAssetDisplay, formatAssetInput, readAssetPurse } from '$lib/chain/asset';
@@ -41,6 +41,8 @@
 	let balanceStatus = $state<'idle' | 'loading' | 'ready' | 'error'>('idle');
 
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
+	const maxTvl = $derived(purseQuota(amount));
+	const seedFill = $derived(maxTvl > 0 ? Math.min(100, (amount / maxTvl) * 100) : 0);
 	const program = nextProgram();
 	const displayName = $derived(botName.trim() ? botName.trim().toUpperCase() : '—');
 	const busy = $derived(phase === 'approving' || phase === 'pending');
@@ -223,7 +225,7 @@
 THESIS: Entering is a two-page condition book — facts left, papers right — not a wizard or a settings form.
 OWN-WORLD: Cool lavender sheet, extra-condensed athletic gothic, 3px ink rules, square-cut underlines, cherry BTC / periwinkle ETH silks, mint Open-vault rubber stamp.
 STORY: Become a named horse, open a vault others can back, still sign every transaction, then see the horse on the card.
-FIRST VIEWPORT: Masthead MARKETO. Spread: left What entering is (01–03 + miniature call that writes as you type + performance fee). Right Entry papers (name, silks, strategy, wallet, purse). Stamp Open vault at the foot of the papers.
+FIRST VIEWPORT: Masthead MARKETO. Spread: left What entering is (01–03 + miniature call that writes as you type, purse plus 5× max TVL + performance fee). Right Entry papers (name, silks, strategy, wallet, purse). Stamp Open vault at the foot of the papers.
 FORM: Condition-book spread (grounded #5 of 7, seed aa1ff93c).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 -->`}
@@ -270,7 +272,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					</div>
 					<dl class="mini-purse">
 						<dt>{m.vault_purse()}</dt>
-						<dd>{purse(amount)}</dd>
+						<dd class="pnl">{purse(amount)}</dd>
+						{#if maxTvl > 0}
+							<dd class="tvl-track" aria-hidden="true">
+								<i style="width: {seedFill}%"></i>
+							</dd>
+							<dd class="tvl-max">{m.purse_max({ max: purse(maxTvl) })}</dd>
+						{/if}
 					</dl>
 				</article>
 				<p class="facts-note">{m.results_update()}</p>

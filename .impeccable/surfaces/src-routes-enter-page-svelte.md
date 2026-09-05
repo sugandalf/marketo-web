@@ -1,15 +1,8 @@
 ---
 version: 1
-slug: 'src-routes-enter-page-svelte'
-primary_target: 'src/routes/enter/+page.svelte'
-related_targets:
-  [
-    'src/routes/+page.svelte',
-    'src/routes/form.css',
-    'messages/en.json',
-    'messages/id.json',
-    'static/landing/open-vault-stamp.webp'
-  ]
+slug: "src-routes-enter-page-svelte"
+primary_target: "src/routes/enter/+page.svelte"
+related_targets: ["src/routes/+page.svelte","src/routes/form.css","messages/en.json","messages/id.json","static/landing/open-vault-stamp.webp"]
 ---
 
 # Enter a horse — Condition-book spread
@@ -20,7 +13,7 @@ Audience: a visitor who wants to become a named horse — from the racing-card m
 
 Job: file entry papers and open a vault others can back. Proof is the nomination (name, silks, strategy, purse), labeled SYNTHETIC until chain data exists.
 
-Direction: Daily Racing Form world. Composition **Condition-book spread** — left: what entering is (three facts + miniature sample that becomes the typed horse); right: ENTRY PAPERS; Open vault stamp at the foot of the papers. Approved comp: `.impeccable/mocks/decision/enter-condition.webp`. Comp-led. Seed aa1ff93c.
+Direction: Daily Racing Form world. Composition **Condition-book spread** — left: what entering is (three facts + miniature sample that becomes the typed horse, including vault purse and 5× max TVL as opening purse writes); right: ENTRY PAPERS; Open vault stamp at the foot of the papers. Approved comp: `.impeccable/mocks/decision/enter-condition.webp`. Comp-led. Seed aa1ff93c.
 
 Memorable moment: the two-page sheet; stamping gathers the papers into a receipt, then an explicit control to see the horse on the card.
 
@@ -39,7 +32,7 @@ Unresolved: live wallet adapter; contract addresses; how an other-address bot wa
 | Horse+jockey mark (home link)           | Authored SVG                                                  |
 | Open vault stamp                        | Raster `static/landing/open-vault-stamp.webp`, multiply blend |
 | Papers, underlines, chips               | Semantic HTML/CSS                                             |
-| Miniature sample                        | Same call grammar as landing, live-bound to the form          |
+| Miniature sample                        | Same call grammar as landing, live-bound to the form; purse + ruled 5× max |
 
 Sampled (DESIGN.md / landing sheet, not muddy comp averages):
 
@@ -54,3 +47,4 @@ Sampled (DESIGN.md / landing sheet, not muddy comp averages):
 - Spread: facts ~40% left, papers ~60% right; 3px ink gutter. Stack at 900px, facts above papers.
 - Signature: 3px rules, silks squares as market chips, stamp Open vault, newsprint sheet.
 - Confirmation: same sheet; right page becomes receipt + see-on-card control.
+- Miniature max TVL is 5× the opening purse and writes as the purse field changes; hidden at 0.

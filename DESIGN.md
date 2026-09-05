@@ -379,7 +379,7 @@ The 01–03 list on the left page. Each index is a 2.1rem inverted ink square, B
 
 ### Miniature Call
 
-Live preview on the facts page: program number, silks, name, pedigree, empty PP with SYNTHETIC, purse in Purse Green. It writes as the papers fill (name, silks, strategy, purse). Same call grammar as the racing card, scaled to sit inside a 1px ink box.
+Live preview on the facts page: program number, silks, name, pedigree, empty PP with SYNTHETIC, purse in Purse Green with the ruled fill-to-max and Max caption (cap is 5× opening purse). It writes as the papers fill (name, silks, strategy, purse, max). Same call grammar as the racing card, scaled to sit inside a 1px ink box.
 
 ### Deposit Stamp
 

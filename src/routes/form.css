@@ -1097,17 +1097,22 @@ a.mark {
 .mini-purse {
 	margin: 0.7rem 0 0;
 	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+.mini-purse dt,
+.mini-purse dd {
+	margin: 0;
 }
 
 .mini-purse dt {
-	margin: 0;
 	font-size: 0.8rem;
 	font-weight: 700;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 }
 
-.mini-purse dd {
+.mini-purse .pnl {
 	margin: 0.15rem 0 0;
 	font-family: var(--font-display);
 	font-weight: 800;
@@ -1115,7 +1120,15 @@ a.mark {
 	line-height: 0.9;
 	letter-spacing: -0.03em;
 	color: var(--money);
-	font-variant-numeric: tabular-nums;
+}
+
+.mini-purse .tvl-track {
+	margin: 0.4rem 0 0;
+	height: 0.55rem;
+}
+
+.mini-purse .tvl-max {
+	margin: 0.18rem 0 0;
 }
 
 .papers {
