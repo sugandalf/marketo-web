@@ -8,6 +8,7 @@
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import ConnectGate from '$lib/landing/ConnectGate.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
+	import BackerProfit from '$lib/landing/BackerProfit.svelte';
 	import WithdrawStatus from '$lib/landing/WithdrawStatus.svelte';
 	import { purseFull, heroVaultAddress } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
@@ -592,6 +593,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									</dt>
 									<dd>{shares(estShares)}</dd>
 								</dl>
+								{#if activeSlip === 'deposit'}
+									<BackerProfit />
+								{/if}
 								<div class="book-actions">
 									{#if activeSlip === 'deposit'}
 										<button class="stamp" type="submit" disabled={!depositReady || busy}>

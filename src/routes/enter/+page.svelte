@@ -223,7 +223,7 @@
 THESIS: Entering is a two-page condition book — facts left, papers right — not a wizard or a settings form.
 OWN-WORLD: Cool lavender sheet, extra-condensed athletic gothic, 3px ink rules, square-cut underlines, cherry BTC / periwinkle ETH silks, mint Open-vault rubber stamp.
 STORY: Become a named horse, open a vault others can back, still sign every transaction, then see the horse on the card.
-FIRST VIEWPORT: Masthead MARKETO. Spread: left What entering is (01–03 + miniature call that writes as you type). Right Entry papers (name, silks, strategy, wallet, purse). Stamp Open vault at the foot of the papers.
+FIRST VIEWPORT: Masthead MARKETO. Spread: left What entering is (01–03 + miniature call that writes as you type + performance fee). Right Entry papers (name, silks, strategy, wallet, purse). Stamp Open vault at the foot of the papers.
 FORM: Condition-book spread (grounded #5 of 7, seed aa1ff93c).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 -->`}
@@ -274,6 +274,28 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					</dl>
 				</article>
 				<p class="facts-note">{m.results_update()}</p>
+
+				<h2 id="performance-fee" class="take-title">{m.performance_fee()}</h2>
+				<p class="facts-note">{m.performance_fee_lead()}</p>
+				<dl class="take-conditions">
+					<div>
+						<dt>{m.performance_fee_rate_label()}</dt>
+						<dd>{m.performance_fee_rate()}</dd>
+					</div>
+					<div>
+						<dt>{m.performance_fee_mark_label()}</dt>
+						<dd>{m.performance_fee_mark()}</dd>
+					</div>
+					<div>
+						<dt>{m.performance_fee_profit_label()}</dt>
+						<dd>{m.performance_fee_profit()}</dd>
+					</div>
+					<div>
+						<dt>{m.performance_fee_pay_label()}</dt>
+						<dd>{m.performance_fee_pay()}</dd>
+					</div>
+				</dl>
+				<p class="facts-note">{m.performance_fee_choose()}</p>
 			</section>
 
 			<section class="papers {botMarket.toLowerCase()}">
@@ -454,7 +476,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						</div>
 
 						<div class="papers-foot">
-							<a class="how-link" href="#what-entering-is">{m.how_it_works()}</a>
+							<a class="how-link" href="#performance-fee">{m.how_it_works()}</a>
 							<button class="stamp" type="submit" disabled={busy}>
 								<img src="/landing/open-vault-stamp.webp" alt="" />
 								<span class="sr-only">{m.open_vault()} — {m.open_vault_lock()}</span>

@@ -7,6 +7,7 @@
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
+	import BackerProfit from '$lib/landing/BackerProfit.svelte';
 	import {
 		heroAgeDays,
 		heroPnl,
@@ -456,6 +457,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 									<button type="button" onclick={() => addAmount(100)}>{m.add_hundred()}</button>
 									<button type="button" onclick={() => addAmount(250)}>{m.add_two_fifty()}</button>
 								</div>
+								<BackerProfit />
 								<button class="stamp" type="submit" disabled={busy}>
 									<img src="/landing/deposit-stamp.webp" alt="" />
 									<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>

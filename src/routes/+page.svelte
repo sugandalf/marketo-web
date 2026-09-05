@@ -7,6 +7,7 @@
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
+	import BackerProfit from '$lib/landing/BackerProfit.svelte';
 	import { homepageRoster, heroPnl, heroVaultAddress, type Hero } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import VaultAddress from '$lib/landing/VaultAddress.svelte';
@@ -240,6 +241,7 @@
 								{sharePct.toFixed(2)}%
 							</dd>
 						</dl>
+						<BackerProfit />
 						<button class="stamp" type="submit" disabled={busy}>
 							<img src="/landing/deposit-stamp.webp" alt="" />
 							<span class="sr-only">{m.deposit()} — {m.deposit_lock()}</span>
