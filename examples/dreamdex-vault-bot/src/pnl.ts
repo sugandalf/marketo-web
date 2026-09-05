@@ -58,6 +58,21 @@ function fmtSigned(raw: bigint | null, decimals: number): string {
 	return `${n >= 0 ? '+' : ''}${n.toFixed(4)}`;
 }
 
+function isTerminal(status: string): boolean {
+	const s = status.toLowerCase();
+	return s.includes('finalized') || s.includes('resolved') || s.includes('voided');
+}
+
+/** Console-only: a terminal market's mark is the payout, so leftover u is realized. */
+function forConsole(row: BetRow): BetRow {
+	if (!isTerminal(row.status) || row.unrealized === null) return row;
+	return {
+		...row,
+		realized: row.realized + row.unrealized,
+		unrealized: 0n
+	};
+}
+
 function fromSdk(
 	marketId: Hex,
 	pnl: BinaryPositionPnL,
@@ -220,10 +235,12 @@ export async function reportVaultPnl(opts: {
 	let uSum = 0n;
 	let uAny = false;
 	let rSum = 0n;
+	let settledR = 0n;
+	let settledCount = 0;
 	let decimals = 6;
-	for (const row of rows) {
+	for (const raw of rows) {
+		const row = forConsole(raw);
 		decimals = row.decimals || decimals;
-		logRow(row);
 		if (row.markValue === null) markKnown = false;
 		else markSum += row.markValue;
 		if (row.unrealized !== null) {
@@ -231,6 +248,15 @@ export async function reportVaultPnl(opts: {
 			uAny = true;
 		}
 		rSum += row.realized;
+		if (isTerminal(row.status)) {
+			settledCount += 1;
+			settledR += row.realized;
+		} else {
+			logRow(row);
+		}
+	}
+	if (settledCount > 0) {
+		log(`pnl settled ${settledCount} r=${fmtSigned(settledR, decimals)}`);
 	}
 
 	const idle = await opts.adapter.idleCollateral();
