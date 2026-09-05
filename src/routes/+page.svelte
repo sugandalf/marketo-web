@@ -7,7 +7,7 @@
 	import type { Pathname } from '$app/types';
 	import Masthead from '$lib/landing/Masthead.svelte';
 	import DepositStatus from '$lib/landing/DepositStatus.svelte';
-	import { homepageRoster, heroVaultAddress, type Hero } from '$lib/landing/heroes';
+	import { homepageRoster, heroPnl, heroVaultAddress, type Hero } from '$lib/landing/heroes';
 	import { loadEnteredHero } from '$lib/landing/entered';
 	import VaultAddress from '$lib/landing/VaultAddress.svelte';
 	import { stampDeposit, type DepositPhase } from '$lib/chain/depositFlow';
@@ -30,6 +30,7 @@
 	const selected = $derived(roster.find((hero) => hero.id === selectedId) ?? roster[0] ?? null);
 	const bench = $derived(selected ? roster.filter((hero) => hero.id !== selected.id) : roster);
 	const selectedVault = $derived(selected ? heroVaultAddress(selected) : null);
+	const selectedPnl = $derived(selected ? heroPnl(selected) : 0);
 	const amount = $derived(Number.parseFloat(amountRaw) || 0);
 	const sharePct = $derived(
 		selected && amount > 0 ? (amount / (selected.vaultUsdso + amount)) * 100 : 0
@@ -181,8 +182,14 @@
 						</div>
 					</div>
 					<dl class="purse">
-						<dt>{m.vault_purse()}</dt>
-						<dd>{purse(selected.vaultUsdso)}</dd>
+						<div>
+							<dt>{m.vault_pnl()}</dt>
+							<dd class="pnl" class:loss={selectedPnl < 0}>{money(selectedPnl)}</dd>
+						</div>
+						<div>
+							<dt>{m.vault_purse()}</dt>
+							<dd>{purse(selected.vaultUsdso)}</dd>
+						</div>
 					</dl>
 				</article>
 

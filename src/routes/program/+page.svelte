@@ -238,7 +238,7 @@
 
 {@html `<!--
 THESIS: The field is a tote — columns are the filters, a horse opens as a side Hot Sheet. Refuses a DeFi dashboard of cards and a second horse route.
-OWN-WORLD: Warm newsprint, extra-condensed athletic gothic, 3px ink rules, silks squares, invert chips, ruled ink fill bar, green Deposit stamp.
+OWN-WORLD: Cool lavender sheet, extra-condensed athletic gothic, 3px ink rules, silks squares, invert chips, ruled ink fill bar, mint Deposit stamp.
 STORY: Scan every horse, open one, stamp a deposit. Homepage keeps the Call for the in-form few.
 FIRST VIEWPORT: Masthead MARKETO + The program (here) + Enter a horse. Conditions chips. Full-bleed tote. Overlay from the right: call-scale name, PP, purse fill-to-max, last backer, stamp.
 FORM: Tote overlay (grounded #4 of 7, seed 951c01df).
@@ -357,9 +357,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						{m.close_overlay()}
 					</button>
 					<div class="overlay-call">
-						<div class="call-num overlay-num">{selected.program}</div>
-						<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
-						<div>
+						<div class="overlay-mast">
+							<div class="call-num overlay-num">{selected.program}</div>
+							<div class="silks {selected.market.toLowerCase()}">{selected.market}</div>
+						</div>
+						<div class="overlay-id">
 							<h1 class="overlay-name" id="overlay-name" tabindex="-1">{selected.name}</h1>
 							<p class="pedigree">
 								{selected.strategy

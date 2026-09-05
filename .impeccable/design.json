@@ -1,172 +1,172 @@
 {
 	"schemaVersion": 2,
-	"generatedAt": "2026-09-01T08:22:00.000Z",
+	"generatedAt": "2026-09-05T01:39:51.000Z",
 	"title": "Design System: Marketo",
 	"extensions": {
 		"colorMeta": {
 			"ink": {
 				"role": "primary",
 				"displayName": "Carbon Ink",
-				"canonical": "#040303",
+				"canonical": "#0b0b18",
 				"tonalRamp": [
-					"#131111",
-					"#2b2828",
-					"#444241",
-					"#605d5c",
-					"#7c7979",
-					"#a19e9d",
-					"#c6c3c3",
-					"#edeaea"
+					"#0b0b18",
+					"#1c1c2e",
+					"#333348",
+					"#4e4e66",
+					"#6c6c86",
+					"#9292aa",
+					"#bcbcd0",
+					"#e4e4f0"
 				]
 			},
 			"paper": {
 				"role": "neutral",
 				"displayName": "Sheet Stock",
-				"canonical": "#e6d8c6",
+				"canonical": "#d4d4e8",
 				"tonalRamp": [
-					"#241c14",
-					"#40362b",
-					"#5e5244",
-					"#7d6f5e",
-					"#9e8d79",
-					"#c0ad95",
-					"#e6d8c6",
-					"#fff8ec"
+					"#16162f",
+					"#2c2c5f",
+					"#42428e",
+					"#5858be",
+					"#8b8bf1",
+					"#c5c5f8",
+					"#d4d4e8",
+					"#f1f1fe"
 				]
 			},
 			"paper-hot": {
 				"role": "neutral",
 				"displayName": "Hot Sheet",
-				"canonical": "#f3eadc",
+				"canonical": "#f1f1fe",
 				"tonalRamp": [
-					"#2a2218",
-					"#473c30",
-					"#665849",
-					"#877564",
-					"#a99480",
-					"#ccb49c",
-					"#f3eadc",
-					"#fffaf0"
+					"#16162f",
+					"#2c2c5f",
+					"#42428e",
+					"#6e6eed",
+					"#8b8bf1",
+					"#c5c5f8",
+					"#e2e2fb",
+					"#f1f1fe"
 				]
 			},
 			"money": {
 				"role": "secondary",
 				"displayName": "Purse Green",
-				"canonical": "#085324",
+				"canonical": "#006437",
 				"tonalRamp": [
-					"#001b00",
-					"#00340b",
-					"#0e5024",
-					"#2d6d3e",
-					"#4a8b59",
-					"#71b07e",
-					"#99d6a4",
-					"#c1fdcc"
+					"#00190e",
+					"#00321b",
+					"#006437",
+					"#009652",
+					"#00c86e",
+					"#00fa89",
+					"#66fcb8",
+					"#ccfee7"
 				]
 			},
 			"btc": {
 				"role": "tertiary",
 				"displayName": "BTC Silks",
-				"canonical": "#e42c22",
+				"canonical": "#dc0b4a",
 				"tonalRamp": [
-					"#480000",
-					"#6c0000",
-					"#920000",
-					"#b80000",
-					"#de271e",
-					"#ff5d4c",
-					"#ff8976",
-					"#ffb5a0"
+					"#160107",
+					"#2c020f",
+					"#58041e",
+					"#84072c",
+					"#dc0b4a",
+					"#e33c6e",
+					"#ea6d92",
+					"#f8cedb"
 				]
 			},
 			"eth": {
 				"role": "tertiary",
 				"displayName": "ETH Silks",
-				"canonical": "#0756d0",
+				"canonical": "#6e6eed",
 				"tonalRamp": [
-					"#01005d",
-					"#001080",
-					"#0034a4",
-					"#0653c9",
-					"#2b72ed",
-					"#549aff",
-					"#7dc2ff",
-					"#a6ebff"
+					"#0b0b18",
+					"#16162f",
+					"#2c2c5f",
+					"#42428e",
+					"#6e6eed",
+					"#8b8bf1",
+					"#c5c5f8",
+					"#f1f1fe"
 				]
 			},
 			"btc-ink": {
 				"role": "tertiary",
 				"displayName": "BTC Ink",
-				"canonical": "#8a1a14",
+				"canonical": "#84072c",
 				"tonalRamp": [
-					"#3a0a08",
-					"#54100c",
-					"#6e1410",
-					"#8a1a14",
-					"#a83a32",
-					"#c66a62",
-					"#e29e98",
-					"#f3d4d0"
+					"#160107",
+					"#2c020f",
+					"#58041e",
+					"#84072c",
+					"#b0093b",
+					"#dc0b4a",
+					"#ea6d92",
+					"#f8cedb"
 				]
 			},
 			"eth-ink": {
 				"role": "tertiary",
 				"displayName": "ETH Ink",
-				"canonical": "#0548a8",
+				"canonical": "#2c2c5f",
 				"tonalRamp": [
-					"#011433",
-					"#02285c",
-					"#043f96",
-					"#0548a8",
-					"#2b72ed",
-					"#549aff",
-					"#7dc2ff",
-					"#a6ebff"
+					"#0b0b18",
+					"#16162f",
+					"#2c2c5f",
+					"#42428e",
+					"#5858be",
+					"#6e6eed",
+					"#a8a8f4",
+					"#f1f1fe"
 				]
 			},
 			"wash-btc": {
 				"role": "neutral",
 				"displayName": "BTC Wash",
-				"canonical": "oklch(0.875 0.038 38)",
+				"canonical": "oklch(0.87 0.02 15)",
 				"tonalRamp": [
-					"#e6d8c6",
-					"#e6d0c4",
-					"#e5c8c0",
-					"#e4c0b8",
-					"#e3b8b0",
-					"#e2b0a8",
-					"#e1a8a0",
-					"#e0a098"
+					"#d4d4e8",
+					"#d9c8d0",
+					"#debbc8",
+					"#e3aec0",
+					"#e8a1b8",
+					"#ed94b0",
+					"#f287a8",
+					"#f7a0b8"
 				]
 			},
 			"wash-eth": {
 				"role": "neutral",
 				"displayName": "ETH Wash",
-				"canonical": "oklch(0.875 0.036 250)",
+				"canonical": "oklch(0.87 0.02 290)",
 				"tonalRamp": [
-					"#e6d8c6",
-					"#ddd6d0",
-					"#d4d4d8",
-					"#cbd2e0",
-					"#c2d0e8",
-					"#b9cef0",
-					"#b0ccf8",
-					"#a7caff"
+					"#d4d4e8",
+					"#d0d0ea",
+					"#ccccea",
+					"#c8c8f0",
+					"#c4c4f4",
+					"#c0c0f8",
+					"#bcbcfa",
+					"#b8b8fe"
 				]
 			},
 			"ink-wash": {
 				"role": "neutral",
 				"displayName": "Ink Wash",
-				"canonical": "color-mix(in srgb, #040303 8%, transparent)",
+				"canonical": "color-mix(in srgb, #0b0b18 8%, transparent)",
 				"tonalRamp": [
-					"#040303",
-					"#1c1a1a",
-					"#353332",
-					"#4e4c4b",
-					"#686564",
-					"#83807f",
-					"#9e9c9b",
-					"#bab8b7"
+					"#0b0b18",
+					"#1c1c2e",
+					"#35354a",
+					"#4e4e66",
+					"#686880",
+					"#838398",
+					"#9e9eb0",
+					"#babac8"
 				]
 			}
 		},
@@ -220,7 +220,7 @@
 			"refersTo": "button-primary",
 			"description": "Ink-fill wallet gate last in masthead-actions and at stamp time. Not Deposit. Not Open vault. Not Withdraw. Not a modal.",
 			"html": "<button class=\"ds-btn-primary\" type=\"button\">CONNECT WALLET</button>",
-			"css": ".ds-btn-primary { background: #040303; color: #f3eadc; padding: 0.35rem 0.55rem; border: 2px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-btn-primary:hover { background: #040303; color: #f3eadc; } .ds-btn-primary:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-btn-primary:active { background: #040303; }"
+			"css": ".ds-btn-primary { background: #0b0b18; color: #f1f1fe; padding: 0.35rem 0.55rem; border: 2px solid #0b0b18; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-btn-primary:hover { background: #0b0b18; color: #f1f1fe; } .ds-btn-primary:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-btn-primary:active { background: #0b0b18; }"
 		},
 		{
 			"name": "Amount Chip",
@@ -228,7 +228,7 @@
 			"refersTo": "button-chip",
 			"description": "Amount adder or wallet radio. Transparent ink box; hover and checked invert.",
 			"html": "<div class=\"ds-chips\"><button class=\"ds-chip\" type=\"button\">+10</button><button class=\"ds-chip\" type=\"button\">+50</button><button class=\"ds-chip\" type=\"button\" aria-checked=\"true\">SAME AS CREATOR</button></div>",
-			"css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; } .ds-chip { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; } .ds-chip:hover, .ds-chip[aria-checked='true'] { background: #040303; color: #f3eadc; } .ds-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-chip:active { background: #040303; color: #f3eadc; }"
+			"css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; } .ds-chip { padding: 0.15rem 0.45rem; border: 1px solid #0b0b18; background: transparent; color: #0b0b18; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; } .ds-chip:hover, .ds-chip[aria-checked='true'] { background: #0b0b18; color: #f1f1fe; } .ds-chip:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-chip:active { background: #0b0b18; color: #f1f1fe; }"
 		},
 		{
 			"name": "Conditions Chip",
@@ -236,7 +236,7 @@
 			"refersTo": "button-chip",
 			"description": "Tote toolbar: status then sorts, split by a 1px ink stick. Book-bar chips omit the stick: BACKED / MINE / ALL, far right, ALL default. Same invert; uppercase 0.8rem / 0.08em.",
 			"html": "<div class=\"ds-conditions\" role=\"toolbar\"><button class=\"ds-cond\" type=\"button\" aria-pressed=\"true\">ACTIVE</button><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">INACTIVE</button><span class=\"ds-cond-rule\" aria-hidden=\"true\"></span><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">AGE</button><button class=\"ds-cond\" type=\"button\" aria-pressed=\"false\">PURSE</button></div>",
-			"css": ".ds-conditions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; } .ds-cond { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-cond:hover, .ds-cond[aria-pressed='true'] { background: #040303; color: #f3eadc; } .ds-cond:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-cond-rule { width: 1px; height: 1.1rem; margin: 0 0.35rem; background: #040303; }"
+			"css": ".ds-conditions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; } .ds-cond { padding: 0.15rem 0.45rem; border: 1px solid #0b0b18; background: transparent; color: #0b0b18; border-radius: 0; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-cond:hover, .ds-cond[aria-pressed='true'] { background: #0b0b18; color: #f1f1fe; } .ds-cond:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-cond-rule { width: 1px; height: 1.1rem; margin: 0 0.35rem; background: #0b0b18; }"
 		},
 		{
 			"name": "Underline Field",
@@ -244,15 +244,15 @@
 			"refersTo": "input-underline",
 			"description": "Amount and papers fields: no box, 3px ink underline, athletic figures.",
 			"html": "<label class=\"ds-field\"><span class=\"ds-field-label\">AMOUNT (USDSO)</span><input class=\"ds-input-underline\" type=\"text\" value=\"250.00\" /></label>",
-			"css": ".ds-field { display: grid; gap: 0.2rem; } .ds-field-label { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #040303; } .ds-input-underline { width: 100%; border: 0; border-bottom: 3px solid #040303; border-radius: 0; background: transparent; padding: 0.2rem 0; color: #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-input-underline:hover { border-bottom-color: #040303; } .ds-input-underline:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+			"css": ".ds-field { display: grid; gap: 0.2rem; } .ds-field-label { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #0b0b18; } .ds-input-underline { width: 100%; border: 0; border-bottom: 3px solid #0b0b18; border-radius: 0; background: transparent; padding: 0.2rem 0; color: #0b0b18; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-input-underline:hover { border-bottom-color: #0b0b18; } .ds-input-underline:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; }"
 		},
 		{
 			"name": "Market Silks",
 			"kind": "custom",
 			"refersTo": "silks-btc",
-			"description": "Square BTC red / ETH blue identity. Papers pick adds a 3px ink edge and top-right corner tick when selected.",
+			"description": "Square BTC cherry / ETH periwinkle identity. Papers pick adds a 3px ink edge and top-right corner tick when selected.",
 			"html": "<div class=\"ds-silks-block\"><div class=\"ds-silks-row\"><span class=\"ds-silks ds-silks-btc\">BTC</span><span class=\"ds-silks ds-silks-eth\">ETH</span></div><div class=\"ds-silks-row ds-silks-picks\" role=\"radiogroup\"><button class=\"ds-silks-pick ds-silks-btc\" type=\"button\" role=\"radio\" aria-checked=\"true\">BTC</button><button class=\"ds-silks-pick ds-silks-eth\" type=\"button\" role=\"radio\" aria-checked=\"false\">ETH</button></div></div>",
-			"css": ".ds-silks-block { display: grid; gap: 0.75rem; } .ds-silks-row { display: flex; gap: 0.55rem; align-items: center; } .ds-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; color: #f3eadc; } .ds-silks-btc { background: #e42c22; } .ds-silks-eth { background: #0756d0; } .ds-silks-pick { position: relative; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; margin: 0; border: 3px solid transparent; background: #e42c22; color: #f3eadc; cursor: pointer; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: 0; } .ds-silks-pick.ds-silks-eth { background: #0756d0; } .ds-silks-pick[aria-checked='true'] { border-color: #040303; } .ds-silks-pick[aria-checked='true']::after { content: ''; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0.85rem 0 0 0.85rem; border-color: #040303 transparent transparent transparent; } .ds-silks-pick:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+			"css": ".ds-silks-block { display: grid; gap: 0.75rem; } .ds-silks-row { display: flex; gap: 0.55rem; align-items: center; } .ds-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; color: #f1f1fe; } .ds-silks-btc { background: #dc0b4a; } .ds-silks-eth { background: #6e6eed; } .ds-silks-pick { position: relative; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; margin: 0; border: 3px solid transparent; background: #dc0b4a; color: #f1f1fe; cursor: pointer; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: 0; } .ds-silks-pick.ds-silks-eth { background: #6e6eed; } .ds-silks-pick[aria-checked='true'] { border-color: #0b0b18; } .ds-silks-pick[aria-checked='true']::after { content: ''; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0.85rem 0 0 0.85rem; border-color: #0b0b18 transparent transparent transparent; } .ds-silks-pick:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; }"
 		},
 		{
 			"name": "SYNTHETIC Tag",
@@ -260,7 +260,7 @@
 			"refersTo": "tag-ink",
 			"description": "Inverted condition stamp for figures that are not on-chain. Active and BACKED use the same invert; Scratched and MINE outline instead.",
 			"html": "<div class=\"ds-tags\"><span class=\"ds-tag\">SYNTHETIC</span><span class=\"ds-status\">ACTIVE</span><span class=\"ds-status ds-status-scratched\">SCRATCHED</span></div>",
-			"css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; } .ds-tag { display: inline-block; padding: 0 0.28rem; background: #040303; color: #f3eadc; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-status { display: inline-block; padding: 0.1rem 0.35rem; background: #040303; color: #f3eadc; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-status-scratched { background: transparent; color: #040303; border: 1px solid #040303; }"
+			"css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; } .ds-tag { display: inline-block; padding: 0 0.28rem; background: #0b0b18; color: #f1f1fe; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-status { display: inline-block; padding: 0.1rem 0.35rem; background: #0b0b18; color: #f1f1fe; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-status-scratched { background: transparent; color: #0b0b18; border: 1px solid #0b0b18; }"
 		},
 		{
 			"name": "Betting Slip",
@@ -268,7 +268,7 @@
 			"refersTo": "slip",
 			"description": "BACK THIS HORSE panel. Hot Sheet wash, boxed title, dashed shares strip. Papers on /enter use the same wash.",
 			"html": "<aside class=\"ds-slip\"><h2 class=\"ds-slip-title\">BACK THIS HORSE</h2><div class=\"ds-picked\"><span class=\"ds-silks-sm\">BTC</span><strong>1 WARDEN</strong></div><dl class=\"ds-strip\"><dt>EST. VAULT SHARE <span class=\"ds-tag\">SYNTHETIC</span></dt><dd>1.91%</dd></dl></aside>",
-			"css": ".ds-slip { padding: 1rem 1.1rem 1.2rem; background: color-mix(in srgb, #f3eadc 55%, transparent); color: #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-slip-title { margin: 0; padding: 0.25rem 0.4rem; border: 3px solid #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; text-align: center; } .ds-picked { display: flex; align-items: center; gap: 0.55rem; margin: 0.8rem 0; padding-bottom: 0.55rem; border-bottom: 1px solid #040303; } .ds-picked strong { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 1.6rem; line-height: 0.9; letter-spacing: -0.02em; } .ds-silks-sm { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.04em; } .ds-strip { margin: 0; padding: 0.4rem 0.45rem; border: 1px dashed #040303; } .ds-strip dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; } .ds-strip dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.25rem; color: #085324; font-variant-numeric: tabular-nums; } .ds-tag { padding: 0 0.28rem; background: #040303; color: #f3eadc; letter-spacing: 0.12em; }"
+			"css": ".ds-slip { padding: 1rem 1.1rem 1.2rem; background: color-mix(in srgb, #f1f1fe 55%, transparent); color: #0b0b18; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-slip-title { margin: 0; padding: 0.25rem 0.4rem; border: 3px solid #0b0b18; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; text-align: center; } .ds-picked { display: flex; align-items: center; gap: 0.55rem; margin: 0.8rem 0; padding-bottom: 0.55rem; border-bottom: 1px solid #0b0b18; } .ds-picked strong { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-size: 1.6rem; line-height: 0.9; letter-spacing: -0.02em; } .ds-silks-sm { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; background: #dc0b4a; color: #f1f1fe; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.04em; } .ds-strip { margin: 0; padding: 0.4rem 0.45rem; border: 1px dashed #0b0b18; } .ds-strip dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; } .ds-strip dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.25rem; color: #006437; font-variant-numeric: tabular-nums; } .ds-tag { padding: 0 0.28rem; background: #0b0b18; color: #f1f1fe; letter-spacing: 0.12em; }"
 		},
 		{
 			"name": "Program Entry",
@@ -276,15 +276,15 @@
 			"refersTo": "program-entry",
 			"description": "Unselected horse on the program strip. Ink wash when hovered or pressed.",
 			"html": "<button class=\"ds-entry\" type=\"button\"><span class=\"ds-entry-num\">2</span><span class=\"ds-silks-entry\">ETH</span><span><span class=\"ds-entry-name\">KITE</span><span class=\"ds-pedigree\">1H · ETH</span></span><span class=\"ds-entry-purse\">11,920.00</span></button>",
-			"css": ".ds-entry { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 0.45rem 0.65rem; align-items: center; width: 100%; padding: 0.7rem 0.9rem; border: 0; border-right: 1px solid #040303; background: transparent; color: #040303; text-align: left; cursor: pointer; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-entry:hover, .ds-entry:active { background: color-mix(in srgb, #040303 8%, transparent); } .ds-entry:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-entry-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 2rem; line-height: 0.8; } .ds-silks-entry { display: grid; place-items: center; width: 2rem; height: 2rem; background: #0756d0; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.04em; } .ds-entry-name { display: block; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; } .ds-pedigree { display: block; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-entry-purse { font-weight: 700; color: #085324; font-variant-numeric: tabular-nums; text-align: right; }"
+			"css": ".ds-entry { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 0.45rem 0.65rem; align-items: center; width: 100%; padding: 0.7rem 0.9rem; border: 0; border-right: 1px solid #0b0b18; background: transparent; color: #0b0b18; text-align: left; cursor: pointer; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-entry:hover, .ds-entry:active { background: color-mix(in srgb, #0b0b18 8%, transparent); } .ds-entry:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-entry-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 2rem; line-height: 0.8; } .ds-silks-entry { display: grid; place-items: center; width: 2rem; height: 2rem; background: #6e6eed; color: #f1f1fe; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.04em; } .ds-entry-name { display: block; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; } .ds-pedigree { display: block; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-entry-purse { font-weight: 700; color: #006437; font-variant-numeric: tabular-nums; text-align: right; }"
 		},
 		{
 			"name": "Tote Row",
 			"kind": "custom",
 			"refersTo": "tote-row",
-			"description": "Full-bleed horse on /program (eight columns) or /portfolio (seven, capped name, ROLE). Hairline under the row; ink wash when hovered or pressed. Purse or capital sits on a ruled ink fill bar. BACKED inverts; MINE outlines.",
+			"description": "Full-bleed horse on /program (nine columns) or /portfolio (eight, same rhythm: number, silks, name fr, vault, then the book fields). Hairline under the row; ink wash when hovered or pressed. Purse or capital sits on a ruled ink fill bar. BACKED inverts; MINE outlines. Header is a tight agate rule, not a second data row.",
 			"html": "<button class=\"ds-tote-row\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-tote-num\">1</span><span class=\"ds-tote-silks\">BTC</span><span class=\"ds-tote-id\"><span class=\"ds-tote-name\">WARDEN</span><span class=\"ds-tote-pedigree\">15M · BTC</span></span><span class=\"ds-tote-age\">14d</span><span>08-17-26</span><span class=\"ds-tote-pnl\">+2,620.00</span><span class=\"ds-tote-purse\"><span>12,850.00</span><span class=\"ds-tvl\"><i style=\"width:64%\"></i></span><span class=\"ds-tvl-max\">MAX 20,000.00</span></span><span class=\"ds-status\">ACTIVE</span></button>",
-			"css": ".ds-tote-row { display: grid; grid-template-columns: 2.4rem 2.4rem minmax(7rem, 1.3fr) 3.4rem 5.2rem 6.2rem minmax(7.5rem, 1.1fr) 6.2rem; gap: 0.45rem 0.65rem; align-items: center; width: 100%; padding: 0.55rem 1.25rem; border: 0; border-bottom: 1px solid color-mix(in srgb, #040303 22%, transparent); background: color-mix(in srgb, #040303 8%, transparent); color: #040303; text-align: left; cursor: pointer; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-variant-numeric: tabular-nums; } .ds-tote-row:hover, .ds-tote-row[aria-pressed='true'] { background: color-mix(in srgb, #040303 8%, transparent); } .ds-tote-row:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-tote-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 1.7rem; line-height: 0.8; } .ds-tote-silks { display: grid; place-items: center; width: 2rem; height: 2rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.04em; } .ds-tote-name { display: block; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.55rem; line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; } .ds-tote-pedigree { display: block; margin-top: 0.15rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-tote-pnl { font-weight: 700; color: #085324; text-align: right; } .ds-tote-purse { display: grid; gap: 0.18rem; font-weight: 700; color: #085324; } .ds-tvl { display: block; height: 0.55rem; border: 1px solid #040303; background: transparent; } .ds-tvl i { display: block; height: 100%; background: #040303; } .ds-tvl-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; } .ds-status { justify-self: start; padding: 0.1rem 0.35rem; background: #040303; color: #f3eadc; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }"
+			"css": ".ds-tote-row { display: grid; grid-template-columns: 2.4rem 2.4rem minmax(7rem, 1.3fr) 3.4rem 5.2rem 6.2rem minmax(7.5rem, 1.1fr) 6.2rem; gap: 0.45rem 0.65rem; align-items: center; width: 100%; padding: 0.55rem 1.25rem; border: 0; border-bottom: 1px solid color-mix(in srgb, #0b0b18 22%, transparent); background: color-mix(in srgb, #0b0b18 8%, transparent); color: #0b0b18; text-align: left; cursor: pointer; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-variant-numeric: tabular-nums; } .ds-tote-row:hover, .ds-tote-row[aria-pressed='true'] { background: color-mix(in srgb, #0b0b18 8%, transparent); } .ds-tote-row:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-tote-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 1.7rem; line-height: 0.8; } .ds-tote-silks { display: grid; place-items: center; width: 2rem; height: 2rem; background: #dc0b4a; color: #f1f1fe; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.04em; } .ds-tote-name { display: block; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.55rem; line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; } .ds-tote-pedigree { display: block; margin-top: 0.15rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-tote-pnl { font-weight: 700; color: #006437; text-align: right; } .ds-tote-purse { display: grid; gap: 0.18rem; font-weight: 700; color: #006437; } .ds-tvl { display: block; height: 0.55rem; border: 1px solid #0b0b18; background: transparent; } .ds-tvl i { display: block; height: 100%; background: #0b0b18; } .ds-tvl-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b18; } .ds-status { justify-self: start; padding: 0.1rem 0.35rem; background: #0b0b18; color: #f1f1fe; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }"
 		},
 		{
 			"name": "Ruled Fill Bar",
@@ -292,15 +292,15 @@
 			"refersTo": "tvl-track",
 			"description": "Purse fill-to-max: 1px ink-ruled track, Carbon Ink fill. On the book tote, fill is backed capital over vault. Figure is Purse Green; the bar is not.",
 			"html": "<div class=\"ds-fill\"><span class=\"ds-fill-amt\">12,850.00</span><span class=\"ds-fill-track\"><i style=\"width:64%\"></i></span><span class=\"ds-fill-max\">MAX 20,000.00</span></div>",
-			"css": ".ds-fill { display: grid; gap: 0.18rem; } .ds-fill-amt { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; color: #085324; font-variant-numeric: tabular-nums; } .ds-fill-track { display: block; height: 0.55rem; border: 1px solid #040303; background: transparent; border-radius: 0; } .ds-fill-track i { display: block; height: 100%; background: #040303; } .ds-fill-max { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; }"
+			"css": ".ds-fill { display: grid; gap: 0.18rem; } .ds-fill-amt { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; color: #006437; font-variant-numeric: tabular-nums; } .ds-fill-track { display: block; height: 0.55rem; border: 1px solid #0b0b18; background: transparent; border-radius: 0; } .ds-fill-track i { display: block; height: 100%; background: #0b0b18; } .ds-fill-max { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b18; }"
 		},
 		{
 			"name": "Hot Sheet Overlay",
 			"kind": "card",
 			"refersTo": "sheet-overlay",
-			"description": "40% right-hand Hot Sheet on /program or /portfolio. Call-scale name. Program: PP, ruled purse, last backer, Deposit stamp. Book: shares and PnL, DEPOSIT/WITHDRAW chips, then stamp or outlined Withdraw — never both.",
-			"html": "<aside class=\"ds-overlay\"><button class=\"ds-overlay-close\" type=\"button\">BACK TO THE PROGRAM</button><div class=\"ds-overlay-call\"><span class=\"ds-overlay-num\">1</span><span class=\"ds-overlay-silks\">BTC</span><div><h1 class=\"ds-overlay-name\">WARDEN</h1><p class=\"ds-overlay-ped\">DREAMDEX · 15M · BTC</p></div></div><dl class=\"ds-overlay-tvl\"><dt>VAULT PURSE <span class=\"ds-tag\">SYNTHETIC</span></dt><dd class=\"ds-overlay-purse\">12,850.00</dd><dd class=\"ds-overlay-track\"><i style=\"width:64%\"></i></dd><dd class=\"ds-fill-max\">MAX 20,000.00</dd></dl></aside>",
-			"css": ".ds-overlay { width: 40%; padding: 1rem 1.1rem 1.4rem; background: #f3eadc; color: #040303; border-left: 3px solid #040303; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-overlay-close { display: block; margin: 0 0 0.35rem auto; padding: 0; border: 0; background: none; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: #040303; } .ds-overlay-close:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-overlay-call { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 0.45rem 0.65rem; align-items: start; margin: 0.55rem 0 0.85rem; } .ds-overlay-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(5rem, 12vw, 6rem); line-height: 0.75; letter-spacing: -0.04em; } .ds-overlay-silks { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; margin-top: 0.35rem; background: #e42c22; color: #f3eadc; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em; } .ds-overlay-name { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(4.2rem, 11vw, 6rem); line-height: 0.76; letter-spacing: -0.03em; text-transform: uppercase; } .ds-overlay-ped { margin: 0.25rem 0 0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-overlay-tvl { margin: 0.85rem 0 0; } .ds-overlay-tvl dt { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-overlay-tvl dd { margin: 0.15rem 0 0; } .ds-overlay-purse { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 0.9; letter-spacing: -0.03em; color: #085324; font-variant-numeric: tabular-nums; } .ds-overlay-track { display: block; height: 0.7rem; border: 1px solid #040303; background: transparent; } .ds-overlay-track i { display: block; height: 100%; background: #040303; } .ds-fill-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; } .ds-tag { padding: 0 0.28rem; background: #040303; color: #f3eadc; letter-spacing: 0.12em; }"
+			"description": "40% right-hand Hot Sheet on /program or /portfolio. Compact one-row call (number + 2.4rem silks + Title-scale name) so the stamp stays in view. Program: PP, ruled purse, last backer, Deposit stamp. Book: shares and PnL, DEPOSIT/WITHDRAW chips, then stamp or outlined Withdraw — never both.",
+			"html": "<aside class=\"ds-overlay\"><button class=\"ds-overlay-close\" type=\"button\">BACK TO THE PROGRAM</button><div class=\"ds-overlay-call\"><div class=\"ds-overlay-mast\"><span class=\"ds-overlay-num\">1</span><span class=\"ds-overlay-silks\">BTC</span></div><div class=\"ds-overlay-id\"><h1 class=\"ds-overlay-name\">WARDEN</h1><p class=\"ds-overlay-ped\">DREAMDEX · 15M · BTC</p></div></div><dl class=\"ds-overlay-tvl\"><dt>VAULT PURSE <span class=\"ds-tag\">SYNTHETIC</span></dt><dd class=\"ds-overlay-purse\">12,850.00</dd><dd class=\"ds-overlay-track\"><i style=\"width:64%\"></i></dd><dd class=\"ds-fill-max\">MAX 20,000.00</dd></dl></aside>",
+			"css": ".ds-overlay { width: 40%; padding: 1rem 1.1rem 1.4rem; background: #f1f1fe; color: #0b0b18; border-left: 3px solid #0b0b18; border-radius: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-overlay-close { display: block; margin: 0 0 0.35rem auto; padding: 0; border: 0; background: none; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: #0b0b18; } .ds-overlay-close:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-overlay-call { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 0.2rem 0.5rem; align-items: start; margin: 0.15rem 0 0; padding-bottom: 0.55rem; border-bottom: 3px solid #0b0b18; } .ds-overlay-mast { display: contents; } .ds-overlay-num { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 0.8; letter-spacing: -0.04em; } .ds-overlay-silks { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; margin-top: 0.2rem; background: #dc0b4a; color: #f1f1fe; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.04em; } .ds-overlay-name { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 0.85; letter-spacing: -0.02em; text-transform: uppercase; overflow-wrap: break-word; } .ds-overlay-ped { margin: 0.25rem 0 0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; } .ds-overlay-tvl { margin: 0.85rem 0 0; } .ds-overlay-tvl dt { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-overlay-tvl dd { margin: 0.15rem 0 0; } .ds-overlay-purse { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 0.9; letter-spacing: -0.03em; color: #006437; font-variant-numeric: tabular-nums; } .ds-overlay-track { display: block; height: 0.7rem; border: 1px solid #0b0b18; background: transparent; } .ds-overlay-track i { display: block; height: 100%; background: #0b0b18; } .ds-fill-max { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b18; } .ds-tag { padding: 0 0.28rem; background: #0b0b18; color: #f1f1fe; letter-spacing: 0.12em; }"
 		},
 		{
 			"name": "Book Bar",
@@ -308,7 +308,7 @@
 			"refersTo": "book-title",
 			"description": "Result strip on /portfolio: boxed YOUR BOOK, 3px vertical ink rule, inline PnL and capital at risk, SYNTHETIC, BACKED/MINE/ALL chips on the far right.",
 			"html": "<div class=\"ds-book-bar\"><h1 class=\"ds-book-title\">YOUR BOOK</h1><span class=\"ds-book-rule\" aria-hidden=\"true\"></span><dl class=\"ds-book-figures\"><div><dt>PNL</dt><dd class=\"ds-book-pnl\">+1,240.00</dd></div><div><dt>CAPITAL AT RISK</dt><dd>4,500.00</dd></div><span class=\"ds-book-tag\">SYNTHETIC</span></dl><div class=\"ds-book-chips\" role=\"toolbar\"><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"false\">BACKED</button><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"false\">MINE</button><button class=\"ds-book-chip\" type=\"button\" aria-pressed=\"true\">ALL</button></div></div>",
-			"css": ".ds-book-bar { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.45rem 0.75rem; padding: 0.4rem 1.25rem; border-bottom: 3px solid #040303; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-book-title { margin: 0; padding: 0.22rem 0.45rem; border: 3px solid #040303; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; align-self: center; } .ds-book-rule { width: 3px; background: #040303; flex-shrink: 0; align-self: stretch; } .ds-book-figures { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1.1rem; margin: 0; align-self: center; } .ds-book-figures div { display: flex; align-items: baseline; gap: 0.4rem; } .ds-book-figures dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-book-figures dd { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 0.85; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; } .ds-book-pnl { color: #085324; } .ds-book-tag { align-self: center; padding: 0 0.28rem; background: #040303; color: #f3eadc; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-book-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; margin-left: auto; align-self: center; } .ds-book-chip { padding: 0.15rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; border-radius: 0; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-book-chip:hover, .ds-book-chip[aria-pressed='true'] { background: #040303; color: #f3eadc; } .ds-book-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+			"css": ".ds-book-bar { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.45rem 0.75rem; padding: 0.4rem 1.25rem; border-bottom: 3px solid #0b0b18; color: #0b0b18; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-book-title { margin: 0; padding: 0.22rem 0.45rem; border: 3px solid #0b0b18; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; align-self: center; } .ds-book-rule { width: 3px; background: #0b0b18; flex-shrink: 0; align-self: stretch; } .ds-book-figures { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1.1rem; margin: 0; align-self: center; } .ds-book-figures div { display: flex; align-items: baseline; gap: 0.4rem; } .ds-book-figures dt { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-book-figures dd { margin: 0; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.7rem; line-height: 0.85; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; } .ds-book-pnl { color: #006437; } .ds-book-tag { align-self: center; padding: 0 0.28rem; background: #0b0b18; color: #f1f1fe; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-book-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.45rem; margin-left: auto; align-self: center; } .ds-book-chip { padding: 0.15rem 0.45rem; border: 1px solid #0b0b18; background: transparent; color: #0b0b18; border-radius: 0; cursor: pointer; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; } .ds-book-chip:hover, .ds-book-chip[aria-pressed='true'] { background: #0b0b18; color: #f1f1fe; } .ds-book-chip:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; }"
 		},
 		{
 			"name": "Deposit Stamp",
@@ -316,7 +316,7 @@
 			"refersTo": "deposit-stamp",
 			"description": "Primary deposit action: distressed green rubber stamp, multiplied onto the sheet. Not an ink-fill button. Left-aligned on /program and /portfolio overlays.",
 			"html": "<button class=\"ds-stamp\" type=\"button\"><span class=\"ds-stamp-face\"><svg class=\"ds-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg><span class=\"ds-stamp-type\"><strong>DEPOSIT</strong><small>LOCK FUNDS &amp; BACK HERO</small></span><svg class=\"ds-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg></span></button>",
-			"css": ".ds-stamp { display: block; width: min(100%, 22rem); margin: 0.2rem auto 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-stamp:hover .ds-stamp-face, .ds-stamp:focus-visible .ds-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-stamp .ds-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
+			"css": ".ds-stamp { display: block; width: min(100%, 22rem); margin: 0.2rem auto 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #006437; } .ds-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #006437; outline: 2px solid #006437; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-star { width: 1.1rem; height: 1.1rem; fill: #006437; } .ds-stamp:hover .ds-stamp-face, .ds-stamp:focus-visible .ds-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-stamp:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-stamp .ds-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
 		},
 		{
 			"name": "Open Vault Stamp",
@@ -324,7 +324,7 @@
 			"refersTo": "open-vault-stamp",
 			"description": "Nomination action on /enter: matching green rubber stamp at the foot of the papers. Not an ink-fill button.",
 			"html": "<button class=\"ds-open-stamp\" type=\"button\"><span class=\"ds-open-stamp-face\"><svg class=\"ds-open-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg><span class=\"ds-open-stamp-type\"><strong>OPEN VAULT</strong><small>YOU STILL SIGN</small></span><svg class=\"ds-open-star\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><polygon points=\"12,2 14.9,8.6 22,9.3 16.5,14.2 18.2,21.2 12,17.8 5.8,21.2 7.5,14.2 2,9.3 9.1,8.6\" /></svg></span></button>",
-			"css": ".ds-open-stamp { display: block; width: min(100%, 18rem); margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #085324; } .ds-open-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #085324; outline: 2px solid #085324; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-open-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-open-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-open-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-open-star { width: 1.1rem; height: 1.1rem; fill: #085324; } .ds-open-stamp:hover .ds-open-stamp-face, .ds-open-stamp:focus-visible .ds-open-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-open-stamp:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-open-stamp .ds-open-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
+			"css": ".ds-open-stamp { display: block; width: min(100%, 18rem); margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; color: #006437; } .ds-open-stamp-face { display: flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.85rem 1.1rem; border: 4px solid #006437; outline: 2px solid #006437; outline-offset: -8px; transform: rotate(-6deg); font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; } .ds-open-stamp-type { display: flex; flex-direction: column; align-items: center; line-height: 1; } .ds-open-stamp-type strong { font-size: 2rem; font-weight: 800; letter-spacing: 0.08em; } .ds-open-stamp-type small { margin-top: 0.25rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; } .ds-open-star { width: 1.1rem; height: 1.1rem; fill: #006437; } .ds-open-stamp:hover .ds-open-stamp-face, .ds-open-stamp:focus-visible .ds-open-stamp-face { filter: contrast(1.12) brightness(0.96); } .ds-open-stamp:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-open-stamp .ds-open-stamp-face { transition: filter 160ms cubic-bezier(0.16, 1, 0.3, 1); }"
 		},
 		{
 			"name": "Withdraw",
@@ -332,7 +332,7 @@
 			"refersTo": "button-withdraw",
 			"description": "Redeem on a backed /portfolio overlay after WITHDRAW is pressed. 1px ink outline, not a stamp. Hover washes 8% ink. Withheld when owner-only. Never stacked under the Deposit stamp.",
 			"html": "<button class=\"ds-withdraw\" type=\"button\">WITHDRAW<small>Redeem shares from this horse</small></button>",
-			"css": ".ds-withdraw { display: grid; justify-items: start; width: min(100%, 22rem); padding: 0.45rem 0.65rem; border: 1px solid #040303; background: transparent; cursor: pointer; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; border-radius: 0; } .ds-withdraw small { display: block; margin-top: 0.15rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; } .ds-withdraw:hover, .ds-withdraw:focus-visible { background: color-mix(in srgb, #040303 8%, transparent); } .ds-withdraw:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-withdraw:active { background: color-mix(in srgb, #040303 8%, transparent); } .ds-withdraw:disabled { cursor: not-allowed; opacity: 0.35; }"
+			"css": ".ds-withdraw { display: grid; justify-items: start; width: min(100%, 22rem); padding: 0.45rem 0.65rem; border: 1px solid #0b0b18; background: transparent; cursor: pointer; color: #0b0b18; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; border-radius: 0; } .ds-withdraw small { display: block; margin-top: 0.15rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; } .ds-withdraw:hover, .ds-withdraw:focus-visible { background: color-mix(in srgb, #0b0b18 8%, transparent); } .ds-withdraw:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-withdraw:active { background: color-mix(in srgb, #0b0b18 8%, transparent); } .ds-withdraw:disabled { cursor: not-allowed; opacity: 0.35; }"
 		},
 		{
 			"name": "Locale Toggle",
@@ -340,7 +340,7 @@
 			"refersTo": "locale-active",
 			"description": "Masthead locale. Underlined until pressed; active fills ink.",
 			"html": "<div class=\"ds-locale\"><button class=\"ds-locale-btn is-active\" type=\"button\" aria-pressed=\"true\">EN</button><button class=\"ds-locale-btn\" type=\"button\" aria-pressed=\"false\">ID</button></div>",
-			"css": ".ds-locale { display: flex; gap: 0.35rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; } .ds-locale-btn { background: none; border: 0; padding: 0.15rem 0.2rem; color: #040303; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 0; } .ds-locale-btn.is-active, .ds-locale-btn[aria-pressed='true'] { text-decoration: none; background: #040303; color: #f3eadc; } .ds-locale-btn:hover:not(.is-active):not([aria-pressed='true']) { text-decoration-thickness: 2px; } .ds-locale-btn:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+			"css": ".ds-locale { display: flex; gap: 0.35rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.08em; } .ds-locale-btn { background: none; border: 0; padding: 0.15rem 0.2rem; color: #0b0b18; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 0; } .ds-locale-btn.is-active, .ds-locale-btn[aria-pressed='true'] { text-decoration: none; background: #0b0b18; color: #f1f1fe; } .ds-locale-btn:hover:not(.is-active):not([aria-pressed='true']) { text-decoration-thickness: 2px; } .ds-locale-btn:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; }"
 		},
 		{
 			"name": "Account Chip",
@@ -348,7 +348,7 @@
 			"refersTo": "account-chip",
 			"description": "Connected session last in masthead-actions. 1px ink outline, truncated tabular address. Hover and open invert. Not a wallet-logo avatar.",
 			"html": "<button class=\"ds-account-chip\" type=\"button\" aria-expanded=\"true\">0x1234…5678</button>",
-			"css": ".ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #040303; background: transparent; color: #040303; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-chip:hover, .ds-account-chip[aria-expanded='true'] { background: #040303; color: #f3eadc; } .ds-account-chip:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-account-chip:active { background: #040303; color: #f3eadc; }"
+			"css": ".ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #0b0b18; background: transparent; color: #0b0b18; cursor: pointer; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-chip:hover, .ds-account-chip[aria-expanded='true'] { background: #0b0b18; color: #f1f1fe; } .ds-account-chip:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-account-chip:active { background: #0b0b18; color: #f1f1fe; }"
 		},
 		{
 			"name": "Account Slip",
@@ -356,7 +356,7 @@
 			"refersTo": "account-slip",
 			"description": "Hot Sheet account menu below-right of the chip: full address, Copy, Disconnect. Not a modal. Not RainbowKit glass.",
 			"html": "<div class=\"ds-account\"><button class=\"ds-account-chip\" type=\"button\" aria-expanded=\"true\">0x1234…5678</button><div class=\"ds-account-slip\" role=\"menu\"><p class=\"ds-account-full\">0x1234567890abcdef1234567890abcdef12345678</p><button type=\"button\" role=\"menuitem\">COPIED</button><button type=\"button\" role=\"menuitem\">DISCONNECT</button></div></div>",
-			"css": ".ds-account { position: relative; display: inline-block; color: #040303; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #040303; background: #040303; color: #f3eadc; cursor: pointer; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-slip { position: absolute; right: 0; top: calc(100% + 0.35rem); z-index: 8; display: grid; gap: 0.2rem; min-width: 14rem; padding: 0.45rem; border: 2px solid #040303; background: #f3eadc; border-radius: 0; } .ds-account-full { margin: 0 0 0.2rem; padding: 0.2rem 0.35rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.3; word-break: break-all; font-variant-numeric: tabular-nums; } .ds-account-slip button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #040303; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; border-radius: 0; font-family: inherit; } .ds-account-slip button:hover, .ds-account-slip button:focus-visible { background: #040303; color: #f3eadc; } .ds-account-slip button:focus-visible { outline: 2px solid #040303; outline-offset: 3px; }"
+			"css": ".ds-account { position: relative; display: inline-block; color: #0b0b18; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-account-chip { padding: 0.2rem 0.45rem; border: 1px solid #0b0b18; background: #0b0b18; color: #f1f1fe; cursor: pointer; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border-radius: 0; } .ds-account-slip { position: absolute; right: 0; top: calc(100% + 0.35rem); z-index: 8; display: grid; gap: 0.2rem; min-width: 14rem; padding: 0.45rem; border: 2px solid #0b0b18; background: #f1f1fe; border-radius: 0; } .ds-account-full { margin: 0 0 0.2rem; padding: 0.2rem 0.35rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.3; word-break: break-all; font-variant-numeric: tabular-nums; } .ds-account-slip button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #0b0b18; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b18; border-radius: 0; font-family: inherit; } .ds-account-slip button:hover, .ds-account-slip button:focus-visible { background: #0b0b18; color: #f1f1fe; } .ds-account-slip button:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; }"
 		},
 		{
 			"name": "Wallet List",
@@ -364,18 +364,18 @@
 			"refersTo": "button-chip",
 			"description": "EIP-6963 announced wallets as stacked full-width invert chips of the provider name. Injected fallback: Browser wallet. No logos.",
 			"html": "<div class=\"ds-wallet-list\" role=\"group\" aria-label=\"Choose a wallet\"><button type=\"button\">METAMASK</button><button type=\"button\">RABBY WALLET</button><button type=\"button\">BROWSER WALLET</button></div>",
-			"css": ".ds-wallet-list { display: grid; gap: 0.2rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-wallet-list button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #040303; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #040303; border-radius: 0; font-family: inherit; } .ds-wallet-list button:hover, .ds-wallet-list button:focus-visible { background: #040303; color: #f3eadc; } .ds-wallet-list button:focus-visible { outline: 2px solid #040303; outline-offset: 3px; } .ds-wallet-list button:active { background: #040303; color: #f3eadc; }"
+			"css": ".ds-wallet-list { display: grid; gap: 0.2rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; } .ds-wallet-list button { width: 100%; padding: 0.25rem 0.45rem; border: 1px solid #0b0b18; background: transparent; cursor: pointer; text-align: left; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b18; border-radius: 0; font-family: inherit; } .ds-wallet-list button:hover, .ds-wallet-list button:focus-visible { background: #0b0b18; color: #f1f1fe; } .ds-wallet-list button:focus-visible { outline: 2px solid #0b0b18; outline-offset: 3px; } .ds-wallet-list button:active { background: #0b0b18; color: #f1f1fe; }"
 		}
 	],
 	"narrative": {
 		"northStar": "The Past-Performance Sheet",
-		"overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on warm newsprint: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper. Withdraw is a 1px ink outline on the same sheet, never a second stamp. Persistent session is an ink-fill Connect last in the masthead, then an outline truncated-address chip that opens a Hot Sheet slip — never a hero CTA and never a modal.\n\nFour surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. `/portfolio` is the connected wallet’s book: a tote of horses already held, with the same right Hot Sheet to stamp more or redeem shares. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark. The book is the masthead’s Your book mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. The same Wagmi session (injected / EIP-6963) unlocks stamp-time Connect gates. The sheet never names a chain. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.",
+		"overview": "Marketo reads as a Daily Racing Form card, not as a dark trading terminal. The sheet is ink on cool venue stock — dreamDEX’s periwinkle-tinted paper, not cream newsprint and not a night-mode invert: extra-condensed athletic gothic for names and numbers, agate condensed for the small type that handicappers actually read, and thick rules that cut the page into bands. Heroes are horses. BTC and ETH are silks. The vault is a purse. Deposit and Open vault are rubber stamps pressed into the paper. Withdraw is a 1px ink outline on the same sheet, never a second stamp. Persistent session is an ink-fill Connect last in the masthead, then an outline truncated-address chip that opens a Hot Sheet slip — never a hero CTA and never a modal.\n\nFour surfaces share that world. `/` is the racing card: masthead, a selected call beside a betting slip, a program strip of the rest. `/program` is the overnight tote of every horse, with a right-hand Hot Sheet overlay to back one. `/enter` is the same stock opened as a two-page condition book: facts left, papers right. `/portfolio` is the connected wallet’s book: a tote of horses already held, with the same right Hot Sheet to stamp more or redeem shares. Entering is not a wizard, not a settings form, and not a block on the racing card — the masthead’s Enter a horse mark is the door. The program is the masthead’s The program mark. The book is the masthead’s Your book mark.\n\nThe product commitment is an arena of heroes fighting a market. This world keeps that fight and casts it as a past-performance page you can study, back, or enter. A disconnected visitor stays a spectator until they sign. The same Wagmi session (injected / EIP-6963) unlocks stamp-time Connect gates. The sheet never names a chain. Figures that are not on-chain wear an inverted SYNTHETIC stamp so the sheet never impersonates a live tote. Owner-only rows on the book are watch-only: vault PnL prints; depositor funds cannot be pulled.",
 		"keyCharacteristics": [
-			"Warm newsprint ground, hue-less fiber tiled and multiplied into the sheet",
+			"Cool lavender sheet ground, hue-less fiber tiled and multiplied into the stock",
 			"Big Shoulders Display for the call; Barlow Condensed for agate",
 			"Square-cut everything; 3px carbon-ink rules between major regions",
-			"Red BTC / blue ETH silks squares as identity, not portraits",
-			"Purse green only for money in the black and for the Deposit / Open-vault stamps",
+			"Cherry BTC / periwinkle ETH silks squares as identity, not portraits",
+			"Mint purse green only for money in the black and for the Deposit / Open-vault stamps",
 			"Invert-to-ink as the selected / pressed language",
 			"/enter is a condition-book spread (facts | papers), not a stepper",
 			"/program is a tote of every horse with a right Hot Sheet overlay, not a second horse route",
@@ -385,7 +385,7 @@
 		"rules": [
 			{
 				"name": "The Silks Rule",
-				"body": "BTC is always the red square; ETH is always the blue square. Silks are filled squares of extra-condensed market letters in Hot Sheet. They carry identity. Do not substitute coin logos, gradients, or circular avatars.",
+				"body": "BTC is always the cherry square; ETH is always the periwinkle square. Silks are filled squares of extra-condensed market letters in Hot Sheet. They carry identity. Do not substitute coin logos, gradients, or circular avatars.",
 				"section": "colors"
 			},
 			{
@@ -395,7 +395,7 @@
 			},
 			{
 				"name": "The Stained-Impression Rule",
-				"body": "The open horse stains its impression with a wash mixed at paper lightness in the silks hue (not a mix of the neon fill into cream). Call and slip take a translucent wash so newsprint shows; overlays take the opaque hot or sheet wash. /enter papers take the hot wash of the picked silks. The tote does not stripe. The miniature stays Sheet Stock. Chrome stays carbon.",
+				"body": "The open horse stains its impression with a wash mixed at paper lightness in the silks hue (not a mix of the neon fill into stock). Call and slip take a translucent wash so newsprint shows; overlays take the opaque hot or sheet wash. /enter papers take the hot wash of the picked silks. The tote does not stripe. The miniature stays Sheet Stock. Chrome stays carbon.",
 				"section": "colors"
 			},
 			{
@@ -457,7 +457,7 @@
 		"dos": [
 			"Do ground new surfaces on Sheet Stock with the newsprint tile at 240px, `background-blend-mode: multiply`.",
 			"Do cut regions with 3px Carbon Ink rules and keep every radius at 0.",
-			"Do identify a market with silks squares (BTC red, ETH blue) and extra-condensed letters.",
+			"Do identify a market with silks squares (BTC cherry, ETH periwinkle) and extra-condensed letters.",
 			"Do print vs-market in silks-ink with a 0.5rem silks square in the PP table; stain only the open horse’s call, slip, overlay, or papers.",
 			"Do mark the selected silks pick with a 3px ink edge and a top-right corner tick.",
 			"Do print purses and winning PnL in Purse Green; print losses in Carbon Ink.",
@@ -475,10 +475,10 @@
 			"Do sum book-bar PnL and capital from backed holdings only."
 		],
 		"donts": [
-			"Don't ship a dark DeFi hero with three equal feature cards.",
+			"Don't ship a dark DeFi hero with three equal feature cards. Cooler stock is still a printed sheet, not a night-mode invert of dreamDEX’s terminal.",
 			"Don't round corners, raise shadows, or frost glass over the sheet.",
 			"Don't give heroes photographic portraits or coin-logo avatars; silks carry identity.",
-			"Don't recast BTC as orange or ETH as purple; those silks are locked.",
+			"Don't recast BTC as orange or ETH as cyan; those silks are locked to cherry and periwinkle.",
 			"Don't set body type in BTC/ETH fill hues; use silks-ink. Don't stripe the tote or stain the miniature.",
 			"Don't use Purse Green for losses, links, large fills that are not money or the stamp, or the purse fill-to-max bar.",
 			"Don't let MARKETO or UI labels out-size the selected horse name on a call surface.",

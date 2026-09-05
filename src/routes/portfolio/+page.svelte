@@ -360,7 +360,7 @@
 
 {@html `<!--
 THESIS: The book is a tote of horses you already hold; money moves on the Hot Sheet, not the row. Refuses a DeFi dashboard of position cards.
-OWN-WORLD: Warm newsprint, extra-condensed athletic gothic, 3px ink rules, silks squares, invert chips, ruled ink fill bar, green Deposit stamp, outlined Withdraw.
+OWN-WORLD: Cool lavender sheet, extra-condensed athletic gothic, 3px ink rules, silks squares, invert chips, ruled ink fill bar, mint Deposit stamp, outlined Withdraw.
 STORY: Read book PnL and capital at risk, open a backed horse, stamp more or redeem shares. Owners watch vault PnL and cannot pull depositor funds.
 FIRST VIEWPORT: Masthead with a single-line nav. One bar: boxed YOUR BOOK, chips, inline PnL and capital at risk. Full-bleed tote with a capped name column. Overlay from the right: call-scale name, shares, PnL, DEPOSIT/WITHDRAW chips, amount, then stamp or outlined withdraw.
 FORM: Book tote (grounded #2 of 7, seed 3226b2e6).
@@ -495,9 +495,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						{m.close_book_overlay()}
 					</button>
 					<div class="overlay-call">
-						<div class="call-num overlay-num">{selected.hero.program}</div>
-						<div class="silks {selected.hero.market.toLowerCase()}">{selected.hero.market}</div>
-						<div>
+						<div class="overlay-mast">
+							<div class="call-num overlay-num">{selected.hero.program}</div>
+							<div class="silks {selected.hero.market.toLowerCase()}">{selected.hero.market}</div>
+						</div>
+						<div class="overlay-id">
 							<h2 class="overlay-name" id="book-overlay-name" tabindex="-1">
 								{selected.hero.name}
 							</h2>

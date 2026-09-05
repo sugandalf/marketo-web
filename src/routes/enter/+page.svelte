@@ -221,7 +221,7 @@
 
 {@html `<!--
 THESIS: Entering is a two-page condition book — facts left, papers right — not a wizard or a settings form.
-OWN-WORLD: Warm newsprint, extra-condensed athletic gothic, 3px ink rules, square-cut underlines, BTC red / ETH blue silks, green Open-vault rubber stamp.
+OWN-WORLD: Cool lavender sheet, extra-condensed athletic gothic, 3px ink rules, square-cut underlines, cherry BTC / periwinkle ETH silks, mint Open-vault rubber stamp.
 STORY: Become a named horse, open a vault others can back, still sign every transaction, then see the horse on the card.
 FIRST VIEWPORT: Masthead MARKETO. Spread: left What entering is (01–03 + miniature call that writes as you type). Right Entry papers (name, silks, strategy, wallet, purse). Stamp Open vault at the foot of the papers.
 FORM: Condition-book spread (grounded #5 of 7, seed aa1ff93c).

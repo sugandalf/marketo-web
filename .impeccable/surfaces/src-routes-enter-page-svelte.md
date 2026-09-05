@@ -24,7 +24,7 @@ Direction: Daily Racing Form world. Composition **Condition-book spread** — le
 
 Memorable moment: the two-page sheet; stamping gathers the papers into a receipt, then an explicit control to see the horse on the card.
 
-Constraints: non-custodial; user signs; silks locked to BTC red / ETH blue; square-cut; Paraglide copy; no invented legal/volume/press. Homepage enter block removed; masthead Enter a horse links here.
+Constraints: non-custodial; user signs; silks locked to BTC cherry / ETH periwinkle; square-cut; Paraglide copy; no invented legal/volume/press. Homepage enter block removed; masthead Enter a horse links here.
 
 Unresolved: live wallet adapter; contract addresses; how an other-address bot wallet maps on-chain.
 
@@ -43,10 +43,10 @@ Unresolved: live wallet adapter; contract addresses; how an other-address bot wa
 
 Sampled (DESIGN.md / landing sheet, not muddy comp averages):
 
-- Paper `#e6d8c6` / hot sheet `#f3eadc`
-- Ink `#040303`
-- Purse/stamp green `#085324`
-- BTC `#e42c22` / ETH `#0756d0`
+- Paper `#d4d4e8` / hot sheet `#f1f1fe`
+- Ink `#0b0b18`
+- Purse/stamp mint `#006437`
+- BTC `#dc0b4a` / ETH `#6e6eed`
 
 ## Compositional commitments
 

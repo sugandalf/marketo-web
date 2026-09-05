@@ -8,6 +8,7 @@
 	"enter_horse_hint": "(create a bot)",
 	"past_performances": "Past performances (vs BTC / ETH)",
 	"vault_purse": "Vault purse (USDso)",
+	"vault_pnl": "PnL (USDso)",
 	"vault_address": "Vault",
 	"open_vault_explorer": "Open vault {address} on explorer",
 	"back_this_horse": "Back this horse",

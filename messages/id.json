@@ -8,6 +8,7 @@
 	"enter_horse_hint": "(buat bot)",
 	"past_performances": "Rekam jejak (vs BTC / ETH)",
 	"vault_purse": "Dompet vault (USDso)",
+	"vault_pnl": "PnL (USDso)",
 	"vault_address": "Vault",
 	"open_vault_explorer": "Buka vault {address} di explorer",
 	"back_this_horse": "Dukung kuda ini",
