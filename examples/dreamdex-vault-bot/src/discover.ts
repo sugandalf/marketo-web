@@ -77,7 +77,8 @@ export type EligibleMarket = {
 	onchain: MarketOnchain;
 };
 
-function minLeftSec(intervalSec: number): number {
+function minLeftSec(intervalSec: number, overrideMs: number | null): number {
+	if (overrideMs !== null) return Math.max(1, Math.floor(overrideMs / 1000));
 	const window = intervalSec > 0 ? intervalSec : 900;
 	return Math.max(30, Math.min(3600, Math.floor(window * 0.4)));
 }
@@ -247,6 +248,7 @@ export async function discoverEligible(opts: {
 	underlying: string;
 	cadenceSec: number[];
 	operatorId: number;
+	nearExpiryStopMs?: number | null;
 }): Promise<EligibleMarket[]> {
 	let rows: BinaryMarket[] = [];
 	let indexerOk = false;
@@ -308,7 +310,7 @@ export async function discoverEligible(opts: {
 				: tradingStart > 0 && expiry > tradingStart
 					? expiry - tradingStart
 					: 900;
-		if (expiry - now < minLeftSec(intervalSec)) return;
+		if (expiry - now < minLeftSec(intervalSec, opts.nearExpiryStopMs ?? null)) return;
 		if (!matchesCadence(intervalSec, opts.cadenceSec)) return;
 
 		const marketCollateral = getAddress(onchain.collateral);

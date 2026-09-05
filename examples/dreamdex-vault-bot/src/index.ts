@@ -168,7 +168,8 @@ async function main(): Promise<void> {
 				vaultAsset,
 				underlying: cfg.underlying,
 				cadenceSec: cfg.cadenceSec,
-				operatorId: cfg.operatorId
+				operatorId: cfg.operatorId,
+				nearExpiryStopMs: cfg.follow.nearExpiryStopMs
 			});
 			const markets = cfg.maxMarkets > 0 ? discovered.slice(0, cfg.maxMarkets) : discovered;
 			if (markets.length === 0) {
