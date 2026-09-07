@@ -86,6 +86,8 @@ There is **no** management, deposit, or withdrawal fee. The creator is paid only
 
 The web app never holds the operator key and never places orders. The operator never calls `deposit` or `withdraw`.
 
+Contract source code repo: [Marketo contract source code](https://github.com/sugandalf/marketo-contract)
+
 ## 3. Deposit as a backer
 
 A backer funds a **live entered vault** (not a demo horse) from `/`, `/program`, or `/portfolio`. They receive ERC-4626 shares. They do not become the operator.
