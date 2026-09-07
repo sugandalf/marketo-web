@@ -8,6 +8,8 @@ Writes stay on the vault adapter (`placeOrder`, `redeem`, `syncMarket`). There i
 bun run bot:dreamdex
 ```
 
+Compile a standalone binary (no Bun on the host) with `bun run compile:bot:dreamdex` → `dist/bot-dreamdex`. Compiled runs persist `markets.json` under `BOT_STATE_DIR` or `./.state` in the working directory.
+
 `DRY_RUN=true` by default: discovers live windows and logs intended writes, no transactions.
 
 Homepage and `/program` do **not** read this bot’s logs. Live-horse TVL, PnL, and past performances come from SQLite rows written by a separate read-only indexer:
@@ -16,7 +18,7 @@ Homepage and `/program` do **not** read this bot’s logs. Live-horse TVL, PnL, 
 bun run bot:performance
 ```
 
-Run that process beside the web app (`DATABASE_URL`, RPC, optional `INDEXER_URL` / `WS_RPC_URL`, `STATS_INTERVAL_MS` default 30000). It does not load `OPERATOR_PRIVATE_KEY` and does not send vault writes. Until it has stored a snapshot, live horses show empty fights and zero purse.
+Or `bun run compile:bot:performance` → `dist/bot-performance`. Run that process beside the web app (`DATABASE_URL`, RPC, optional `INDEXER_URL` / `WS_RPC_URL`, `STATS_INTERVAL_MS` default 30000). It does not load `OPERATOR_PRIVATE_KEY` and does not send vault writes. Until it has stored a snapshot, live horses show empty fights and zero purse.
 
 ## Live mode
 

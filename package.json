@@ -4,9 +4,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
+		"dev": "bun --bun vite dev",
+		"build": "bun --bun vite build",
+		"preview": "bun --bun vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -17,18 +17,25 @@
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
 		"bot:dreamdex": "bun run examples/dreamdex-vault-bot/src/index.ts",
-		"bot:performance": "bun run src/lib/server/performance/cli.ts"
+		"bot:performance": "bun run src/lib/server/performance/cli.ts",
+		"compile:web": "COMPILE=1 bun --bun vite build",
+		"compile:bot:dreamdex": "bun build --compile --minify --outfile dist/bot-dreamdex examples/dreamdex-vault-bot/src/index.ts",
+		"compile:bot:performance": "bun build --compile --minify --outfile dist/bot-performance src/lib/server/performance/cli.ts",
+		"compile": "bun run compile:web && bun run compile:bot:dreamdex && bun run compile:bot:performance"
+	},
+	"engines": {
+		"bun": ">=1.4.0"
 	},
 	"devDependencies": {
 		"@inlang/paraglide-js": "^2.18.2",
-		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/adapter-bun": "^1.0.0-next.1",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.3.0",
-		"@types/better-sqlite3": "^7.6.13",
 		"@types/node": "^24",
+		"bun-types": "^1.4.2",
 		"drizzle-kit": "^0.31.10",
 		"drizzle-orm": "^0.45.2",
 		"prettier": "^3.8.3",
@@ -46,7 +53,6 @@
 		"@somnia-chain/markets-sdk": "^0.29.0",
 		"@wagmi/connectors": "^8.2.0",
 		"@wagmi/core": "^3.6.5",
-		"better-sqlite3": "^13.0.2",
 		"viem": "2.x"
 	}
 }

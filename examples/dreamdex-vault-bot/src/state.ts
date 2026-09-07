@@ -4,7 +4,19 @@ import { fileURLToPath } from 'node:url';
 import type { Hex } from 'viem';
 import { errorMessage, log } from './log.ts';
 
-const stateDir = join(dirname(fileURLToPath(import.meta.url)), '..', '.state');
+function isStandaloneExecutable(): boolean {
+	const bun = (globalThis as { Bun?: { isStandaloneExecutable?: boolean } }).Bun;
+	return bun?.isStandaloneExecutable === true;
+}
+
+function resolveStateDir(): string {
+	const fromEnv = process.env.BOT_STATE_DIR?.trim();
+	if (fromEnv) return fromEnv;
+	if (isStandaloneExecutable()) return join(process.cwd(), '.state');
+	return join(dirname(fileURLToPath(import.meta.url)), '..', '.state');
+}
+
+const stateDir = resolveStateDir();
 const statePath = join(stateDir, 'markets.json');
 
 type StateFile = { marketIds: Hex[] };

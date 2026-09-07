@@ -21,12 +21,14 @@ context: |
 
   Tech stack (use these; do not substitute)
   - Svelte 5 (runes mode is forced in vite.config.ts; no legacy Svelte 4 component APIs)
-  - SvelteKit 2 with Vite 8, adapter-auto
+  - SvelteKit 2 with Vite 8, @sveltejs/adapter-bun (Bun 1.4+)
   - TypeScript (strict), ESM (`"type": "module"`)
   - Tailwind CSS 4 via `@tailwindcss/vite`; stylesheet is `src/routes/layout.css`
   - Bun as package manager and script runner (`bun add`, `bun run`, `bun.lock`)
-  - Drizzle ORM + SQLite (`better-sqlite3`) for server persistence; schema in
-    `src/lib/server/db/schema.ts`
+  - Drizzle ORM + SQLite (`bun:sqlite`) for server persistence; schema in
+    `src/lib/server/db/schema.ts`. Open via `$lib/server/db/sqlite.ts` (WAL). The
+    Kit app uses `$env` in `db/index.ts`; CLIs must import `sqlite.ts` / `schema.ts`
+    only — never `$lib/server/db/index.ts`.
   - Paraglide JS i18n (`en`, `id`); messages in `messages/`, generated runtime in
     `$lib/paraglide`. User-facing copy goes through Paraglide, not hardcoded strings.
   - Prettier with `prettier-plugin-svelte` and `prettier-plugin-tailwindcss`
@@ -86,8 +88,12 @@ context: |
   Bun
   - Install and run with Bun only. Do not add npm/yarn/pnpm lockfiles or scripts.
   - Add dependencies with `bun add` / `bun add -d`. Scripts: `bun run <script>`.
-  - Prefer Bun-native APIs only in Bun-only tooling; runtime code must stay
-    portable to the SvelteKit / Vite Node-compatible server.
+  - Run Vite/Kit with `bun --bun` so SSR can import `bun:sqlite`. Do not use
+    Node NAPI sqlite addons (`better-sqlite3`).
+  - Deploy as three binaries (`bun run compile`): `dist/marketo-web`,
+    `dist/bot-dreamdex`, `dist/bot-performance`. Do not bake `OPERATOR_PRIVATE_KEY`
+    into a compile; pass env / `.env` at runtime. `PUBLIC_*` is inlined into the
+    web client at compile time.
 
   EVM / wallet
   - Use a modern TypeScript stack (viem + wagmi, or equivalent) for RPC, accounts,
